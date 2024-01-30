@@ -24,7 +24,7 @@ def log_parser(**kw):
     log_timestamp = kw.get('timestamp') if kw.get('timestamp') else fields.Datetime.now
     log_ip = kw.get('ip') if kw.get('ip') else 'missing "ip" on args'
     return {
-        'ip': log_ip,
+        'sender_ip': log_ip,
         'type': log_type,
         'message': log_message,
         'timestamp_message': log_timestamp,
