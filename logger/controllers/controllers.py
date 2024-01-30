@@ -1,33 +1,40 @@
 # -*- coding: utf-8 -*-
-from odoo import http
+from odoo import http, fields
 import logging
 
 _logger = logging.getLogger(__name__)
 
 
-def log_switch(log_type, log):
-    if log_type == 'debug':
+def log(**kw):
+    if kw['log_type'] == 'debug':
         _logger.debug(log)
-    elif log_type == 'info':
+    elif kw['log_type'] == 'info':
         _logger.info(log)
-    elif log_type == 'warning':
+    elif kw['log_type'] == 'warning':
         _logger.warning(log)
-    elif log_type == 'error':
+    elif kw['log_type'] == 'error':
         _logger.error(log)
-    elif log_type == 'critical':
+    elif kw['log_type'] == 'critical':
         _logger.critical(log)
+
+
+def log_parser(**kw):
+    log_type = kw.get('log_type') if kw.get('log_type') else 'debug'
+    log_message = kw.get('message') if kw.get('message') else 'missing "message" on args'
+    log_timestamp = kw.get('timestamp') if kw.get('timestamp') else fields.Datetime.now
+    log_ip = kw.get('ip') if kw.get('ip') else 'missing "ip" on args'
+    return {
+        'ip': log_ip,
+        'type': log_type,
+        'message': log_message,
+        'timestamp_message': log_timestamp,
+        'timestamp': fields.Datetime.now,
+    }
 
 
 class LogController(http.Controller):
     @http.route('/log', auth='public')
     def index(self, **kw):
-        log_type = kw.get('log_type') if kw.get('log_type') else 'debug'
-        log_message = kw.get('message')
-        log_timestamp = kw.get('type_stamp')
-        log_values = {
-            'type': log_type,
-            'message': log_message,
-            'timestamp': log_timestamp
-        }
-        log_switch(log_type, log_message)
-        self.env['logger'].create(log_values)
+        parsed_log = log_parser(**kw)
+        log(**parsed_log)
+        self.env['logger'].create(parsed_log)
