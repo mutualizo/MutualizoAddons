@@ -8,11 +8,21 @@
 #                                                 #
 ###################################################
 
+import re
 from odoo import models, fields, api
+from odoo.exceptions import UserError, ValidationError
+from ..tools import fiscal
 
 
 class Company(models.Model):
     _inherit = "res.company"
+
+    def _get_company_address_field_names(self):
+        """ Return a list of fields coming from the address partner to match
+        on company address fields. Fields are labeled same on both models. """
+        return ['street', 'street2', 'city', 'zip', 'state_id', 'country_id', 
+                'cnpj_cpf', 'inscr_est', 'inscr_mun', 'suframa', 'legal_name', 
+                'city_id', 'district', 'number']
 
     cnpj_cpf = fields.Char(compute='_compute_address', inverse='_inverse_cnpj_cpf', size=18, string='CNPJ')
     inscr_est = fields.Char(compute='_compute_address', inverse='inverse_inscr_est', size=16, 
@@ -85,6 +95,13 @@ class Company(models.Model):
                 zip = "%s-%s" % (val[0:5], val[5:8])
                 self.zip = zip
 
+    @api.constrains('cnpj_cpf', 'country_id')
+    def _check_cnpj_cpf(self):
+        for company in self:
+            country_code = company.country_id.code or ''
+            if company.cnpj_cpf and (country_code.upper() == 'BR' or len(country_code) == 0):
+                if re.sub('[^0-9]', '', company.cnpj_cpf) != "00000000000000" and not fiscal.validate_cnpj(company.cnpj_cpf):
+                    raise ValidationError('Invalid CNPJ Number!')
 
 
 
