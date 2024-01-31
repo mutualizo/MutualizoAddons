@@ -11,6 +11,8 @@
 import re
 from odoo import models, fields, api, _
 from ..tools import fiscal
+from odoo.exceptions import UserError, ValidationError
+
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
@@ -72,9 +74,9 @@ class ResPartner(models.Model):
             if self.type == 'contact' and partner.cnpj_cpf and (country_code.upper() == 'BR' or len(country_code) == 0):
                 if partner.is_company:
                     if re.sub('[^0-9]', '', partner.cnpj_cpf) != "00000000000000" and not fiscal.validate_cnpj(partner.cnpj_cpf):
-                        raise ValidationError(_('Invalid CNPJ Number!'))
+                        raise ValidationError('Invalid CNPJ Number!')
                 elif re.sub('[^0-9]', '', self.cnpj_cpf) != "00000000000" and not fiscal.validate_cpf(partner.cnpj_cpf):
-                    raise ValidationError(_('Invalid CPF Number!'))
+                    raise ValidationError('Invalid CPF Number!')
 
     def _is_cnpj_or_cpf(self):
         res = False
