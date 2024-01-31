@@ -28,6 +28,7 @@
         'views/res_country_state_view.xml',
         'views/res_partner_view.xml',
         'views/res_company_view.xml',
+        'views/res_config_settings_view.xml',
         'views/menus_view.xml',
     ],
     'external_dependencies': {},
