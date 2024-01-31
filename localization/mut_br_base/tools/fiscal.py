@@ -10,6 +10,27 @@
 
 import re
 
+IND_IE_DEST = [
+    ('1', '1 - Contribuinte ICMS'),
+    ('2', '2 - Contribuinte isento de Inscrição no cadastro de Contribuintes do ICMS'),
+    ('9', '9 - Não Contribuinte, que pode ou não possuir Inscrição Estadual no Cadastro de Contribuintes do ICMS')
+]
+
+FRT_RESP = [
+    ('0', '0 - Contratação do Frete por conta do Remetente (CIF)'),
+    ('1', '1 - Contratação do Frete por conta do Destinatário (FOB)'),
+    ('2', '2 - Contratação do Frete por conta de Terceiros'),
+    ('3', '3 - Transporte Próprio por conta do Remetente'),
+    ('4', '4 - Transporte Próprio por conta do Destinatário'),
+    ('9', '9 - Sem Ocorrência de Transporte')
+]
+
+COMPANY_FISCAL_TYPE = [
+    ('1', 'Simples Nacional'),
+    ('2', 'Simples Nacional – excesso de sublimite de receita bruta'),
+    ('3', 'Regime Normal')
+]
+
 PARAMETERS = {
     'ac': {'tam': 13, 'val_tam': 11, 'starts_with': '01'},
     'al': {'tam': 9, 'starts_with': '24'},
