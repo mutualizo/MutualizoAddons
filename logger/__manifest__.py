@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "module_exemple",
+    'name': "log",
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': "Saves logs to a table",
 
     'description': """
-Long description of module's purpose
+Saves logs to a table
     """,
 
-    'author': "My Company",
+    'author': "Joao Amorim",
     'website': "https://www.yourcompany.com",
-
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
