@@ -2,19 +2,21 @@
 from odoo import http, fields
 import logging
 
+from odoo.http import request,Response
+
 _logger = logging.getLogger(__name__)
 
 
 def log(**kw):
-    if kw['log_type'] == 'debug':
+    if kw.get('type') == 'debug':
         _logger.debug(log)
-    elif kw['log_type'] == 'info':
+    elif  kw.get('type') == 'info':
         _logger.info(log)
-    elif kw['log_type'] == 'warning':
+    elif kw.get('type') == 'warning':
         _logger.warning(log)
-    elif kw['log_type'] == 'error':
+    elif kw.get('type') == 'error':
         _logger.error(log)
-    elif kw['log_type'] == 'critical':
+    elif kw.get('type') == 'critical':
         _logger.critical(log)
 
 
@@ -35,6 +37,8 @@ def log_parser(**kw):
 class LogController(http.Controller):
     @http.route('/log', auth='public')
     def index(self, **kw):
-        parsed_log = log_parser(**kw)
-        log(**parsed_log)
-        self.env['logger'].create(parsed_log)
+        try:
+            parsed_log = log_parser(**kw)
+            log(**parsed_log)
+            http.request.env['logger'].create(parsed_log)
+        except:
