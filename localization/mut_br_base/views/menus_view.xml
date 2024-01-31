@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+	    <menuitem id="menu_region_country"
+	        action="mut_br_base.action_region" parent="contacts.menu_localisation"
+	        sequence="1"/>
+
+	    <menuitem id="menu_state_city"
+	        action="mut_br_base.action_state_city" parent="contacts.menu_localisation"
+	        sequence="3"/>
+		
+	</data>
+</odoo>

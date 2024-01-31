@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Region -->
+        <record id="view_region_tree" model="ir.ui.view">
+            <field name="name">res.region.tree</field>
+            <field name="model">res.region</field>
+            <field name="arch" type="xml">
+                <tree string="Region"> <!--  create="0" delete="0"> -->
+                    <field name="name"/>
+                    <field name="country_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_region_form" model="ir.ui.view">
+            <field name="name">res.region.form</field>
+            <field name="model">res.region</field>
+            <field name="arch" type="xml">
+                <form create="0" delete="0">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <group name="main_group">
+                            <group name="region_details">
+                                <field name="name"/>
+                                <field name="country_id"/>
+                            </group>
+                        </group>
+                        <group name="cities" string="Cities">
+                        	<field name="city_ids" no_label="1"/>
+                        </group>
+                        <group name="states" string="States">
+                        	<field name="state_ids" no_label="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_region_search" model="ir.ui.view">
+            <field name="name">res.region.search</field>
+            <field name="model">res.region</field>
+            <field name="arch" type="xml">
+                <search string="Regions">
+                    <field name="name" filter_domain="[('name', 'ilike', self)]"/>
+                    <group expand="1" string="Group By">
+                    	<filter string="Countries" name='country' context="{'group_by':'country_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_region" model="ir.actions.act_window">
+            <field name="name">Regions</field>
+            <field name="res_model">res.region</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Region Found!
+                </p><p>
+                    Manage the list of regions that can be set on states.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

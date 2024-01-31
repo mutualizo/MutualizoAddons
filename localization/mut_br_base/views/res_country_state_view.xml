@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="base_view_country_state_tree_inherit" model="ir.ui.view">
+            <field name="name">base.view.country.state.tree.inherit</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_tree"/>
+            <field eval="9" name="priority"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="editable"></attribute>
+                </xpath>
+				<field name="code" position='after'>
+					<field name='ibge_code'/>
+				</field>
+			</field>
+		</record>
+    
+        <record id="base_view_country_state_form_inherit" model="ir.ui.view">
+            <field name="name">base.view.country.state.form.inherit</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_form"/>
+            <field eval="9" name="priority"/>
+            <field name="arch" type="xml">
+				<field name="code" position='after'>
+					<field name='ibge_code'/>
+				</field>
+				<field name="country_id" position='after'>
+					<field name='region_id'/>
+				</field>
+			</field>
+		</record>
+
+        <record id="base_view_country_state_search_inherit" model="ir.ui.view">
+            <field name="name">base.view.country.state.search.inherit</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_search"/>
+            <field eval="9" name="priority"/>
+            <field name="arch" type="xml">
+				<field name="name" position="attributes">
+					<attribute name="filter_domain">
+						['|','|',('name','ilike',self),('code','ilike',self),('ibge_code','ilike',self)]
+					</attribute>
+				</field>
+			</field>
+		</record>
+		
+    </data>
+</odoo>
