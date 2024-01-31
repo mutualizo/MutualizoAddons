@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="base_view_partner_tree_inherit" model="ir.ui.view">
+            <field name="name">base.view.partner.tree.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field eval="9" name="priority"/>
+            <field name="arch" type="xml">
+				<field name="display_name" position='before'>
+					<field name='cnpj_cpf' optional="show" readonly="1"/>
+				</field>
+				<field name="vat" position='after'>
+					<field name='inscr_est' optional="hide"/>
+					<field name='rg_fisica' optional='hide'/>
+					<field name='inscr_mun' optional='hide'/>
+				</field>
+				<field name="display_name" position='after'>
+					<field name='legal_name' optional='hide'/>
+				</field>
+				<field name="city" position='before'>
+					<field name='district' optional="show"/>
+				</field>
+				<field name="city" position='replace'>
+					<field name='city_id' optional="show"/>
+				</field>
+			</field>
+		</record>
+
+        <record id="base_view_partner_simple_form_inherit" model="ir.ui.view">
+            <field name="name">base.view.partner.simple.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_simple_form"/>
+            <field eval="9" name="priority"/>
+            <field name="arch" type="xml">
+				<field name="mobile" position='before'>
+					<field name='cnpj_cpf'/>
+				</field>
+			</field>
+		</record>
+
+        <record id="base_view_partner_address_form_inherit" model="ir.ui.view">
+            <field name="name">base.view.partner.address.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_address_form"/>
+            <field eval="9" name="priority"/>
+            <field name="arch" type="xml">
+            	 <xpath expr="//div[hasclass('o_address_format')]" position="replace">
+					<div class="o_address_format">
+						<field name="city" invisible="1"/>
+						<field name="zip" placeholder="ZIP" class="o_address_zip"/>
+						<field name="street" placeholder="Street..." class="o_address_street"/>
+						<field name="number" class="o_address_city" placeholder="Number" />
+						<field name="district" class="o_address_state" placeholder="District" />
+						<field name="street2" placeholder="Complement..." class="o_address_street"/>
+						<field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+						<field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True, "no_create": True}' 
+							context="{'default_country_id': country_id}"/>
+						<field name="city_id" placeholder="City" class="o_address_city" options='{"no_open": True, "no_create": True}'
+							context="{'default_state_id': state_id}"/>
+					</div>
+            	 </xpath>
+            	 <field name="website" position="attributes">
+            	 	<attribute name="placeholder">e.g. https://www.yourwebpage.com</attribute>
+            	 </field>
+            </field>
+       </record>
+ 
+        <record id="base_view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">base.view.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field eval="9" name="priority"/>
+            <field name="arch" type="xml">
+				<xpath expr="//h1" position="after">
+					<group>
+						<div class="oe_edit_only">
+							<label for="legal_name" string="Full Name" invisible='is_company'/>
+							<label for="legal_name" string="Legal Name" invisible='not is_company'/>
+						</div>
+						<field name="legal_name" nolabel="1"/>
+					</group>
+				</xpath>
+	            <notebook position="inside">
+	                <page string="Fiscal Data">
+	                    <group>
+	                        <group>
+	                            <field name="rg_fisica" invisible='is_company' />
+	                            <field name="inscr_mun" invisible='not is_company' />
+	                        </group>
+	                        <group>
+	                        	<field name="inscr_est" />
+	                            <field name="suframa" invisible='not is_company' />
+	                        </group>
+	                    </group>
+	                </page>
+	            </notebook>
+				
+				<xpath expr="//div[hasclass('o_address_format')]" position="replace">
+					<div class="o_address_format">
+						<field name="zip" placeholder="ZIP" class="o_address_street" 
+							readonly="type == 'contact' and parent_id"/>
+						<field name="street" placeholder="Street..." class="o_address_street" 
+							readonly="type == 'contact' and parent_id"/>
+						<field name="number" class="o_address_city" placeholder="Number" 
+							readonly="type == 'contact' and parent_id"/>
+						<field name="district" class="o_address_state" placeholder="District" 
+							readonly="type == 'contact' and parent_id"/>
+						<field name="street2" placeholder="Complement..." class="o_address_street"
+							readonly="type == 'contact' and parent_id"/>
+						<field name="country_id" placeholder="Country" class="o_address_country" 
+							options='{"no_open": True, "no_create": True}' readonly="type == 'contact' and parent_id"/>
+						<field name="state_id" class="o_address_country" placeholder="State" options='{"no_open": True, "no_create": True}' 
+							context="{'default_country_id': country_id}" readonly="type == 'contact' and parent_id"/>
+						<field name="city" invisible="1"/>
+						<field name="city_id" placeholder="City" class="o_address_country" options='{"no_open": True, "no_create": True}'
+							context="{'default_state_id': state_id}" readonly="type == 'contact' and parent_id"/>
+					</div>
+				</xpath>
+				<field name="vat" position="after">
+					<div>
+					    <label for="cnpj_cpf" string="CPF" invisible='is_company'/>
+					    <label for="cnpj_cpf" string="CNPJ" invisible='not is_company'/>
+					</div>
+					<field name="cnpj_cpf" nolabel="1"/>
+				</field>
+				<field name="vat" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+			</field>
+		</record>
+
+ 		<!--    
+
+        <record id="base_view_country_search_inherit" model="ir.ui.view">
+            <field name="name">base.view.country.search.inherit</field>
+            <field name="model">res.country</field>
+            <field name="inherit_id" ref="base.view_country_search"/>
+            <field eval="9" name="priority"/>
+            <field name="arch" type="xml">
+				<field name="name" position="attributes">
+					<attribute name="filter_domain">
+						['|','|',('name','ilike',self),('code','ilike',self),('ibge_code','ilike',self)]
+					</attribute>
+				</field>
+			</field>
+		</record>
+		 -->
+    </data>
+</odoo>
