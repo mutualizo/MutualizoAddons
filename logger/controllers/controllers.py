@@ -23,14 +23,14 @@ def log(**kw):
 def log_parser(**kw):
     log_type = kw.get('log_type') if kw.get('log_type') else 'debug'
     log_message = kw.get('message') if kw.get('message') else 'missing "message" on args'
-    log_timestamp = kw.get('timestamp') if kw.get('timestamp') else fields.Datetime.now
+    log_timestamp = kw.get('timestamp') if kw.get('timestamp') else 'missing "timestamp" on args'
     log_ip = kw.get('ip') if kw.get('ip') else 'missing "ip" on args'
     return {
         'sender_ip': log_ip,
-        'type': log_type,
+        'log_type': log_type,
         'message': log_message,
         'timestamp_message': log_timestamp,
-        'timestamp': fields.Datetime.now,
+        'timestamp': fields.Datetime.now(),
     }
 
 
@@ -40,7 +40,7 @@ class LogController(http.Controller):
         try:
             parsed_log = log_parser(**kw)
             log(**parsed_log)
-            http.request.env['logger'].create(parsed_log)
+            http.request.env['logger'].sudo().create(parsed_log)
             return Response(status=200)
         except ValueError:
             return Response(status=404)
