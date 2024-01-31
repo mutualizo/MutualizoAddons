@@ -2,7 +2,7 @@
 from odoo import http, fields
 import logging
 
-from odoo.http import request,Response
+from odoo.http import request, Response
 
 _logger = logging.getLogger(__name__)
 
@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 def log(**kw):
     if kw.get('type') == 'debug':
         _logger.debug(log)
-    elif  kw.get('type') == 'info':
+    elif kw.get('type') == 'info':
         _logger.info(log)
     elif kw.get('type') == 'warning':
         _logger.warning(log)
@@ -41,4 +41,6 @@ class LogController(http.Controller):
             parsed_log = log_parser(**kw)
             log(**parsed_log)
             http.request.env['logger'].create(parsed_log)
-        except:
+            return Response(status=200)
+        except ValueError:
+            return Response(status=404)
