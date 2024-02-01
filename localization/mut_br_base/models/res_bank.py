@@ -17,7 +17,7 @@ class ResBank(models.Model):
     number = fields.Char('Number', size=10)
     street2 = fields.Char('Complement', size=128)
     district = fields.Char('District', size=32)
-    city = fields.Many2one(comodel_name='res.state.city', string='City', domain="[('state_id','=?',state_id)]")
+    city = fields.Many2one(comodel_name='res.city', string='City', domain="[('state_id','=?',state_id)]")
     state = fields.Many2one('res.country.state', 'Fed. State', domain="[('country_id', '=?', country)]")
     country = fields.Many2one('res.country')
     acc_number_format = fields.Text(help=_("""You can enter here the format as\

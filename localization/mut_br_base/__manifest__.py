@@ -19,7 +19,13 @@
     'maintainer': 'Mutualizo Solutions',
     'company': 'Mutualizo Solutions',
     'website': "https://www.mutualizo.com",
-    'depends': ['base', 'mail'],
+    'depends': [
+        'base', 
+        'base_setup', 
+        'base_address_extended',
+        'contacts',
+        'mail'
+    ],
     'data': [
         'security/ir.model.access.csv',
         'views/res_region_view.xml',
@@ -28,6 +34,7 @@
         'views/res_country_state_view.xml',
         'views/res_partner_view.xml',
         'views/res_company_view.xml',
+        'views/res_config_settings_view.xml',
         'views/menus_view.xml',
     ],
     'external_dependencies': {},

@@ -17,5 +17,5 @@ class ResRegion(models.Model):
 
     name = fields.Char(string="Name", size=100)
     country_id = fields.Many2one('res.country', string="Country", required=True)
-    city_ids = fields.One2many('res.state.city', 'region_id', string="Cities")
+    city_ids = fields.One2many('res.city', 'region_id', string="Cities")
     state_ids = fields.One2many('res.country.state', 'region_id', string="States")
