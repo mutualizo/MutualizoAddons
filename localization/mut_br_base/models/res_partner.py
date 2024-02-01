@@ -20,6 +20,7 @@ class ResPartner(models.Model):
     def _default_country(self):
         return self.env['res.country'].search([('ibge_code', '=', '1058')],limit=1).id
 
+    number = fields.Char('Number', size=10)
     cnpj_cpf = fields.Char( size=18, string='CNPJ/CPF', copy=False )
     inscr_est = fields.Char(size=16, string='State Inscription', copy=False)
     rg_fisica = fields.Char('RG', size=16, copy=False)
@@ -29,20 +30,50 @@ class ResPartner(models.Model):
     country_id = fields.Many2one('res.country', string='Country', ondelete='restrict', default=_default_country)
     ibge_code = fields.Char(related='country_id.ibge_code')
     
-    city_id = fields.Many2one('res.state.city', 'City', domain="[('state_id','=?',state_id)]")
+    city_id = fields.Many2one('res.city', 'City', domain="[('state_id','=?',state_id)]")
     district = fields.Char('District', size=32)
-    number = fields.Char('Number', size=10)
     type = fields.Selection(selection_add=[('branch', 'Branch')])
 
-    _sql_constraints = [
-        ('res_partner_cnpj_cpf_uniq', 'unique (cnpj_cpf)',
-         _('This CPF/CNPJ number is already being used by another partner!'))
-    ]
+    @api.constrains("cnpj_cpf", "inscr_est")
+    def _check_cnpj_inscr_est(self):
+        for partner in self:
+            domain = []
+
+            # permite cnpj vazio
+            if not partner.cnpj_cpf:
+                return
+
+            if self.env.context.get("disable_allow_cnpj_multi_ie"):
+                return
+
+            allow_cnpj_multi_ie = (partner.env["ir.config_parameter"].sudo()
+                                   .get_param("mut_br_base.allow_cnpj_multi_ie", default=True))
+
+            if partner.parent_id:
+                domain += [
+                    ("id", "not in", partner.parent_id.ids),
+                    ("parent_id", "not in", partner.parent_id.ids),
+                ]
+
+            domain += [("cnpj_cpf", "=", partner.cnpj_cpf), ("id", "!=", partner.id)]
+
+            # se encontrar CNPJ iguais
+            if partner.env["res.partner"].search(domain):
+                if allow_cnpj_multi_ie == "True":
+                    for partner in partner.env["res.partner"].search(domain):
+                        if (partner.inscr_est == partner.inscr_est and not partner.inscr_est):
+                            raise ValidationError(_(
+                                    "There is already a partner partner with this "
+                                    "Estadual Inscription !"))
+                    else:
+                        raise ValidationError(_("There is already a partner partner with this CNPJ !"))
+                else:
+                    raise ValidationError(_("There is already a partner partner with this CPF/RG!"))
 
     def write(self, vals):
         val_city_id = vals.get('city_id', None)
         if bool(val_city_id):
-            city_id = self.env['res.state.city'].search([('id','=?',val_city_id)])
+            city_id = self.env['res.city'].search([('id','=?',val_city_id)])
             if bool(city_id):
                 vals.update({'city': city_id.name, 
                              'state_id': city_id.state_id.id, 
@@ -69,7 +100,16 @@ class ResPartner(models.Model):
 
     @api.constrains('cnpj_cpf', 'country_id', 'is_company')
     def _check_cnpj_cpf(self):
+        disable_cpf_cnpj_validation = (self.env["ir.config_parameter"].sudo()
+                                       .get_param("mut_br_base.disable_cpf_cnpj_validation", default=False))
+        
+        if disable_cpf_cnpj_validation:
+            return
+
         for partner in self:
+            # permite cnpj vazio
+            if not partner.cnpj_cpf:
+                continue
             country_code = partner.country_id.code or ''
             if self.type == 'contact' and partner.cnpj_cpf and (country_code.upper() == 'BR' or len(country_code) == 0):
                 if partner.is_company:
@@ -102,6 +142,13 @@ class ResPartner(models.Model):
         """Checks if company register number in field insc_est is valid,
         this method call others methods because this validation is State wise
         :Return: True or False."""
+        
+        disable_ie_validation = (self.env["ir.config_parameter"].sudo()
+                                 .get_param("mut_br_base.disable_ie_validation", default=False))
+        
+        if disable_ie_validation:
+            return
+        
         for partner in self:
             if not partner.inscr_est or partner.inscr_est == 'ISENTO' \
                     or not partner.is_company:

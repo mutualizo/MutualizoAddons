@@ -4,8 +4,3 @@ access_res_region_public,res_region group_user_public,model_res_region,base.grou
 access_res_region_portal,res_region group_user_portal,model_res_region,base.group_portal,1,0,0,0
 access_res_region_group_user,res_region group_user,model_res_region,base.group_partner_manager,1,0,0,0
 access_res_region_group_system,res_region_group_system,model_res_region,base.group_system,1,1,1,1
-access_res_state_city_employee,res_state_city group_user_all,model_res_state_city,base.group_user,1,0,0,0
-access_res_state_city_public,res_state_city group_user_public,model_res_state_city,base.group_public,1,0,0,0
-access_res_state_city_portal,res_state_city group_user_portal,model_res_state_city,base.group_portal,1,0,0,0
-access_res_state_city_group_user,res_state_city group_user,model_res_state_city,base.group_partner_manager,1,0,0,0
-access_res_state_city_group_system,res_state_city_group_system,model_res_state_city,base.group_system,1,1,1,1
