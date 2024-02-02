@@ -30,7 +30,7 @@ class ResPartner(models.Model):
     country_id = fields.Many2one('res.country', string='Country', ondelete='restrict', default=_default_country)
     ibge_code = fields.Char(related='country_id.ibge_code')
     
-    city_id = fields.Many2one('res.city', 'City', domain="[('state_id','=?',state_id)]")
+    city_id = fields.Many2one('res.city', 'City_', domain="[('state_id','=?',state_id)]")
     district = fields.Char('District', size=32)
     type = fields.Selection(selection_add=[('branch', 'Branch')])
 

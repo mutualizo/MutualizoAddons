@@ -33,7 +33,7 @@ class Company(models.Model):
     legal_name = fields.Char(compute='_compute_address', inverse='inverse_legal_name', size=128, 
                              string='Legal Name')
     city_id = fields.Many2one(compute='_compute_address', inverse='inverse_city_id', comodel_name='res.city', 
-                              string="City")
+                              string="City_")
     district = fields.Char(compute='_compute_address', inverse='inverse_district', size=32, string="District")
     number = fields.Char(compute='_compute_address', inverse='inverse_number', size=10, string="Number")
 
