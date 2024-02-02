@@ -9,7 +9,7 @@
 ###################################################
 
 from odoo import api, fields, models, _
-from .cst import CST_ICMS
+from ..tools.cst import CST_ICMS
 
 class BrAccountBeneficioFiscal(models.Model):
     _name = 'br_account.beneficio.fiscal'

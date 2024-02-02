@@ -29,9 +29,10 @@ class ResPartner(models.Model):
     def _compute_enderecos(self):
         """ Procura o endereço de Cobrança e Contato e caso não haja devolve o endereço atual """
         # Procura o endereço de cobrança
-        cobranca = self.env['res.partner'].search([('parent_id','=',self.id),('type','=','invoice')],limit=1)
-        contato = self.env['res.partner'].search([('parent_id','=',self.id),('type','=','contact')],limit=1)
-        # Passa o endereco caso tenha
-        self.end_cobranca_id = cobranca if cobranca else False
-        self.contato_id = contato if contato else False
+        for reg in self:
+            cobranca = reg.env['res.partner'].search([('parent_id','=',reg.id),('type','=','invoice')],limit=1)
+            contato = reg.env['res.partner'].search([('parent_id','=',reg.id),('type','=','contact')],limit=1)
+            # Passa o endereco caso tenha
+            reg.end_cobranca_id = cobranca if cobranca else False
+            reg.contato_id = contato if contato else False
 

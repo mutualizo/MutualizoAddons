@@ -9,7 +9,7 @@
 ###################################################
 
 {
-    'name': "Account Brasil Mutualizo",
+    'name': "Fiscal Brasil Mutualizo",
     'version': '17.0.0.1',
     'category': 'localization',
     'summary': 'Base Contábil para os módulos da localização do Brasil pela Mutualizo',

@@ -10,6 +10,14 @@
 
 import re
 
+COMPANY_FISCAL_TYPE = [
+    ('1', 'Simples Nacional'),
+    ('2', 'Simples Nacional – excesso de sublimite de receita bruta'),
+    ('3', 'Regime Normal')
+]
+
+COMPANY_FISCAL_TYPE_DEFAULT = '3'
+
 IND_IE_DEST = [
     ('1', '1 - Contribuinte ICMS'),
     ('2', '2 - Contribuinte isento de Inscrição no cadastro de Contribuintes do ICMS'),
