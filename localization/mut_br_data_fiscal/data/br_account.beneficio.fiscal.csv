@@ -1,0 +1,2 @@
+id,code,name,state_id:id,memo,dt_start,dt_end
+item_bf_SEMCBENEF,SEMCBENEF,Item sem cBenef e UF exige cBenef para o CST,base.state_br_pr,"Informar a tag, preenchendo com o literal SEM CBENEF",,
