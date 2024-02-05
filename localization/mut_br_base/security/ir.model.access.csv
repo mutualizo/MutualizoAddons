@@ -4,3 +4,8 @@ access_res_region_public,res_region group_user_public,model_res_region,base.grou
 access_res_region_portal,res_region group_user_portal,model_res_region,base.group_portal,1,0,0,0
 access_res_region_group_user,res_region group_user,model_res_region,base.group_partner_manager,1,0,0,0
 access_res_region_group_system,res_region_group_system,model_res_region,base.group_system,1,1,1,1
+access_res_partner_pix_employee,res_res_partner_pix_user_all,model_res_partner_pix,base.group_user,1,0,0,0
+access_res_partner_pix_public,res_partner_pix group_user_public,model_res_partner_pix,base.group_public,1,0,0,0
+access_res_partner_pix_portal,res_partner_pix_group_user_portal,model_res_partner_pix,base.group_portal,1,0,0,0
+access_res_partner_pix_group_user,res_partner_pix_group_user,model_res_partner_pix,base.group_partner_manager,1,0,0,0
+access_res_partner_pix_group_system,res_partner_pix_group_system,model_res_partner_pix,base.group_system,1,1,1,1
