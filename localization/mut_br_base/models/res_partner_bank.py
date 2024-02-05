@@ -9,6 +9,7 @@
 ###################################################
 
 from odoo import models, fields, api
+from odoo.addons.base.models.res_bank import sanitize_account_number
 
 
 class ResPartnerBank(models.Model):
@@ -24,10 +25,10 @@ class ResPartnerBank(models.Model):
     @api.depends('acc_number', 'acc_number_dig', 'bra_number', 'bra_number_dig', 'bank_id')
     def _compute_display_name(self):
         for acc in self:
-            acc.display_name = "cc: %s-%s - %s - %s" % (rec.acc_number,
-                                                         rec.acc_number_dig or '',
-                                                         rec.partner_id.name or '',
-                                                         rec.bank_id.name or '')
+            acc.display_name = "cc: %s-%s - %s - %s" % (acc.acc_number,
+                                                         acc.acc_number_dig or '',
+                                                         acc.partner_id.name or '',
+                                                         acc.bank_id.name or '')
 
     @api.depends('bank_id', 'acc_number', 'acc_number_dig', 'bra_number', 'bra_number_dig')
     def _compute_sanitized_acc_number(self):

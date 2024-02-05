@@ -25,6 +25,9 @@ class ResPartner(models.Model):
     inscr_est = fields.Char(size=16, string='State Inscription', copy=False)
     rg_fisica = fields.Char('RG', size=16, copy=False)
     inscr_mun = fields.Char(size=18, string='Municipal Inscription')
+    rntrc_code = fields.Char(string="RNTRC Code", size=12)
+    cei_code = fields.Char(string="CEI Code", size=12)
+    union_entity_code = fields.Char(string="Union Entity code")
     suframa = fields.Char(size=18, string='Suframa')
     legal_name = fields.Char(size=128, string='Legal Name', help="Name used in fiscal documents")
     country_id = fields.Many2one('res.country', string='Country', ondelete='restrict', default=_default_country)
@@ -33,6 +36,18 @@ class ResPartner(models.Model):
     city_id = fields.Many2one('res.city', 'City', domain="[('state_id','=?',state_id)]")
     district = fields.Char('District', size=32)
     type = fields.Selection(selection_add=[('branch', 'Branch')])
+
+    pix_key_ids = fields.One2many(string="Pix Keys", comodel_name="res.partner.pix", inverse_name="partner_id", 
+                                  help="Keys for Brazilian instant payment (pix)")
+
+    show_l10n_br = fields.Boolean(compute="_compute_show_l10n_br",
+                                  help="Indicates if Brazilian localization fields should be displayed.")
+
+    @api.model
+    def _address_fields(self):
+        """Returns the list of address
+        fields that are synced from the parent."""
+        return super()._address_fields() + ["number","district",]
 
     @api.constrains("cnpj_cpf", "inscr_est")
     def _check_cnpj_inscr_est(self):
@@ -83,7 +98,6 @@ class ResPartner(models.Model):
         result = super(ResPartner, self).write(vals)
         return result
     
-
     @api.onchange('type')
     def onchange_type(self):
         if self.type == 'branch':
@@ -208,3 +222,12 @@ class ResPartner(models.Model):
                 zip = "%s-%s" % (val[0:5], val[5:8])
                 self.zip = zip
 
+    def _compute_show_l10n_br(self):
+        """
+        Defines when Brazilian localization fields should be displayed.
+        """
+        for rec in self:
+            if rec.company_id and rec.company_id.country_id != self.env.ref("base.br"):
+                rec.show_l10n_br = False
+            else:
+                rec.show_l10n_br = True

@@ -37,7 +37,13 @@
         'views/res_config_settings_view.xml',
         'views/menus_view.xml',
     ],
-    'external_dependencies': {},
+    "external_dependencies": {
+        "python": [
+            "num2words",
+            "phonenumbers",
+            "email-validator",
+        ]
+    },
     'images': ['static/description/banner.gif'],
     'license': 'LGPL-3',
     'installable': True,
