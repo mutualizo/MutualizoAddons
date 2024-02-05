@@ -16,6 +16,8 @@ from ..tools.cst import ORIGEM_PROD
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
+    expense_is = fields.Boolean(string='Despesa')
+    
     fiscal_type = fields.Selection([('service', 'Serviço'), ('product', 'Produto')], 'Tipo Fiscal', 
                                    required=True, default='product')
     origin = fields.Selection(ORIGEM_PROD, 'Origem', default='0',company_dependent=True)
@@ -44,6 +46,11 @@ class ProductTemplate(models.Model):
                 if not bool(str(fiscal.cest).isnumeric()) or len(fiscal.cest) != 7:
                     raise ValidationError(_('Invalid CEST Number!'))
         return True
+
+    @api.onchange('expense_is')
+    def _onchange_expense_is(self):
+        if self.expense_is:
+            self.type = 'service'
 
     @api.onchange('type')
     def onchange_product_type(self):
