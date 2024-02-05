@@ -2,6 +2,43 @@
 <odoo>
     <data>
 
+		<record id="mut_br_base_res_partner_address" model="ir.ui.view">
+		    <field name="name">mut_br_base.res.partner.address</field>
+		    <field name="model">res.partner</field>
+		    <field name="priority">999</field>
+		    <field name="arch" type="xml">
+		        <form>
+		            <div class="o_address_format">
+		                <field name="zip" placeholder="Zip code..." style="width: 70%" class="o_address_zip"/>
+		                <field name="street" placeholder="Street..." class="o_address_street"/>
+		                <field name="number" placeholder="Street number..." class="o_address_street"/>
+		                <field name="street2" placeholder="Complement..." class="o_address_street"/>
+		                <field name="district" placeholder="District..." class="o_address_street"/>
+		                <field name="state_id" domain="[('country_id', '=', country_id)]" placeholder="State..."
+		                       style="width: 45%" class="o_address_state" options='{"no_open": True, "no_create": True}'/>
+		                <field name="city_id" placeholder="City..." style="width: 50%" class="o_address_city"
+		                       options='{"no_open": True, "no_create": True}' invisible="[('country_id', '!=', %(base.br)d)]"/>
+		                <field name="city" placeholder="City..." style="width: 50%" class="o_address_city"
+		                       force_save="True" invisible="[('country_id', '=', %(base.br)d)]"/>
+		                <field name="country_id" placeholder="Country..." class="o_address_country"
+		                       options='{"no_open": True, "no_create": True}'/>
+		            </div>
+		        </form>
+		    </field>
+		</record>
+
+	    <record id="l10n_br_base_res_partner_filter" model="ir.ui.view">
+	        <field name="name">l10n_br_base.res.partner.filter</field>
+	        <field name="model">res.partner</field>
+	        <field name="inherit_id" ref="base.view_res_partner_filter" />
+	        <field name="arch" type="xml">
+	            <field name="name" position="after">
+	                <field name="legal_name" />
+	                <field name="cnpj_cpf" />
+	            </field>
+	        </field>
+	    </record>
+    
         <record id="base_view_partner_tree_inherit" model="ir.ui.view">
             <field name="name">base.view.partner.tree.inherit</field>
             <field name="model">res.partner</field>
@@ -65,6 +102,8 @@
             	 </field>
             </field>
        </record>
+
+
  
         <record id="base_view_partner_form_inherit" model="ir.ui.view">
             <field name="name">base.view.partner.form.inherit</field>
@@ -90,15 +129,18 @@
                </field>
 				
 	            <notebook position="inside">
-	                <page string="Fiscal Data">
-	                    <group>
-	                        <group>
+	                <page string="Fiscal" name="fiscal">
+	                     <group name="fiscal">
+	                        <group string="Fiscal Infos" name="fiscal_numbers">
+	                        	<field name="cei_code" />
+	                        	<field name="inscr_est" invisible='not is_company' />
+	                        	<field name="inscr_mun" invisible='not is_company' />
+	                        	<field name="suframa" invisible='not is_company' />
 	                            <field name="rg_fisica" invisible='is_company' />
-	                            <field name="inscr_mun" invisible='not is_company' />
 	                        </group>
-	                        <group>
-	                        	<field name="inscr_est" />
-	                            <field name="suframa" invisible='not is_company' />
+							<group string="Other Infos" name="other_infos">
+	                        	<field name="union_entity_code" />
+	                        	<field name="rntrc_code" />
 	                        </group>
 	                    </group>
 	                </page>
@@ -113,6 +155,17 @@
 				<field name="vat" position="attributes">
 					<attribute name="invisible">1</attribute>
 				</field>
+				<group name="purchase" position="inside">
+            		<field name="pix_key_ids" context="{'default_partner_id': active_id}">
+            			<tree string="Payment Methods" editable="bottom" nolabel="1">
+            				<field name='sequence' widget='handle'/>
+            				<field name="partner_id" invisible="1"/>
+            				<field name="key_type"/>
+            				<field name="key"/>
+            				<field name="partner_bank_id"/>
+            			</tree>
+            		</field>
+				</group>
 			</field>
 		</record>
 
