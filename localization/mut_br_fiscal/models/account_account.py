@@ -14,5 +14,5 @@ from odoo import api, fields, models, _
 class AccountAccount(models.Model):
     _inherit = 'account.account'
 
-    account_type = fields.Selection([('tax', 'Imposto'), ('income', 'Receita'), ('expense', 'Despesa')],string="Tipo de conta")
+    # account_type = fields.Selection([('tax', 'Imposto'), ('income', 'Receita'), ('expense', 'Despesa')],string="Tipo de conta")
     shortcut = fields.Integer(string="Cod.Curto", index=True)
