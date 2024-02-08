@@ -24,6 +24,11 @@
         'product',
         'mut_br_base'],
     'data': [
+        'views/account.xml',
+        'views/account_fiscal_position_view.xml',
+        'views/account_invoice_refund.xml',
+       # 'views/account_invoice_view.xml',
+       # 'views/account_tax.xml',
     ],
     'external_dependencies': {},
     'images': ['static/description/banner.gif'],
@@ -31,4 +36,5 @@
     'installable': True,
     'auto_install': False,
     'application': False,
+    'module_type': 'official',
 }
