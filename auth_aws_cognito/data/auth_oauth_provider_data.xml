@@ -9,7 +9,7 @@
             <field name="auth_endpoint">https://mutualizo-poc.auth.us-east-1.amazoncognito.com/oauth2/authorize</field>
             <field name="scope">aws.cognito.signin.user.admin email openid phone profile</field>
             <field name="validation_endpoint">https://mutualizo-poc.auth.us-east-1.amazoncognito.com/oauth2/userInfo</field>
-            <field name="css_class">fa fa-fw fa-windows</field>
+            <field name="css_class">fa fa-fw fa-amazon</field>
             <field name="body">Log in with Cognito</field>
             <field name="response_type">token</field>
             <field name="data_endpoint">https://aws.amazon.com/pt/cognito/</field>
