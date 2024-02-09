@@ -21,7 +21,7 @@
             <field name="body">Log in with Cognito</field>
             <field name="response_type">token</field>
             <field name="data_endpoint">https://aws.amazon.com/pt/cognito/</field>
-            <field name="enabled"/>
+            <field name="enabled">True</field>
         </record>
     </data>
 </odoo>
