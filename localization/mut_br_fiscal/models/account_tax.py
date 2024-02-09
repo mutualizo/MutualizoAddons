@@ -443,8 +443,13 @@ class AccountTax(models.Model):
         taxes += self._compute_retention(price_base)
         return taxes
 
-    def compute_all(self, price_unit, currency=None, quantity=1.0, product=None, partner=None, 
-                    factor_uom=None, fisc_pos=None):
+    #TODO: Refazer
+    def compute_all(self, price_unit, currency=None, quantity=1.0, product=None, partner=None, is_refund=False, 
+                    handle_price_include=True, include_caba_tags=False, fixed_multiplicator=1):
+
+        return super(AccountTax, self).compute_all(price_unit, currency, quantity, product, partner, 
+                                                   is_refund, handle_price_include, include_caba_tags, 
+                                                   fixed_multiplicator)
 
         precision = self.env['decimal.precision'].precision_get('Account')
         exists_br_tax = len(self.filtered(lambda x: x.domain)) > 0

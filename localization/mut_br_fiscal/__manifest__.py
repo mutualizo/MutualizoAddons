@@ -22,11 +22,14 @@
     'depends': [
         'account',
         'product',
+        'base_accounting_kit', #Include in Cyber Addons
         'mut_br_base'],
     'data': [
         'views/account.xml',
         'views/account_fiscal_position_view.xml',
         'views/account_invoice_refund.xml',
+        'views/account_bank_statement_import_view.xml',
+        'views/account_journal_views.xml',
        # 'views/account_invoice_view.xml',
        # 'views/account_tax.xml',
     ],
