@@ -2,15 +2,15 @@
     :target: https://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 
-Microsoft Azure OAuth2 SSO Integration
+AWS Cognito OAuth2 SSO Integration
 =================================
-Microsoft Azure OAuth2 SSO Integration is used to login odoo with microsoft
+AWS Cognito OAuth2 SSO Integration is used to login odoo with cognito
 azure account using the single sign on functionality
 
 Configuration
 =============
-* Generate Microsoft Azure credentials
-* Login the azure portal and go to the azure directory:https://portal.azure.com/
+* Generate AWS Cognito credentials
+* Login the azure portal and go to the azure directory:https://aws.amazon.com/pt/cognito/
 * Click on the App Registration
 * Click on New Registration
 * You can get the credentials
@@ -26,16 +26,15 @@ General Public License, Version 3 (LGPL v3).
 
 Company
 -------
-* `Cybrosys Techno Solutions <https://cybrosys.com/>`__
+* `Mutualizo <https://www.mutualizo.com.br/>`__
 
 Credits
 -------
-* Developer: (V16) Gayathri V, Contact: odoo@cybrosys.com
+* Developer: (V16) Gayathri V, Contact: https://www.mutualizo.com.br/
 
 Contacts
 --------
-* Mail Contact : odoo@cybrosys.com
-* Website : https://cybrosys.com
+* Website : https://www.mutualizo.com.br/
 
 Bug Tracker
 -----------
@@ -44,12 +43,12 @@ your issue has already been reported.
 
 Maintainer
 ==========
-.. image:: https://cybrosys.com/images/logo.png
-   :target: https://cybrosys.com
+.. image::
+   :target: https://www.mutualizo.com.br/
 
-This module is maintained by Cybrosys Technologies.
+This module is maintained by Mutualizo.
 
-For support and more information, please visit `Our Website <https://cybrosys.com/>`__
+For support and more information, please visit `Our Website <ttps://www.mutualizo.com.br/>`__
 
 Further information
 ===================

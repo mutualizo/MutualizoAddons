@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Creating the microsoft auth provider -->
+    <!-- Creating the AWS Cognito auth provider -->
     <data>
         <record id="provider_aws_cognito" model="auth.oauth.provider">
             <field name="name">AWS Cognito</field>
