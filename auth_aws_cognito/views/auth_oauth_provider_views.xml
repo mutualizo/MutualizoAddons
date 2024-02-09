@@ -9,9 +9,7 @@
         <field name="inherit_id" ref="auth_oauth.view_oauth_provider_form"/>
         <field name="arch" type="xml">
             <field name="client_id" position="after">
-                <field name="client_secret_id" password="True"
-                       invisible="response_type == 'code'"
-                       required="response_type != 'code'"/>
+                <field name="client_secret_id" required="1"/>
             </field>
             <field name="validation_endpoint" position="after">
                 <field name="response_type" invisible="1"/>
