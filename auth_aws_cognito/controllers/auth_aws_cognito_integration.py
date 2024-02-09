@@ -29,7 +29,6 @@ class OAuthLogin(Home):
             auth_providers = []
         for rec in auth_providers:
             return_url = request.httprequest.url_root + 'auth_oauth/signin'
-            state = self.get_state(rec)
             params = dict(
                 client_id=rec['client_id'],
                 response_type=rec['response_type'],

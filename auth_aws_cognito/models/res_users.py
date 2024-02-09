@@ -85,7 +85,7 @@ class ResUsers(models.Model):
         if not user:
             user = self.create({
                 'login': str(validation.get('email')),
-                'name': str(validation.get('name')),
+                'name': str(validation.get('email')),
                 'oauth_provider_id': provider
             })
             provider_id = self.env['auth.oauth.provider'].sudo().browse(
