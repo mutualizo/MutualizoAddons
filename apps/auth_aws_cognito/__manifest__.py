@@ -4,7 +4,7 @@
     'category': 'Extra Tools',
     'summary': """Integração com o AWS Cognito a partir de Autenticação OAuth2.""",
     'description': """Basic module for AWS Cognito connector used to login 
-     with azure account in odoo.We can login in odoo using cognito portal account 
+     with AWS Cognito account in odoo. We can login in odoo using cognito portal account 
      and also there is no need to enter the pass word each time.""",
     'author': 'Mutualizo',
     'company': 'Mutualizo',

@@ -4,13 +4,13 @@
 
 AWS Cognito OAuth2 SSO Integration
 =================================
-AWS Cognito OAuth2 SSO Integration is used to login odoo with cognito
-azure account using the single sign on functionality
+AWS Cognito OAuth2 SSO Integration is used to login odoo with AWS Cognito
+account using the single sign on functionality
 
 Configuration
 =============
 * Generate AWS Cognito credentials
-* Login the azure portal and go to the azure directory:https://aws.amazon.com/pt/cognito/
+* Login the AWS Cognito portal and go to the AWS Cognito directory:https://aws.amazon.com/pt/cognito/
 * Click on the App Registration
 * Click on New Registration
 * You can get the credentials
