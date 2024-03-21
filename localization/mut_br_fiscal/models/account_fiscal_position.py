@@ -72,7 +72,7 @@ class AccountFiscalPosition(models.Model):
     fiscal_type = fields.Selection([('saida', 'Saída'),
                                     ('entrada', 'Entrada')],
                                    string="Tipo da posição", copy=True)
-    natureza = fields.Char(string='Natureza Operação',oldname='nat_operacao')
+    natureza = fields.Char(string='Natureza Operação')
     
     auto_gerar_fatura = fields.Boolean(string="Auto Faturar",help="Gerar Automaticamente a fatura.")
     auto_validar_remessa = fields.Boolean(string="Auto Validar Remessas",help="Validar a Remessa do Pedido (se houver).")

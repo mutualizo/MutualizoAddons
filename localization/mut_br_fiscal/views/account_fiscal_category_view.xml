@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="view_br_account_fiscal_category_form" model="ir.ui.view">
+            <field name="name">br_account.fiscal.category.form</field>
+            <field name="model">br_account.fiscal.category</field>
+            <field name="arch" type="xml">
+                <form string="Categoria Fiscal">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <record id="view_br_account_fiscal_category_tree" model="ir.ui.view">
+            <field name="name">br_account.fiscal.category.tree</field>
+            <field name="model">br_account.fiscal.category</field>
+            <field name="arch" type="xml">
+                <tree string="Categoria Fiscal">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="br_account_fiscal_category_action" model="ir.actions.act_window">
+            <field name="name">Categoria Fiscal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">br_account.fiscal.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_br_account_fiscal_category_tree" />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                  Add a new fiscal category
+                </p><p>
+                  A fiscal category is necessary to determine the
+                  fiscal operations for your fiscal moves.
+                </p>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

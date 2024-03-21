@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="view_br_account_document_serie_form" model="ir.ui.view">
+            <field name="name">br_account.document.serie</field>
+            <field name="model">br_account.document.serie</field>
+            <field name="arch" type="xml">
+                <form string="Serie de Documentos Fiscais">
+                    <sheet>
+                        <group>
+                            <field name="code"/>
+                            <field name="active"/>
+                            <field name="name"/>
+                            <field name="fiscal_document_id"/>
+                            <field name="fiscal_type"/>
+                            <field name="internal_sequence_id"/>
+                            <field name="lot_sequence_id" invisible="[('fiscal_type', '=', 'product')]"/>
+                            <field name="company_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <record id="view_br_account_document_serie_tree" model="ir.ui.view">
+            <field name="name">br_account.document.serie</field>
+            <field name="model">br_account.document.serie</field>
+            <field name="arch" type="xml">
+                <tree string="Serie de Documentos Fiscais">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="fiscal_document_id"/>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+         <record id="br_account_document_serie_action" model="ir.actions.act_window">
+            <field name="name">Serie Documento</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">br_account.document.serie</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_br_account_document_serie_tree" />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                  Add a new document serie
+                </p><p>
+                  A document serie is necessary to determine the
+                  fiscal operations for your fiscal moves.
+                </p>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

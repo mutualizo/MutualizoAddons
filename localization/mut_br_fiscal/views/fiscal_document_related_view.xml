@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_br_account_document_related_tree" model="ir.ui.view">
+            <field name="name">br_account.document.related.tree</field>
+            <field name="model">br_account.document.related</field>
+            <field name="arch" type="xml">
+				<tree string="Document Related">
+				    <field name="invoice_id" invisible="1"/>
+				    <field name="invoice_related_id" invisible="1"/>
+                    <field name="date"/>
+				    <field name="document_type"/>
+				    <field name="access_key"/>
+				    <field name="serie"/>
+				    <field name="internal_number"/>
+                    <field name="state_id" optional="show"/>
+				</tree>
+            </field>
+        </record>
+
+        <record id="view_br_account_document_related_form" model="ir.ui.view">
+            <field name="name">br_account.document.related.form</field>
+            <field name="model">br_account.document.related</field>
+            <field name="arch" type="xml">
+                <form string="Document Related">
+                    <group>
+                        <field name="invoice_related_id"/>
+                    </group>
+					<group>
+                        <field name="invoice_id"/>
+					    <field name="document_type"/>
+					    <field name="serie" required="[('document_type', 'in', ('nf', 'nfrural', 'cf'))]"/>
+					    <field name="internal_number" required="[('document_type', 'in', ('nf', 'nfrural', 'cf'))]"/>
+					</group>
+					<group string="NF-e/CT-e" invisible="[('document_type','in', ('nf', 'nfrural', 'cf', False))]">
+					    <field name="access_key"/>
+					</group>
+					<group string="Nota Fiscal/Produtor/Cupom Fiscal" invisible="[('document_type', 'in', ('nfe','cte', False))]">
+					    <field name="fiscal_document_id" required="[('document_type', 'in', ('nf', 'nfrural', 'cf'))]"/>
+					    <field name="state_id" required="[('document_type', 'in', ('nf', 'nfrural'))]" invisible="[('document_type', '=', 'cf')]" options="{'no_create': True, 'no_create_edit': True}" />
+					    <field name="date" required="[('document_type', 'in', ('nf', 'nfrural'))]" invisible="[('document_type', '=', 'cf')]"/>
+					    <field name="cpfcnpj_type" required="[('document_type', 'in', ('nfrural'))]" invisible="[('document_type', '!=', 'nfrural')]"/>
+					    <field name="cnpj_cpf" required="[('document_type', 'in', ('nf', 'nfrural'))]" invisible="[('document_type', '=', 'cf')]"/>
+					    <field name="inscr_est" invisible="[('document_type', '!=', 'nfrural')]"/>
+					</group>
+                </form>
+            </field>
+        </record>
+
+         <record id="br_account_document_related_action" model="ir.actions.act_window">
+            <field name="name">Doc. Relacionado</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">br_account.document.related</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_br_account_document_related_form" />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                  Add a new Document Related
+                </p><p>
+                  A Document Related is necessary to determine the
+                  fiscal operations for your fiscal moves.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

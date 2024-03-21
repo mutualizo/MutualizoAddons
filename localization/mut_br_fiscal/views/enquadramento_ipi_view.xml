@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_br_account_enquadramento_ipi_tree" model="ir.ui.view">
+            <field name="name">br_account.enquadramento.ipi.tree</field>
+            <field name="model">br_account.enquadramento.ipi</field>
+            <field name="arch" type="xml">
+                <tree string="Enquadramento IPI">
+                    <field name="code"/>
+                    <field name="grupo"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="view_br_account_enquadramento_ipi_form" model="ir.ui.view">
+            <field name="name">br_account.enquadramento.ipi.form</field>
+            <field name="model">br_account.enquadramento.ipi</field>
+            <field name="arch" type="xml">
+                <form string="Enquadramento IPI">
+                    <sheet>
+                        <group colspan="4">
+                            <field name="code"/>
+                            <field name="grupo"/>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+         <record id="br_account_enquadramento_ipi_action" model="ir.actions.act_window">
+            <field name="name">Enquadramento IPI</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">br_account.enquadramento.ipi</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_br_account_enquadramento_ipi_tree" />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                  Add a new IPI Framework
+                </p><p>
+                  A IPI Framework is necessary to determine the
+                  fiscal operations for your fiscal moves.
+                </p>
+            </field>
+        </record>
+    
+    </data>
+</odoo>
