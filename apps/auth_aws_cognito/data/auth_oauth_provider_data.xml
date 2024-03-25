@@ -4,7 +4,7 @@
     <data>
         <record id="provider_aws_cognito" model="auth.oauth.provider">
             <field name="name">AWS Cognito</field>
-            <field name="client_id">26tkj8s2c7r9j4vhkctje68132</field>
+            <field name="client_id">2l62n8b9i8ejhohrmfpfbigj5j</field>
             <field name="auth_endpoint">https://mutualizo-poc.auth.us-east-1.amazoncognito.com/oauth2/authorize</field>
             <field name="scope">aws.cognito.signin.user.admin email openid phone profile</field>
             <field name="validation_endpoint">https://mutualizo-poc.auth.us-east-1.amazoncognito.com/oauth2/userInfo</field>
