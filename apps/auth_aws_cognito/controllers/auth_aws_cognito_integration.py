@@ -28,7 +28,7 @@ class OAuthLogin(Home):
         except Exception:
             auth_providers = []
         for rec in auth_providers:
-            return_url = request.httprequest.url_root + 'auth_oauth/signin'
+            return_url = 'https://soma.mutualizo.com/auth_oauth/signin'
             params = dict(
                 client_id=rec['client_id'],
                 response_type=rec['response_type'],
