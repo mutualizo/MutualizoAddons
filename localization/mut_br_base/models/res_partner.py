@@ -15,7 +15,8 @@ from odoo.exceptions import UserError, ValidationError
 
 
 class ResPartner(models.Model):
-    _inherit = "res.partner"
+    _name = "res.partner"
+    _inherit = ["res.partner", "zip.search.mixin"]
 
     def _default_country(self):
         return self.env['res.country'].search([('ibge_code', '=', '1058')],limit=1).id
@@ -32,7 +33,6 @@ class ResPartner(models.Model):
     legal_name = fields.Char(size=128, string='Legal Name', help="Name used in fiscal documents")
     country_id = fields.Many2one('res.country', string='Country', ondelete='restrict', default=_default_country)
     ibge_code = fields.Char(related='country_id.ibge_code')
-    
     city_id = fields.Many2one('res.city', 'City', domain="[('state_id','=?',state_id)]")
     district = fields.Char('District', size=32)
     type = fields.Selection(selection_add=[('branch', 'Branch')])
@@ -204,6 +204,28 @@ class ResPartner(models.Model):
                 else:
                     raise UserError(_('Verify CNPJ/CPF number'))
 
+    @api.onchange('zip')
+    def _onchange_zip(self):
+        zip_code = re.sub('[^0-9]', '', self.zip or '')
+        if len(zip_code) == 8:
+            values = self.search_address_by_zip(zip_code)
+            if not values:
+                return {
+                    'warning': {
+                        'title': 'Dica',
+                        'message': 'Por favor insira um CEP válido'
+                    }
+                }
+            self.update(values)
+        elif self.zip:
+            return {
+                'warning': {
+                    'title': 'Dica',
+                    'message': 'Por favor use um CEP de 8 dígitos'
+                }
+            }
+
+
     @api.onchange('city_id')
     def _onchange_city_id(self):
         """ Ao alterar o campo city_id copia o nome
@@ -214,13 +236,7 @@ class ResPartner(models.Model):
         if self.city_id:
             self.city = self.city_id.name
 
-    @api.onchange('zip')
-    def onchange_mask_zip(self):
-        if self.zip:
-            val = re.sub('[^0-9]', '', self.zip)
-            if len(val) == 8:
-                zip = "%s-%s" % (val[0:5], val[5:8])
-                self.zip = zip
+
 
     def _compute_show_l10n_br(self):
         """

@@ -8,6 +8,7 @@
 #
 ###################################################
 
+from . import zip_search
 from . import res_region
 from . import res_state_city
 from . import res_bank
