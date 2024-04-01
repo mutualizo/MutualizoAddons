@@ -212,7 +212,7 @@ class ResPartner(models.Model):
             if not values:
                 return {
                     'warning': {
-                        'title': 'Dica',
+                        'title': 'Erro',
                         'message': 'Por favor insira um CEP válido'
                     }
                 }
@@ -220,11 +220,10 @@ class ResPartner(models.Model):
         elif self.zip:
             return {
                 'warning': {
-                    'title': 'Dica',
+                    'title': 'Erro',
                     'message': 'Por favor use um CEP de 8 dígitos'
                 }
             }
-
 
     @api.onchange('city_id')
     def _onchange_city_id(self):
@@ -233,8 +232,7 @@ class ResPartner(models.Model):
         para manter a compatibilidade entre os demais módulos que usam o
         campo city.
         """
-        if self.city_id:
-            self.city = self.city_id.name
+        self.city = self.city_id.name
 
 
 

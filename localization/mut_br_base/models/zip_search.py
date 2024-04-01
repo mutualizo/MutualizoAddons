@@ -1,9 +1,8 @@
-import requests
 import re
-import logging
+import requests
+
 from odoo import models
 
-_logger = logging.getLogger(__name__)
 
 class ZipSearchMixin(models.AbstractModel):
     _name = 'zip.search.mixin'
@@ -11,9 +10,8 @@ class ZipSearchMixin(models.AbstractModel):
 
     def search_address_by_zip(self, zip_code):
         zip_code = re.sub('[^0-9]', '', zip_code or '')
-        res = requests.get(f'https://viacep.com.br/ws/{zip_code}/json/')  # noqa
-
-        if not res.ok:
+        res = requests.get(f'https://viacep.com.br/ws/{zip_code}/json/')
+        if not res.ok or res.json().get('erro'):
             return {}
         data = res.json()
 
