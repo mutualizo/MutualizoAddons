@@ -6,8 +6,7 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <field name="name" options="{'no_create': True}"
-                           readonly="'id', '!=', False"/>
+                    <field name="name" options="{'no_create': True}" readonly="'id', '!=', False"/>
                 </group>
             </form>
         </field>
@@ -22,14 +21,14 @@
         </field>
     </record>
     <record id="action_payment_type" model="ir.actions.act_window">
-        <field name="name">Payment Type</field>
+        <field name="name">Formas de Pagamento</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">payment.type</field>
         <field name="view_mode">tree,form</field>
     </record>
     <!--        &lt;!&ndash; Define the action (view) for the menu-->
     <!-- Attach the action to the menu -->
-    <menuitem id="payment_type_menu_action" name="Payment Type"
+    <menuitem id="payment_type_menu_action" name="Formas de Pagamento"
               parent="insurance_management_menu_configuration"
               action="action_payment_type"/>
 </odoo>

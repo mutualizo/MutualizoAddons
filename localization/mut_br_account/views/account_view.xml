@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_mut_br_account_search_inherit" model="ir.ui.view">
+            <field name="name">mut.br.account.search.inherit</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_search"/>
+            <field eval="5" name="priority"/>
+            <field name="arch" type="xml">
+                <field name="name" position="attributes">
+                    <attribute name="filter_domain">['|', '|', ('name','ilike',self), ('code','ilike',self), ('shortcode','ilike',self)]</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_mut_br_account_list_inherit" model="ir.ui.view">
+            <field name="name">mut.br.account.list.inherit</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_list"/>
+            <field eval="15" name="priority"/>
+            <field name="arch" type="xml">
+                <field name="code" position="before">
+                    <field name="shortcode"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_mut_br_account_form_inherit" model="ir.ui.view">
+            <field name="name">mut.br.account.form.inherit</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field eval="15" name="priority"/>
+            <field name="arch" type="xml">
+                <xpath expr="//h1" position="inside">
+                    <div class="row">
+                        <div class="col col-md-8">
+                            <label for="shortcode" string="Código Curto"/>
+                            <div>
+                                <field name="shortcode" style="width:80% !important;"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

@@ -12,9 +12,9 @@ from odoo import api, fields, models, _
 
 
 class ClaimDetails(models.Model):
-    """Essa classe cria um modelo "claim.details" e adiciona campos """
+    """Essa classe cria um modelo "claim.details" (Pedidos de Indenização) e adiciona campos """
     _name = 'claim.details'
-    _description = "Detalhes do pedido de indenização de seguro"
+    _description = "Detalhes do Pedido de Indenização de Seguro"
 
     name = fields.Char(string='Identificador', copy=False, readonly=True, index=True, default=lambda self: _('New'), 
                        help="Sequência dos pormenores relativos a pedidos de indenização de seguros")

@@ -5,15 +5,15 @@
         <field name="name">insurance.details.view.form</field>
         <field name="model">insurance.details</field>
         <field name="arch" type="xml">
-            <form string="Insurance Details Form">
+            <form string="Formulario Detalhes Seguro">
                 <header>
-                    <button name="action_confirm_insurance" string="Confirm"
+                    <button name="action_confirm_insurance" string="Confirmar"
                             type="object"
                             invisible="state !='draft'" class="oe_highlight"/>
-                    <button name="action_create_invoice" string="Create Invoice"
+                    <button name="action_create_invoice" string="Criar Fatura"
                             type="object" class="oe_highlight"
                             invisible="hide_inv_button != True"/>
-                    <button name="action_close_insurance" string="Close"
+                    <button name="action_close_insurance" string="Fechar"
                             type="object"
                             invisible="state !='confirmed'"
                             class="oe_highlight"/>
@@ -30,10 +30,8 @@
                             <field name="partner_id"/>
                             <field name="policy_id"/>
                             <field name="payment_type"/>
-                            <field name="amount_installment"
-                                   invisible="payment_type == 'fixed'"/>
-                            <field name="amount_remaining"
-                                   invisible="payment_type == 'fixed'"/>
+                            <field name="amount_installment" invisible="payment_type == 'fixed'"/>
+                            <field name="amount_remaining" invisible="payment_type == 'fixed'"/>
                             <field name="policy_duration"/>
                             <field name="policy_number"/>
                             <field name="employee_id"/>
@@ -49,10 +47,10 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Invoices">
+                        <page string="Faturas">
                             <field name="invoice_ids"/>
                         </page>
-                        <page string="Extra Notes">
+                        <page string="Notas adicionais">
                             <field name="note_field"/>
                         </page>
                     </notebook>
@@ -65,7 +63,7 @@
         <field name="name">insurance.details.view.tree</field>
         <field name="model">insurance.details</field>
         <field name="arch" type="xml">
-            <tree string="Insurance Details Tree">
+            <tree string="Lista de Seguros">
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="policy_id"/>
@@ -78,12 +76,12 @@
     </record>
     <!--    Action for insurance details-->
     <record id="insurance_details_action" model="ir.actions.act_window">
-        <field name="name">Insurance Management</field>
+        <field name="name">Seguros</field>
         <field name="res_model">insurance.details</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
-                You haven't created any insurance yet.
+                Você ainda não criou nenhum seguro.
             </p>
         </field>
     </record>
@@ -93,7 +91,7 @@
         <field name="model">insurance.details</field>
         <field eval="16" name="priority"/>
         <field name="arch" type="xml">
-            <search string="Search claims">
+            <search string="Pesquisa Seguros">
                 <field name="name" string="Journal Item" filter_domain="[
                         '|', '|', '|',
                         ('name', 'ilike', self), ('partner_id', 'ilike', self), ('policy_id', 'ilike', self), ('state', 'ilike', self)]"/>

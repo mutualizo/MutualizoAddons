@@ -25,7 +25,7 @@
         'base_accounting_kit', #Include in Cyber Addons
         'mut_br_base'],
     'data': [
-        'views/account_account_view.xml',
+        #'views/account_account_view.xml',
         'views/account_fiscal_position_view.xml',
         'views/account_invoice_refund_view.xml',
         'views/account_bank_statement_import_view.xml',

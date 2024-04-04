@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!--    Menu item for Parent insurance menu-->
-    <menuitem id="insurance_management_menu_root" name="Insurance" sequence="5"
-              web_icon="insurance_management_cybro,static/description/icon.png"/>
+    <menuitem id="insurance_management_menu_root" name="Seguros" sequence="5"
+              web_icon="insurance_management,static/description/menu.png"/>
     <!--    Menu item for Insurance Management-->
     <menuitem id="insurance_management_menu_insurance_management"
-              name="Insurance Management"
+              name="Gestão de seguros"
               parent="insurance_management_menu_root" sequence="10"/>
     <!--    Menu item for Insurance -->
-    <menuitem id="insurance_details_menu_action" name="Insurance"
+    <menuitem id="insurance_details_menu_action" name="Seguro"
               parent="insurance_management_menu_insurance_management"
               action="insurance_details_action" sequence="10"/>
     <!--   Parent Menu item for Claims -->
-    <menuitem id="claim_details_menu_action" name="Claims"
+    <menuitem id="claim_details_menu_action" name="Sinistro"
               parent="insurance_management_menu_insurance_management"
               action="claim_details_action" sequence="20"/>
     <!--  Parent Menu item for Agent -->
-    <menuitem id="insurance_management_menu_agent" name="Agent"
-              parent="insurance_management_menu_root" sequence="20"/>
+    <!-- 
+    <menuitem id="insurance_management_menu_agent" name="Consultores"
+              parent="insurance_management_menu_root" sequence="20"/>  -->
     <!--  Menu item for Agent -->
-    <menuitem id="employee_details_menu_action" name="Agent"
-              parent="insurance_management_menu_agent"
+    <menuitem id="employee_details_menu_action" name="Consultor"
+              parent="insurance_management_menu_insurance_management"
               action="employee_details_action" sequence="10"/>
     <!--  Parent Menu item for Configuration -->
-    <menuitem id="insurance_management_menu_configuration" name="Configuration"
+    <menuitem id="insurance_management_menu_configuration" name="Configurações"
               parent="insurance_management_menu_root"
               sequence="30"/>
     <!--  Parent Menu item for Policy -->
-    <menuitem id="policy_details_menu_action" name="Policy"
+    <menuitem id="policy_details_menu_action" name="Apólices"
               parent="insurance_management_menu_configuration"
               action="policy_details_action" sequence="10"/>
     <!--  Parent Menu item for Customers -->
-    <menuitem id="res_partner_customer_menu_action" name="Customers"
+    <menuitem id="res_partner_customer_menu_action" name="Segurados"
               parent="insurance_management_menu_configuration"
               action="base.action_partner_customer_form" sequence="20"/>
 </odoo>

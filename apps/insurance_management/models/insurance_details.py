@@ -17,15 +17,13 @@ class InsuranceDetails(models.Model):
     _name = 'insurance.details'
     _description = "Detalhes do seguro"
 
-    name = fields.Char(
-        string='Sequencia', required=True, copy=False, readonly=True, index=True,
-        default=lambda self: _('New'), help="Sequência de seguros criados")
+    name = fields.Char(string='Identificador', required=True, copy=False, readonly=True, index=True,
+                       default=lambda self: _('New'), help="Identificador de seguros criados")
     partner_id = fields.Many2one('res.partner', string='Customer', required=True, 
                                  help="Parceiro relacionado a seguros")
     start_date = fields.Date(string='Data Inicio', default=fields.Date.context_today, required=True,
                              help="Data Inicial da Cobertura")
-    close_date = fields.Date(string='Data Final', readonly=True,
-                             help="Data Final da Cobertura")
+    close_date = fields.Date(string='Data Final', readonly=True, help="Data Final da Cobertura")
     invoice_ids = fields.One2many('account.move', 'insurance_id', string='Faturas', readonly=True,
                                   help="Faturas relacionadas ao seguro")
     employee_id = fields.Many2one('employee.details', string='Agente', required=True, 

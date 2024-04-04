@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem sequence="0" id="menu_br_payments" name="Receber e Pagar" parent="account.menu_finance_entries"/>
+        <menuitem sequence="10" action="view_pay_and_rec_move_line_action" id="menu_action_receivable_move_line"
+                  parent="menu_br_payments"/>
+
+    </data>
+</odoo>

@@ -5,9 +5,9 @@
         <field name="name">claim.details.view.form</field>
         <field name="model">claim.details</field>
         <field name="arch" type="xml">
-            <form string="Claim Details Form">
+            <form string="Formulário Detalhes Pedido de Indenização de Seguro">
                 <header>
-                    <button name="action_create_bill" string="Create Bill" type="object" class="oe_highlight"
+                    <button name="action_create_bill" string="Criar Fatura" type="object" class="oe_highlight"
                             invisible="invoice_id != False"/>
                </header>
                 <sheet>
@@ -31,7 +31,7 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Extra Notes">
+                        <page string="Notas Extras">
                             <field name="note_field"/>
                         </page>
                     </notebook>
@@ -39,12 +39,13 @@
             </form>
         </field>
     </record>
+    
 <!--    Tree view for claim details-->
     <record id="claim_details_view_tree" model="ir.ui.view">
         <field name="name">claim.details.view.tree</field>
         <field name="model">claim.details</field>
         <field name="arch" type="xml">
-            <tree string="Claim Details Tree">
+            <tree string="Lista Detalhes Pedido de Indenização de Seguro">
                 <field name="name"/>
                 <field name="insurance_id"/>
                 <field name="partner_id"/>
@@ -60,7 +61,7 @@
             <field name="model">claim.details</field>
             <field eval="16" name="priority"/>
             <field name="arch" type="xml">
-                <search string="Search claims">
+                <search string="Pesquisa de Pedidos de Indenização">
                     <field name="name" string="Journal Item" filter_domain="[
                         '|', '|', '|',
                         ('name', 'ilike', self), ('insurance_id', 'ilike', self), ('partner_id', 'ilike', self), ('policy_id', 'ilike', self)]"/>
@@ -74,12 +75,12 @@
      </record>
 <!--    Action for claim details-->
     <record id="claim_details_action" model="ir.actions.act_window">
-        <field name="name">Claim Management</field>
+        <field name="name">Pedidos Indenização</field>
         <field name="res_model">claim.details</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
-                You haven't created any claims yet.
+                Você ainda não criou nenhum Pedido de Indenização de Seguro.
             </p>
         </field>
     </record>

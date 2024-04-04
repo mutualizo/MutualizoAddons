@@ -9,7 +9,7 @@
 ###################################################
 
 {
-    'name': "Base Brasil Mutualizo",
+    'name': "Account Brasil Mutualizo",
     'version': '17.0.0.1',
     'category': 'localization',
     'summary': 'Base para os módulos da localização do Brasil pela Mutualizo',
@@ -20,33 +20,13 @@
     'company': 'Mutualizo Solutions',
     'website': "https://www.mutualizo.com",
     'depends': [
-        'base', 
-        'base_setup', 
-        'base_address_extended',
-        'contacts',
-        'mail'
+        'mut_br_base'
     ],
     'data': [
-        'security/ir.model.access.csv',
-        'views/res_region_view.xml',
-        'views/res_state_city_view.xml',
-        'views/res_country_view.xml',
-        'views/res_country_state_view.xml',
-        'views/res_partner_view.xml',
-        'views/res_company_view.xml',
-        'views/res_bank_view.xml',
-        'views/res_partner_bank_view.xml',
-        'views/res_config_settings_view.xml',
-        'views/menus_view.xml',
+        'views/account_view.xml',
     ],
     "external_dependencies": {
-        "python": [
-            "num2words",
-            "phonenumbers",
-            "email-validator",
-        ]
     },
-    'images': ['static/description/banner.gif'],
     'license': 'LGPL-3',
     'installable': True,
     'auto_install': False,

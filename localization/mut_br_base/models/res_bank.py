@@ -14,12 +14,19 @@ from odoo import models, fields, api, _
 class ResBank(models.Model):
     _inherit = 'res.bank'
 
+    short_name = fields.Char()
+
     number = fields.Char('Number', size=10)
     street2 = fields.Char('Complement', size=128)
     district = fields.Char('District', size=32)
     city = fields.Many2one(comodel_name='res.city', string='City', domain="[('state_id','=?',state_id)]")
     state = fields.Many2one('res.country.state', 'Fed. State', domain="[('country_id', '=?', country)]")
     country = fields.Many2one('res.country')
+    
+    code_bc = fields.Char(string="Brazilian Bank Code", size=3, help="Brazilian Bank Code ex.: 001 is the code of Banco do Brasil")
+    ispb_number = fields.Char(string="ISPB Number", size=8)
+    compe_member = fields.Boolean(string="COMPE Member", default=False)
+    
     acc_number_format = fields.Text(help=_("""You can enter here the format as\
     the bank accounts are referenced in ofx files for the import of bank\
     statements.\nYou can use the python patern string with the entire bank \
