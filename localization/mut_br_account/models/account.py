@@ -17,7 +17,7 @@ ACCOUNT_SHORTCODE_REGEX = re.compile(r'^[0-9]+$')
 class AccountAccount(models.Model):
     _inherit = 'account.account'
 
-    account_type = fields.Selection([('tax', 'Imposto'), ('income', 'Receita'), ('expense', 'Despesa')],
+    flow_account_type = fields.Selection([('tax', 'Imposto'), ('income', 'Receita'), ('expense', 'Despesa')],
                                     string="Tipo de conta")
     shortcode = fields.Char(string="Código Curto", size=10, index=True)
 

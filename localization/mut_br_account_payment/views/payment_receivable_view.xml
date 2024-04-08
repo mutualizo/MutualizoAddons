@@ -7,21 +7,48 @@
 	        <field name="model">account.move.line</field>
 	        <field name="priority" eval="20"/>
 	        <field name="arch" type="xml"> 
-	            <tree default_order="date_maturity" string="Payments" decoration-danger="date_maturity&lt;current_date" decoration-muted="reconciled==True" create="false">
-	                <field name="date" readonly="1"/>
-	                <field name="partner_id" readonly="1"/>
+	            <tree default_order="date_maturity" string="Payments" decoration-danger="date_maturity&lt;current_date" 
+	                  decoration-muted="reconciled==True" create="false" edit="false">
+	                <field name="date"/>
+	                <field name="partner_id"/>
 	                <field name="name"/>
-	                <field name="account_id" readonly="1"/>
-                    <field name="account_type" readonly="1"/>
+	                <field name="account_id" optional="hide"/>
+                    <field name="account_type" widget="badge"/>
 	                <field name="currency_id" groups="base.group_multi_currency"/>
-	                <field name="amount_residual" readonly="1" sum="Total"/>
+	                <field name="amount_currency" string="Valor Título" sum="Total"/>
+	                <field name="discount_amount_currency" string="Valor Desconto" sum="Desc.Total" optional="show"/>
+	                <field name="discount_balance" string="Valor Residual" sum="Tot.Devido" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
 	                <field name="date_maturity"/>
-	                <field name="move_id" readonly="1"/>
-	                <field name="reconciled" string="Pago" />
-	                <field name="payment_date" />
+	                <field name="move_id" optional="hide"/>
+	                <field name="reconciled" string="Quitado"/>
+	                <field name="payment_date"/>
 	            </tree>
 	        </field>
 	    </record>
+
+        <record id="view_pay_and_rec_graph_date" model="ir.ui.view">
+            <field name="name">pay.and.rec.graph.date</field>
+            <field name="model">account.move.line</field>
+            <field name="arch" type="xml">
+                <graph string="Account Statistics" sample="1">
+                    <field name="partner_id"/>
+                    <field name="date"/>
+                    <field name="balance" operator="+" type='measure'/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_pay_and_rec_pivot" model="ir.ui.view">
+            <field name="name">pay.and.rec.pivot</field>
+            <field name="model">account.move.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Partner Items" sample="1">
+                    <field name="partner_id" type="row"/>
+                    <field name="date" type="col"/>
+                    <field name="balance" type="measure"/>
+                </pivot>
+            </field>
+        </record>
 	
 	    <record id="view_pay_and_rec_filter" model="ir.ui.view">
 	        <field name="name">pay.and.rec.search</field>
@@ -55,7 +82,7 @@
         <record id="view_pay_and_rec_move_line_action" model="ir.actions.act_window">
             <field name="name">Contas a Receber/Pagar</field>
             <field name="res_model">account.move.line</field>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">tree,graph,pivot</field>
             <field name="view_id" ref="view_pay_and_rec_list"/>
             <field name="search_view_id" ref="view_pay_and_rec_filter"/>
             <field name="context">{'search_default_open': 1}</field>
@@ -69,6 +96,20 @@
             <field name="view_mode">tree</field>
             <field name="view_id" ref="view_pay_and_rec_list"/>
         </record>
-	
+
+        <record id="view_pay_and_rec_move_line_action_pivot" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="view_pay_and_rec_move_line_action"/>
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="view_pay_and_rec_pivot"/>
+        </record>
+
+        <record id="view_pay_and_rec_move_line_action_graph" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="view_pay_and_rec_move_line_action"/>
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_pay_and_rec_graph_date"/>
+        </record>
+    
     </data>
 </odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_change_date_maturity_readonly_user,change.date.maturity.readonly.user,model_account_move_line_change_date_maturity,account.group_account_readonly,1,0,0,0
+access_change_date_maturity_invoice_user,change.date.maturity.invoice.user,model_account_move_line_change_date_maturity,account.group_account_invoice,1,1,1,0
+access_change_date_maturity_manager_user,change.date.maturity.mananger.user,model_account_move_line_change_date_maturity,account.group_account_manager,1,1,1,1

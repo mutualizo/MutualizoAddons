@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_change_date_maturity" model="ir.actions.server">
+            <field name="name">Change Date Maturity</field>
+            <field name="model_id" ref="model_account_move_line"/>
+            <field name="binding_model_id" ref="account.model_account_move_line"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = model.action_change_date_maturity()
+            </field>
+        </record>
+
+    </data>
+</odoo>

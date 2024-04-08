@@ -8,5 +8,5 @@
 #                                                 #
 ###################################################
 
-from . import company
-from . import partner
+
+from . import change_date_maturity

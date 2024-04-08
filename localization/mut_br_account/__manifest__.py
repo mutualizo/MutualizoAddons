@@ -20,6 +20,7 @@
     'company': 'Mutualizo Solutions',
     'website': "https://www.mutualizo.com",
     'depends': [
+        'account',
         'mut_br_base'
     ],
     'data': [

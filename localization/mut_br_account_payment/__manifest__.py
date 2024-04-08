@@ -9,7 +9,7 @@
 ###################################################
 
 {
-    'name': "Account Payable and Receivable Brasil Mutualizo",
+    'name': "Account Payment Brasil Mutualizo",
     'version': '17.0.0.1',
     'category': 'localization',
     'summary': 'Base para os módulos da localização do Brasil pela Mutualizo',
@@ -20,11 +20,20 @@
     'company': 'Mutualizo Solutions',
     'website': "https://www.mutualizo.com",
     'depends': [
+        'account',
+        'account_payment',
+        'base_accounting_kit',
         'mut_br_account'
     ],
     'data': [
+        'views/account_journal_view.xml',
         'views/payment_receivable_view.xml',
+        'views/res_partner_view.xml',
+        'views/account_payment_view.xml',
+        'views/account_move_line_view.xml',
         'views/menu_view.xml',
+        'wizard/change_date_maturity_view.xml',
+        'security/ir.model.access.csv',
     ],
     "external_dependencies": {
     },
