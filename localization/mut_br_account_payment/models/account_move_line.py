@@ -51,8 +51,8 @@ class AccountMoveLine(models.Model):
             'res_model': 'account.payment.register',
             'view_mode': 'form',
             'context': {
-                'active_model': 'account.move',
-                'active_ids': self.move_id.ids,
+                'active_model': 'account.move.line',
+                'active_ids': self.ids,
             },
             'target': 'new',
             'type': 'ir.actions.act_window',
