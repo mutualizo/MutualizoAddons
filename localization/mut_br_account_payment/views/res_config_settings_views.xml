@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Inherited view of settings-->
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">br.account.res.account.payment.config.settings.form.inherit</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//app[@name='account']" position="inside">
+                    <block title="Configuração Brasileira" name="default_brasilian_configuration">
+                        <setting id="br_account_setting" string="Contas Financeiras:">
+                            <div class="content-group">
+                                <div class="row mt8">
+                                    <label for="l10n_br_mut_payment_interest_account_id" class="col-lg-5 o_light_label"/>
+                                    <field name="l10n_br_mut_payment_interest_account_id"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="l10n_br_mut_payment_discount_account_id" class="col-lg-5 o_light_label"/>
+                                    <field name="l10n_br_mut_payment_discount_account_id"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="l10n_br_mut_discount_account_id" class="col-lg-5 o_light_label"/>
+                                    <field name="l10n_br_mut_discount_account_id"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="l10n_br_mut_interest_account_id" class="col-lg-5 o_light_label"/>
+                                    <field name="l10n_br_mut_interest_account_id"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="l10n_br_mut_bankfee_account_id" class="col-lg-5 o_light_label"/>
+                                    <field name="l10n_br_mut_bankfee_account_id"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="br_account_tax_setting" string="Taxas Financeiras:">
+                            <div class="content-group">
+                                <div class="row mt8">
+                                    <label for="l10n_br_mut_multa_tx" class="col-lg-5 o_light_label"/>
+                                    <field name="l10n_br_mut_multa_tx"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="l10n_br_mut_juros_mes_tx" class="col-lg-5 o_light_label"/>
+                                    <field name="l10n_br_mut_juros_mes_tx"/>
+                                </div>
+                                <div class="row mt8">
+                                    <label for="l10n_br_mut_desc_ant_tx" class="col-lg-5 o_light_label"/>
+                                    <field name="l10n_br_mut_desc_ant_tx"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

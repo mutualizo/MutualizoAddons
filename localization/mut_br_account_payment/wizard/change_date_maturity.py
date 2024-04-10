@@ -20,30 +20,36 @@ class AccountMoveLineChangeDateMaturity(models.TransientModel):
     _name = 'account.move.line.change.date.maturity'
     _description = 'Histórico de Mudança na Data de Vencimento'
     
-    move_id = fields.Many2one('account.move.line', string="Movimento Contábil", readonly=True, required=True, ondelete='cascade', index=True)
     user_id = fields.Many2one('res.users', 'Responsável', default=lambda self: self.env.user)
     can_do = fields.Boolean('Pode fazer?', default=True)
-    date_maturity = fields.Date(string='De')
     date_maturity_new = fields.Date(string='Para', default=fields.date.today())
     narration = fields.Text('Motivo')
     state = fields.Selection([('draft', 'Aberto'), ('posted', 'Publicado')], string='Status', readonly=True, default='draft')
-    move_ids = fields.Many2many('account.move.line', string='Duplicatas')
+    move_line_ids = fields.Many2many('account.move.line', string='Duplicatas')
 
     #TODO: Verificar
-    # @api.onchange('move_id')
-    # def on_change_move_id(self):
-    #     if self.move_id:
-    #         self.date_maturity = self.move_id.date_maturity
-    #         if self.move_id.account_id.reconcile and not self.move_id.reconciled: 
-    #             self.can_do = True 
+    @api.onchange('move_ids')
+    def on_change_move_id(self):
+        for wizard in self:
+            wizard.can_do = False
+            for move_line_id in wizard.move_line_ids:
+                if move_line_id.account_id.reconcile and not move_line_id.reconciled: 
+                    wizard.can_do = True 
             
     def do_new_date_maturity(self):
-        # if self.can_do:
-        #     if len(self.narration) < 10:
-        #         raise UserError('A narrativa tem que ter mais de 10 caracteres')
-        #     if self.move_id.date_maturity == self.date_maturity_new:
-        #         raise UserError('A nova data tem que ser diferente da data atual')
-        #     self.date_maturity = self.move_id.date_maturity
-        #     self.move_id.write({'date_maturity': self.date_maturity_new})
-        #     self.state = 'posted'
+        for wizard in self:
+            if wizard.can_do:
+                if len(wizard.narration) < 10:
+                    raise UserError('A narrativa tem que ter mais de 10 caracteres')
+                for move_line_id in wizard.move_line_ids:
+                    if move_line_id.date_maturity == wizard.date_maturity_new:
+                        raise UserError('A nova data tem que ser diferente da data atual')
+                    var = {
+                        'move_line_id': move_line_id.id,
+                        'date_maturity_old': move_line_id.date_maturity,
+                        'narration': wizard.narration,
+                    }
+                    move_line_id.write({'date_maturity': wizard.date_maturity_new})
+                    self.env['account.move.line.list.change.maturity'].create(var)
+                wizard.state = 'posted'
         return True

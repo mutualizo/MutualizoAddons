@@ -17,11 +17,12 @@
 	                <field name="currency_id" groups="base.group_multi_currency"/>
 	                <field name="amount_currency" string="Valor Título" sum="Total"/>
 	                <field name="discount_amount_currency" string="Valor Desconto" sum="Desc.Total" optional="show"/>
-	                <field name="discount_balance" string="Valor Residual" sum="Tot.Devido" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+	                <field name="amount_residual" string="Valor Residual" sum="Tot.Devido" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
 	                <field name="date_maturity"/>
 	                <field name="move_id" optional="hide"/>
 	                <field name="reconciled" string="Quitado"/>
 	                <field name="payment_date"/>
+                    <button type="object" name="action_register_payment" string="Quitar"/>
 	            </tree>
 	        </field>
 	    </record>
@@ -74,6 +75,7 @@
 	                    <filter name="group_partner" string="Parceiro" domain="[]" context="{'group_by':'partner_id'}"/>
 	                    <filter name="group_date" string="Data de Vencimento" domain="[]" context="{'group_by':'date_maturity:day'}"/>
 	                    <filter name="group_month" string="Mês" domain="[]" context="{'group_by':'date_maturity'}"/>
+	                    <filter name="group_by_invoice" string="Fatura" domain="[]" context="{'group_by': 'move_id'}"/>
 	               </group>
 	           </search>
 	        </field>
@@ -110,6 +112,18 @@
             <field name="view_mode">graph</field>
             <field name="view_id" ref="view_pay_and_rec_graph_date"/>
         </record>
+
+	    <record id="action_br_account_invoice_pay_from_list" model="ir.actions.server">
+	        <field name="name">Pay Due Payment(s)</field>
+	        <field name="model_id" ref="account.model_account_move_line"/>
+	        <field name="binding_model_id" ref="account.model_account_move_line"/>
+	        <field name="binding_view_types">list</field>
+	        <field name="state">code</field>
+	        <field name="code">
+	            if records:
+	            action = records.action_register_payment()
+	        </field>
+	    </record>
     
     </data>
 </odoo>

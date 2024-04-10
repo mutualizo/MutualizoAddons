@@ -25,13 +25,31 @@
     </record>
 
     <record id="view_br_account_payment_sale_acc_partner_form" model="ir.ui.view">
-        <field name="name">br.account.payment.sale.acc_partner.form</field>
+        <field name="name">br.account.payment.sale.acc.partner.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="account.view_partner_property_form"/>
         <field name="arch" type="xml">
             <field name="property_payment_term_id" position="after">
                 <field name="sacador_id" options="{'no_create': True, 'no_create_edit': True}"/>
             </field>
+        </field>
+    </record>
+
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">multiple.payment.for.outstanding.dues.form.inherit</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" name="button_box">
+                <button name="action_view_due_statements_rec" type="object" class="oe_stat_button" icon="fa-clock-o"
+                        string="A Receber">
+                    <field string="Receber" name="due_amount_rec" widget="statinfo"/>
+                </button>
+                <button name="action_view_due_statements_pay" type="object" class="oe_stat_button" icon="fa-clock-o"
+                        string="A Pagar">
+                    <field string="Pagar" name="due_amount_pay" widget="statinfo"/>
+                </button>
+            </div>
         </field>
     </record>
 

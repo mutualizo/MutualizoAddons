@@ -50,6 +50,58 @@
             </field>
         </record>
          -->
+
+	    <record model="ir.ui.view" id="view_br_account_reg_payment_form_check_pdc">
+	        <field name="name">br.account.reg.payment.form.check.pdc</field>
+	        <field name="model">account.payment.register</field>
+            <field name="priority">5</field>
+	        <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//group/group[@name='group2']/div" position="after">
+                    <label for="vl_principal"/>
+                    <div name="principal_div" class="o_row">
+                        <field name="vl_principal" readonly="not can_edit_wizard"/>
+                    </div>
+                    <label for="vl_discount"/>
+                    <div name="discount_div" class="o_row">
+                        <field name="vl_discount" readonly="not can_edit_wizard"/>
+                        <field name="pr_discount" readonly="not can_edit_wizard"/>%
+                    </div>
+                    <label for="pay_sub"/>
+                    <div name="pay_div" class="o_row">
+                        <field name="pay_sub"/>
+                    </div>
+                    <label for="vl_interest"/>
+                    <div name="interest_div" class="o_row">
+                        <field name="vl_interest" readonly="not can_edit_wizard"/>
+                        <field name="pr_interest" readonly="not can_edit_wizard"/>%
+                    </div>
+                    <label for="vl_fee"/>
+                    <div name="fee_div" class="o_row">
+                        <field name="vl_fee" readonly="not can_edit_wizard"/>
+                        <field name="pr_fee" readonly="not can_edit_wizard"/>%
+                    </div>
+                    <label for="pay_amount"/>
+                    <div name="amount_div" class="o_row">
+                        <field name="pay_amount"/>
+                    </div>
+	            </xpath>
+                <xpath expr="//group/group[@name='group2']/label[@for='amount']" position="attributes">
+                    <attribute name="invisible">true</attribute>
+                </xpath>
+                <xpath expr="//group/group[@name='group2']/div" position="attributes">
+                    <attribute name="invisible">true</attribute>
+                </xpath>
+                <field name="payment_date" position="replace"/>
+                <xpath expr="//group/group[@name='group1']" position="inside">
+                    <field name="payment_date"/>
+                </xpath>
+                <field name="communication" position="replace"/>
+                <xpath expr="//group/group[@name='group1']" position="inside">
+                    <field name="communication"/>
+                </xpath>
+	        </field>
+	    </record>
      
     </data>
 </odoo>

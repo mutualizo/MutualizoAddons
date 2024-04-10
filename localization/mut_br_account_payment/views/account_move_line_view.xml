@@ -3,7 +3,7 @@
     <data>
 
         <record id="action_change_date_maturity" model="ir.actions.server">
-            <field name="name">Change Date Maturity</field>
+            <field name="name">Alterar Vencimento</field>
             <field name="model_id" ref="model_account_move_line"/>
             <field name="binding_model_id" ref="account.model_account_move_line"/>
             <field name="binding_view_types">list</field>
@@ -12,6 +12,17 @@
                 action = model.action_change_date_maturity()
             </field>
         </record>
+
+	    <record id="view_br_account_move_line_filter" model="ir.ui.view">
+	        <field name="name">br.account.search.inherit.multiple.payment</field>
+	        <field name="model">account.move.line</field>
+	        <field name="inherit_id" ref="account.view_account_move_line_filter"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//group" position="inside">
+	                <filter string="Invoices" name="group_by_invoices" domain="[]" context="{'group_by': 'move_id'}"/>
+	            </xpath>
+	        </field>
+	    </record>
 
     </data>
 </odoo>

@@ -31,6 +31,7 @@
         'views/res_partner_view.xml',
         'views/account_payment_view.xml',
         'views/account_move_line_view.xml',
+        'views/res_config_settings_views.xml',
         'views/menu_view.xml',
         'wizard/change_date_maturity_view.xml',
         'security/ir.model.access.csv',
