@@ -1,6 +1,6 @@
 {
     'name': 'OAuth2 - AWS Cognito Integration',
-    'version': "17.0.0.0",
+    'version': "14.0.0.0",
     'category': 'Extra Tools',
     'summary': """Integração com o AWS Cognito a partir de Autenticação OAuth2.""",
     'description': """Basic module for AWS Cognito connector used to login 
@@ -10,7 +10,7 @@
     'company': 'Mutualizo',
     'maintainer': 'Mutualizo',
     'website': "https://www.mutualizo.com.br",
-    'depends': ['base', 'auth_oauth'],
+    'depends': ['auth_oauth'],
     'data': [
         'data/auth_oauth_provider_data.xml',
         'views/auth_oauth_provider_views.xml',

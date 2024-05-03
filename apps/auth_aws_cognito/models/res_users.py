@@ -39,7 +39,6 @@ class ResUsers(models.Model):
             headers = {'Authorization': 'Bearer %s' % access_token}
             return requests.get(endpoint, headers=headers).json()
 
-
     @api.model
     def _auth_oauth_code_validate(self, provider, code):
         """ Return the validation data corresponding to the access token """

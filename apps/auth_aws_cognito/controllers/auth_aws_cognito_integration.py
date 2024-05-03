@@ -8,9 +8,10 @@
 # |_|  |_|\__,_|\__|\__,_|\__,_|_|_/___\___/      #
 #                                                 #
 ###################################################
-import json
 import werkzeug.urls
 import werkzeug.utils
+from werkzeug.urls import url_join
+
 from odoo.http import request
 from odoo.addons.auth_signup.controllers.main import AuthSignupHome as Home
 
@@ -28,7 +29,12 @@ class OAuthLogin(Home):
         except Exception:
             auth_providers = []
         for rec in auth_providers:
-            return_url = 'https://soma.mutualizo.com/auth_oauth/signin'
+            base_url = (
+                request.env["ir.config_parameter"]
+                .sudo()
+                .get_param('web.base.url')
+            )
+            return_url = url_join(base_url, '/auth_oauth/signin')
             params = dict(
                 client_id=rec['client_id'],
                 response_type=rec['response_type'],

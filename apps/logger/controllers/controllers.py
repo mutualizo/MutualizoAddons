@@ -2,7 +2,7 @@
 from odoo import http, fields
 import logging
 
-from odoo.http import request, Response
+from odoo.http import Response
 
 _logger = logging.getLogger(__name__)
 
