@@ -61,7 +61,8 @@ RUN wget https://github.com/odoo/odoo/archive/refs/heads/14.0.zip -O odoo.zip &&
     wget https://github.com/OCA/account-reconcile/archive/14.0.zip -O account-reconcile.zip && \
     wget https://github.com/OCA/bank-payment/archive/14.0.zip -O bank-payment.zip && \
     wget https://github.com/OCA/l10n-brazil/archive/14.0.zip -O l10n-brazil.zip && \
-    wget https://github.com/muk-it/muk_web/archive/14.0.zip -O muk_web.zip
+    wget https://github.com/muk-it/muk_web/archive/14.0.zip -O muk_web.zip && \
+    wget https://github.com/CybroOdoo/CybroAddons/archive/refs/heads/14.0.zip -O CybroAddons.zip
 
 RUN unzip -q odoo.zip && rm odoo.zip && mv odoo-14.0 /opt/odoo && \
     unzip -q design-themes.zip && rm design-themes.zip && mv design-themes-14.0 /opt/addons/design-themes && \
@@ -69,20 +70,7 @@ RUN unzip -q odoo.zip && rm odoo.zip && mv odoo-14.0 /opt/odoo && \
     unzip -q account-reconcile.zip && rm account-reconcile.zip && mv account-reconcile-14.0 /opt/addons/account-reconcile && \
     unzip -q bank-payment.zip && rm bank-payment.zip && mv bank-payment-14.0 /opt/addons/bank-payment && \
     unzip -q l10n-brazil.zip && rm l10n-brazil.zip && mv l10n-brazil-14.0 /opt/addons/l10n-brazil && \
-    unzip -q muk_web.zip && rm muk_web.zip && mv muk_web-14.0 /opt/addons/muk_web
+    unzip -q muk_web.zip && rm muk_web.zip && mv muk_web-14.0 /opt/addons/muk_web && \
+    unzip -q CybroAddons.zip && rm CybroAddons.zip && mv CybroAddons-14.0 /opt/addons/CybroAddons
 
-ENV PG_HOST=localhost
-ENV PG_PORT=5432
-ENV PG_USER=odoo
-ENV PG_DATABASE=False
-ENV PG_PASSWORD=odoo
-ENV ODOO_PASSWORD=Mutual1z02024
-ENV PORT=8069
-ENV LOG_FILE=False
-ENV LONGPOLLING_PORT=8072
-ENV WORKERS=5
-ENV TIME_CPU=6000
-ENV TIME_REAL=7200
-ENV DB_FILTER=False
-ENV LIST_DB=True
-ENV DATA_DIR=/mnt/efs
+RUN pip3 install -r /opt/addons/l10n-brazil/requirements.txt
