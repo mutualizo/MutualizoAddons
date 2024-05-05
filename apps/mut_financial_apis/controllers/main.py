@@ -7,6 +7,8 @@ from datetime import datetime
 from erpbrasil.base import misc
 from erpbrasil.base.fiscal import cnpj_cpf
 
+from .error_messages import FinanceApiErrorMessages as errors
+
 
 class FinancialAPIsController(http.Controller):
 
@@ -16,23 +18,30 @@ class FinancialAPIsController(http.Controller):
         auth="public",
     )
     def load_invoices(self, **kw):
-        api_user = request.env.ref("financial_apis.api_user")
+        api_user = request.env.ref("mut_financial_apis.api_user")
         data = request.jsonrequest
         if isinstance(data, dict):
             invoices = data.get("invoices_receivables", [])
-        # TODO We need to filter out the invalid data and send the callback
+        callbacks = []
         for invoice in invoices:
             company_id = self.get_company_by_cnpj(invoice.get("cnpj_singular"))
             env = request.env(user=api_user)
             if not company_id:
-                pass
+                callbacks.append(
+                    {
+                        "url_callback": invoice.get("url_callback"),
+                        "external_id_installment": invoice.get("external_id"),
+                        "installment_state": "not_created",
+                        "error": errors.COMPANY_NOT_FOUND,
+                    }
+                )
+                continue
 
             partner_id = self.get_invoice_partner(
                 env, company_id.id, invoice.get("payer")
             )
             self.create_account_move(env, company_id.id, partner_id.id, invoice)
-        # TODO Check what is the responde needed to Nifi
-        return
+        self.send_callbacks(callbacks)
 
     def get_company_by_cnpj(self, cnpj):
         # Search singular company by cnpj
@@ -60,7 +69,8 @@ class FinancialAPIsController(http.Controller):
                 "|",
                 ("cnpj_cpf", "=", cnpj_cpf_numbers),
                 ("cnpj_cpf", "=", formatted_cnpj_cpf),
-            ], limit=1
+            ],
+            limit=1,
         )
         # Create partner if not find one
         if not partner_id:
@@ -122,7 +132,7 @@ class FinancialAPIsController(http.Controller):
             installment_data["due_date"] = (
                 datetime.strptime(installment_data.get("due_date"), "%Y-%m-%d") or False
             )
-        default_product = env.ref("financial_apis.api_product_product")
+        default_product = env.ref("mut_ financial_apis.api_product_product")
         bradesco_id = request.env.ref("l10n_br_base.res_bank_237")
         payment_mode_id = (
             env["account.payment.mode"]
@@ -190,3 +200,6 @@ class FinancialAPIsController(http.Controller):
                 )
             partner_contact_list.append(partner_id.id)
         return partner_contact_list
+
+    def send_callbacks(self, callbacks):
+        return
