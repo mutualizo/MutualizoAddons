@@ -19,9 +19,9 @@ class FinancialAPIsController(http.Controller):
         api_user = request.env.ref("financial_apis.api_user")
         data = request.jsonrequest
         if isinstance(data, dict):
-            data = [data]
-
-        for invoice in data:
+            invoices = data.get("invoices_receivables", [])
+        # TODO We need to filter out the invalid data and send the callback
+        for invoice in invoices:
             company_id = self.get_company_by_cnpj(invoice.get("cnpj_singular"))
             env = request.env(user=api_user)
             if not company_id:
@@ -30,14 +30,8 @@ class FinancialAPIsController(http.Controller):
             partner_id = self.get_invoice_partner(
                 env, company_id.id, invoice.get("payer")
             )
-            account_move_id = self.create_account_move(
-                env=env,
-                company_id=company_id.id,
-                partner_id=partner_id.id,
-                installment_data=invoice.get("installment"),
-                url_callback=invoice.get("url_callback"),
-                contact_list=invoice.get("contact_list"),
-            )
+            self.create_account_move(env, company_id.id, partner_id.id, invoice)
+        # TODO Check what is the responde needed to Nifi
         return
 
     def get_company_by_cnpj(self, cnpj):
@@ -66,7 +60,7 @@ class FinancialAPIsController(http.Controller):
                 "|",
                 ("cnpj_cpf", "=", cnpj_cpf_numbers),
                 ("cnpj_cpf", "=", formatted_cnpj_cpf),
-            ]
+            ], limit=1
         )
         # Create partner if not find one
         if not partner_id:
@@ -120,9 +114,10 @@ class FinancialAPIsController(http.Controller):
             "country_id": country_id.id,
         }
 
-    def create_account_move(
-        self, env, company_id, partner_id, installment_data, url_callback, contact_list
-    ):
+    def create_account_move(self, env, company_id, partner_id, invoice):
+        installment_data = invoice.get("installment")
+        url_callback = invoice.get("url_callback")
+        contact_list = invoice.get("contact_list")
         if installment_data.get("due_date"):
             installment_data["due_date"] = (
                 datetime.strptime(installment_data.get("due_date"), "%Y-%m-%d") or False
