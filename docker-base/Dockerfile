@@ -74,6 +74,7 @@ RUN unzip -q odoo.zip && rm odoo.zip && mv odoo-14.0 /opt/odoo && \
 ENV PG_HOST=localhost
 ENV PG_PORT=5432
 ENV PG_USER=odoo
+ENV PG_DATABASE=False
 ENV PG_PASSWORD=odoo
 ENV ODOO_PASSWORD=Mutual1z02024
 ENV PORT=8069
@@ -84,3 +85,4 @@ ENV TIME_CPU=6000
 ENV TIME_REAL=7200
 ENV DB_FILTER=False
 ENV LIST_DB=True
+ENV DATA_DIR=/mnt/efs
