@@ -23,6 +23,8 @@ msgid ""
 "%d payment lines added to the existing draft payment order <a href=# data-"
 "oe-model=account.payment.order data-oe-id=%d>%s</a>."
 msgstr ""
+"%d linhas de pagamento adicionadas ao rascunho de ordem de pagamento existente <a href=# data-"
+"oe-model=account.payment.order data-oe-id=%d>%s</a>."
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_move.py:0
@@ -32,32 +34,35 @@ msgid ""
 "model=account.payment.order data-oe-id=%d>%s</a> which has been "
 "automatically created."
 msgstr ""
+"%d linhas de pagamento adicionadas ao novo rascunho de ordem de pagamento <a href=# data-oe-"
+"model=account.payment.order data-oe-id=%d>%s</a> which has been "
+"automatically created."
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_payment_order.py:0
 #, python-format
 msgid "<b>Account Number</b>: %s - <b>Partner</b>: %s"
-msgstr ""
+msgstr "<b>Número da Conta</b>: %s - <b>Parceiro</b>: %s"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.print_account_payment_order_document
 msgid "<strong>Company Currency:</strong>"
-msgstr ""
+msgstr "<strong>Moeda da empresa:</strong>"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.print_account_payment_order_document
 msgid "<strong>Execution:</strong>"
-msgstr ""
+msgstr "<strong>Execução:</strong>"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.print_account_payment_order_document
 msgid "<strong>Payment Type:</strong>"
-msgstr ""
+msgstr "<strong>Tipo de Pagamento:</strong>"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.print_account_payment_order_document
 msgid "<strong>Reference</strong>"
-msgstr ""
+msgstr "<strong>Referência</strong>"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.print_account_payment_order_document
@@ -67,12 +72,12 @@ msgstr ""
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.print_account_payment_order_document
 msgid "<strong>Used Account:</strong>"
-msgstr ""
+msgstr "<strong>Conta Usada:</strong>"
 
 #. module: account_payment_order
 #: model:ir.model.constraint,message:account_payment_order.constraint_account_payment_line_name_company_unique
 msgid "A payment line already exists with this reference in the same company!"
-msgstr ""
+msgstr "Já existe uma linha de pagamento com esta referência na mesma empresa!"
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/res_bank.py:0
@@ -81,16 +86,18 @@ msgid ""
 "A valid BIC contains 8 or 11 characters. The BIC '%s' contains %d "
 "characters, so it is not valid."
 msgstr ""
+"Um BIC válido contém 8 ou 11 caracteres. O BIC '%s' contém %d "
+"caracteres, então não é válido."
 
 #. module: account_payment_order
 #: model:res.groups,name:account_payment_order.group_account_payment
 msgid "Accounting / Payments"
-msgstr ""
+msgstr "Contabilidade / Pagamentos"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Ação Necessária"
 
 #. module: account_payment_order
 #: model:ir.model.fields,help:account_payment_order.field_account_payment_line__bank_account_required
@@ -98,74 +105,76 @@ msgid ""
 "Activate this option if this payment method requires you to know the bank "
 "account number of your customer or supplier."
 msgstr ""
+"Ative esta opção se esta forma de pagamento exigir que você conheça o"
+"número da conta do banco do seu cliente ou fornecedor."
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Atividades"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Decoração de Exceção de Atividade"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Status da Atividade"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Ícone do Tipo de Atividade"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_line_create_form
 msgid "Add All Move Lines"
-msgstr ""
+msgstr "Adicionar Todas as Linhas de Fatura"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.view_move_form
 msgid "Add to Debit Order"
-msgstr ""
+msgstr "Adicionar a Ordem de Débito"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.view_move_form
 msgid "Add to Payment Order"
-msgstr ""
+msgstr "Adicionar a Ordem de Pagamento"
 
 #. module: account_payment_order
 #: model:ir.actions.act_window,name:account_payment_order.account_invoice_create_account_payment_line_action
 #: model_terms:ir.ui.view,arch_db:account_payment_order.view_invoice_tree
 msgid "Add to Payment/Debit Order"
-msgstr ""
+msgstr "Adicionar a Ordem de Pagamento/Débito"
 
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_line_create__target_move__all
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_mode__default_target_move__all
 msgid "All Entries"
-msgstr ""
+msgstr "Todas as Entradas"
 
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_line_create__target_move__posted
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_mode__default_target_move__posted
 msgid "All Posted Entries"
-msgstr ""
+msgstr "Todas as Entradas Publicas"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line_create__allow_blocked
 msgid "Allow Litigation Move Lines"
-msgstr ""
+msgstr "Permitir Linhas de Fatura de Litígio"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__allow_past_date
 msgid "Allow date in the past"
-msgstr ""
+msgstr "Permitir data no passado"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__allowed_journal_ids
 msgid "Allowed journals"
-msgstr ""
+msgstr "Diários permitidos"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__amount_currency
@@ -177,23 +186,23 @@ msgstr "Total"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__amount_company_currency
 msgid "Amount in Company Currency"
-msgstr ""
+msgstr "Total na Moeda da Empresa"
 
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_line_create__payment_mode__any
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_mode__default_payment_mode__any
 msgid "Any"
-msgstr ""
+msgstr "Qualquer"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Número de Anexos"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.view_attachment_simplified_form
 msgid "Attachments"
-msgstr ""
+msgstr "Anexos"
 
 #. module: l10n_br_account_payment_brcobranca
 #: model:ir.model.fields,field_description:l10n_br_account_payment_brcobranca.field_account_journal__return_auto_reconcile
@@ -212,6 +221,13 @@ msgid ""
 "2. Configure the URL in Odoo configuration file: brcobranca_api_url=http://boleto_cnab_api:9292\n"
 "3. Set the URL in System Parameters: brcobranca_api_url=http://boleto_cnab_api:9292\n"
 msgstr ""
+"URL da API BRCobranca não está configurada.\n"
+"\n"
+" Configure a url usando um destes métodos:\n"
+"\n"
+"1. Defina a variável de ambiente: BRCOBRANCA_API_URL=http://boleto_cnab_api:9292\n"
+"2. Configure o URL no arquivo de configuração Odoo: brcobranca_api_url=http://boleto_cnab_api:9292\n"
+"3. Defina o URL nos parâmetros do sistema: brcobranca_api_url=http://boleto_cnab_api:9292\n"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_form
@@ -231,18 +247,18 @@ msgstr "Conta bancária"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__bank_account_required
 msgid "Bank Account Required"
-msgstr ""
+msgstr "Conta de Banco Necessária"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__journal_id
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_search
 msgid "Bank Journal"
-msgstr ""
+msgstr "Diário do Banco"
 
 #. module: account_payment_order
 #: model:ir.model.fields,help:account_payment_order.field_account_move_line__partner_bank_id
 msgid "Bank account on which we should pay the supplier"
-msgstr ""
+msgstr "Conta bancária na qual devemos pagar ao fornecedor"
 
 #. module: l10n_br_account_payment_brcobranca
 #: model:ir.model.fields.selection,name:l10n_br_account_payment_brcobranca.selection__account_journal__import_type__cnab240
@@ -269,12 +285,12 @@ msgstr "Cancelar"
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_form
 msgid "Cancel Payments"
-msgstr ""
+msgstr "Cancelar Pagamentos"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_line_create_form
 msgid "Choose Move Lines Filter Options"
-msgstr ""
+msgstr "Escolha as Opções de Filtros das Linhas de Fatura"
 
 #. module: l10n_br_account_payment_brcobranca
 #: model:ir.model.fields,help:l10n_br_account_payment_brcobranca.field_account_journal__import_type
@@ -292,6 +308,9 @@ msgid ""
 " criteria or click on Add an item to manually select the move lines filtered"
 " by the above criteria."
 msgstr ""
+"Clique em Adicionar todas as linhas de movimentação para selecionar automaticamente as linhas"
+" de movimentação que correspondem aos critérios acima ou clique em Adicionar um item para selecionar"
+" manualmente as linhas de movimentação filtradas pelos critérios acima."
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__communication
@@ -301,13 +320,13 @@ msgstr "Comunicação"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__communication_type
 msgid "Communication Type"
-msgstr ""
+msgstr "Tipo de Comunicação"
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_payment_line.py:0
 #, python-format
 msgid "Communication is empty on payment line %s."
-msgstr ""
+msgstr "A comunicação está vazia na linha de pagamento %s."
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__company_id
@@ -318,48 +337,48 @@ msgstr "Empresa"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__company_partner_bank_id
 msgid "Company Bank Account"
-msgstr ""
+msgstr "Conta Bancária da Empresa"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_form
 msgid "Confirm Payments"
-msgstr ""
+msgstr "Confirmar Pagamentos"
 
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_order__state__open
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_search
 msgid "Confirmed"
-msgstr ""
+msgstr "Confirmado"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_invoice_payment_line_multi_form
 msgid "Create"
-msgstr ""
+msgstr "Criar"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_invoice_payment_line_multi_form
 msgid "Create Payment Lines"
-msgstr ""
+msgstr "Criar Linhas de Pagamento"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_form
 msgid "Create Payment Lines from Journal Items"
-msgstr ""
+msgstr "Criar Linhas de Pagamento para os Itens do Diário"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_line_create_form
 msgid "Create Transactions"
-msgstr ""
+msgstr "Criar Transações"
 
 #. module: account_payment_order
 #: model:ir.actions.act_window,name:account_payment_order.account_payment_line_create_action
 msgid "Create Transactions from Move Lines"
-msgstr ""
+msgstr "Criar Transações para as Linhas de Fatura"
 
 #. module: account_payment_order
 #: model:ir.model,name:account_payment_order.model_account_invoice_payment_line_multi
 msgid "Create payment lines from invoice tree view"
-msgstr ""
+msgstr "Criar Linhas de Pagamento para a tree view das faturas"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_invoice_payment_line_multi__create_uid
@@ -383,12 +402,12 @@ msgstr "Criado em"
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__company_currency_id
 #: model_terms:ir.ui.view,arch_db:account_payment_order.print_account_payment_order_document
 msgid "Currency"
-msgstr ""
+msgstr "Moeda"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__currency_id
 msgid "Currency of the Payment Transaction"
-msgstr ""
+msgstr "Moeda da Transação de Pagamento"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.print_account_payment_order_document
@@ -399,22 +418,22 @@ msgstr "Ordem de Pagamento"
 #: model:ir.actions.act_window,name:account_payment_order.account_payment_order_inbound_action
 #: model:ir.ui.menu,name:account_payment_order.account_payment_order_inbound_menu
 msgid "Debit Orders"
-msgstr ""
+msgstr "Ordens de Débito"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_mode__default_date_prefered
 msgid "Default Payment Execution Date"
-msgstr ""
+msgstr "Data Padrão de Execução do Pagamento"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__description
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_mode__no_debit_before_maturity
 msgid "Disallow Debit Before Maturity Date"
-msgstr ""
+msgstr "Não Permitir Débito antes da Data de Vencimento"
 
 #. modules: l10n_br_account_payment_brcobranca, account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_invoice_payment_line_multi__display_name
@@ -461,51 +480,51 @@ msgstr "Habilitar reconciliação do retorno de pagamento automático."
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_order__state__generated
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_search
 msgid "File Generated"
-msgstr ""
+msgstr "Arquivo Gerado"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__date_generated
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_search
 msgid "File Generation Date"
-msgstr ""
+msgstr "Data de Criação do Arquivo"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_form
 msgid "File Successfully Uploaded"
-msgstr ""
+msgstr "Arquivo Enviado com Sucesso"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__date_uploaded
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_search
 msgid "File Upload Date"
-msgstr ""
+msgstr "Data de Envio do Arquivo"
 
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_order__state__uploaded
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_search
 msgid "File Uploaded"
-msgstr ""
+msgstr "Arquivo Enviado"
 
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_mode__default_date_prefered__fixed
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_order__date_prefered__fixed
 msgid "Fixed Date"
-msgstr ""
+msgstr "Data Fixa"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Seguidores (Canais)"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores (Parceiros)"
 
 #. module: account_payment_order
 #: model:ir.model.fields,help:account_payment_order.field_account_payment_order__activity_type_icon
@@ -523,11 +542,18 @@ msgid ""
 "will select the bank account on the payment order. If your company only has "
 "one bank account, you should always select 'Fixed'."
 msgstr ""
+"Para modos de pagamento sempre vinculadas à mesma conta bancária da sua "
+"empresa (como transferência bancária de clientes ou débito direto SEPA de "
+"fornecedores), selecione 'Fixo'. Para formas de pagamento que nem sempre estão anexadas "
+"para a mesma conta bancária (como débito direto SEPA para clientes, transferência "
+"bancária para fornecedores), você deve selecionar 'Variável', o que significa que você "
+"selecionará a conta bancária na ordem de pagamento. Se sua empresa tiver apenas "
+"uma conta bancária, você deve sempre selecionar 'Fixo'."
 
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_line__communication_type__normal
 msgid "Free"
-msgstr ""
+msgstr "Livre"
 
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_move__reference_type__none
@@ -537,17 +563,17 @@ msgstr "Referência estruturada"
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_form
 msgid "Generate Payment File"
-msgstr ""
+msgstr "Gerar Arquivo de Pagamento"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.view_attachment_simplified_form
 msgid "Generated File"
-msgstr ""
+msgstr "Arquivo Criado"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__generated_user_id
 msgid "Generated by"
-msgstr ""
+msgstr "Criado por"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_search
@@ -557,7 +583,7 @@ msgstr "Agrupar por"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_mode__group_lines
 msgid "Group Transactions in Payment Orders"
-msgstr ""
+msgstr "Agrupar Transações nas Ordens de Pagamento"
 
 #. modules: l10n_br_account_payment_brcobranca, account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_invoice_payment_line_multi__id
@@ -637,7 +663,7 @@ msgstr "Assistente para Importar Arquivo de Lote"
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_order__payment_type__inbound
 msgid "Inbound"
-msgstr ""
+msgstr "Entrada"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_journal__inbound_payment_order_only
@@ -647,7 +673,7 @@ msgstr "Ordem de Pagamento"
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.print_account_payment_order_document
 msgid "Invoice Ref"
-msgstr ""
+msgstr "Referência da Fatura"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__message_is_follower
@@ -764,7 +790,7 @@ msgstr "Erro de Entrega de Mensagem"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensagens"
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_payment_order.py:0
@@ -820,7 +846,7 @@ msgstr ""
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_search
 msgid "Name or Description"
-msgstr ""
+msgstr "Nome ou Descrição"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__activity_date_deadline
@@ -849,7 +875,7 @@ msgstr ""
 #: code:addons/account_payment_order/models/account_move.py:0
 #, python-format
 msgid "No Payment Mode on invoice %s"
-msgstr ""
+msgstr "Nenhum Modo de Pagamento na Fatura %s."
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_payment_order.py:0
@@ -868,27 +894,27 @@ msgstr "Nada a importar: O arquivo está vazio"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__name
 msgid "Number"
-msgstr ""
+msgstr "Número"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de Ações"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__move_count
 msgid "Number of Journal Entries"
-msgstr ""
+msgstr "Número de Entradas no Diário"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__payment_count
 msgid "Number of Payment Transactions"
-msgstr ""
+msgstr "Número de Transações de Pagamento"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Número de erros"
 
 #. module: account_payment_order
 #: model:ir.model.fields,help:account_payment_order.field_account_payment_order__message_needaction_counter
@@ -908,7 +934,7 @@ msgstr ""
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment__old_bank_payment_line_name
 msgid "Old Bank Payment Line Name"
-msgstr ""
+msgstr "Nome da Antiga Linha de Pagamento do Banco"
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_payment_order.py:0
@@ -924,12 +950,12 @@ msgstr "Ordens de Pagamento"
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_mode_form
 msgid "Options for Payment Orders"
-msgstr ""
+msgstr "Opções para Ordens de Pagamento"
 
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_order__payment_type__outbound
 msgid "Outbound"
-msgstr ""
+msgstr "Saída"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_journal__outbound_payment_order_only
@@ -961,28 +987,28 @@ msgstr "Parceiro"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__date
 msgid "Payment Date"
-msgstr ""
+msgstr "Data de Pagamento"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__date_scheduled
 msgid "Payment Execution Date"
-msgstr ""
+msgstr "Data do Pagamento"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__date_prefered
 msgid "Payment Execution Date Type"
-msgstr ""
+msgstr "Tipo de Data de Pagamento"
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_payment_order.py:0
 #, python-format
 msgid "Payment File"
-msgstr ""
+msgstr "Arquivo de Pagamento"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment__payment_line_ids
 msgid "Payment Line"
-msgstr ""
+msgstr "Linha de Pagamento"
 
 #. modules: l10n_br_account_payment_brcobranca, account_payment_order
 #: model:ir.actions.act_window,name:account_payment_order.account_payment_line_action
@@ -1011,7 +1037,7 @@ msgstr "Modo de Pagamento"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_mode__default_payment_mode
 msgid "Payment Mode on Invoice"
-msgstr ""
+msgstr "Modo de Pagamento na Fatura"
 
 #. module: l10n_br_account_payment_brcobranca
 #: model:ir.model,name:l10n_br_account_payment_brcobranca.model_account_payment_mode
@@ -1036,7 +1062,7 @@ msgstr "Ordem de Pagamento"
 #: model:ir.model.fields,field_description:account_payment_order.field_account_move__payment_order_ok
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment__payment_order_ok
 msgid "Payment Order Ok"
-msgstr ""
+msgstr "Ordem de Pagamento Ok"
 
 #. module: account_payment_order
 #: model:ir.actions.act_window,name:account_payment_order.account_payment_order_outbound_action
@@ -1049,14 +1075,14 @@ msgstr "Ordens de Pagamento"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__name
 msgid "Payment Reference"
-msgstr ""
+msgstr "Referência de Pagamento"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__payment_ids
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_form
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_tree
 msgid "Payment Transactions"
-msgstr ""
+msgstr "Transação de Pagamento"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__payment_type
@@ -1067,12 +1093,12 @@ msgstr "Tipo de pagamento"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_move_line__payment_line_ids
 msgid "Payment lines"
-msgstr ""
+msgstr "Linhas de Pagamento"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__payment_ids
 msgid "Payment transaction"
-msgstr ""
+msgstr "Transação de pagamento"
 
 #. module: account_payment_order
 #: model:ir.model,name:account_payment_order.model_account_payment
@@ -1089,7 +1115,7 @@ msgstr "Referência estruturada"
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuário Responsável"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__message_has_sms_error
@@ -1100,28 +1126,28 @@ msgstr ""
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_line_create__payment_mode__same
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_mode__default_payment_mode__same
 msgid "Same"
-msgstr ""
+msgstr "Igual"
 
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_line_create__payment_mode__same_or_null
 msgid "Same or Empty"
-msgstr ""
+msgstr "Igual ou Vazio"
 
 #. module: account_payment_order
 #: model:ir.model.fields.selection,name:account_payment_order.selection__account_payment_mode__default_payment_mode__same_or_null
 msgid "Same or empty"
-msgstr ""
+msgstr "Igual ou vazio"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_search
 msgid "Search Payment Orders"
-msgstr ""
+msgstr "Buscar Ordens de Pagamento"
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/wizard/account_payment_line_create.py:0
 #, python-format
 msgid "Select Move Lines to Create Transactions"
-msgstr ""
+msgstr "Selecionar Linhas de Fatura para Criar Transações"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_mode_form
@@ -1134,23 +1160,25 @@ msgid ""
 "Select a requested date of execution if you selected 'Due Date' as the "
 "Payment Execution Date Type."
 msgstr ""
+"Selecione uma data de execução solicitada se você selecionou 'Data de Vencimento' como "
+"Tipo de data de execução do pagamento."
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_mode__payment_order_ok
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_mode_search
 msgid "Selectable in Payment Orders"
-msgstr ""
+msgstr "Selecionável em Ordens de Pagamento"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_line_create_form
 msgid "Selected Move Lines to Create Transactions"
-msgstr ""
+msgstr "Mover Linhas Selecionadas para Criar Transações"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line__state
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_search
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #. module: l10n_br_account_payment_brcobranca
 #: code:addons/l10n_br_account_payment_brcobranca/models/account_journal.py:0
@@ -1181,12 +1209,12 @@ msgstr "Referência estruturada"
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line_create__target_move
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_mode__default_target_move
 msgid "Target Moves"
-msgstr ""
+msgstr "Faturas Alvo"
 
 #. module: account_payment_order
 #: model:ir.model,name:account_payment_order.model_report_account_payment_order_print_account_payment_order_main
 msgid "Technical model for printing payment order"
-msgstr ""
+msgstr "Modelo técnico para impressão de ordem de pagamento"
 
 #. module: l10n_br_account_payment_brcobranca
 #: code:addons/l10n_br_account_payment_brcobranca/constants/br_cobranca.py:0
@@ -1209,13 +1237,13 @@ msgstr "O total para o parceiro '%s' é negativo ou nulo (%.2f) !"
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_form
 msgid "The following bank accounts are archived:"
-msgstr ""
+msgstr "As seguintes contas bancárias estão arquivadas:"
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_move.py:0
 #, python-format
 msgid "The invoice %s is not in Posted state"
-msgstr ""
+msgstr "A fatura %s não está no estado Lançada"
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_payment_order.py:0
@@ -1225,6 +1253,9 @@ msgid ""
 "The payment line %s has a maturity date %s which is after the computed "
 "payment date %s."
 msgstr ""
+"A forma de pagamento '%s' possui a opção 'Proibir débito antes da data de vencimento'. "
+"A linha de pagamento %s tem uma data de vencimento %s posterior à data de pagamento "
+"calculada %s."
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_payment_order.py:0
@@ -1233,18 +1264,20 @@ msgid ""
 "The payment type (%s) is not the same as the payment type of the payment "
 "mode (%s)"
 msgstr ""
+"O tipo de pagamento (%s) não é igual ao tipo de pagamento do modo "
+"de pagamento (%s)"
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_payment_order.py:0
 #, python-format
 msgid "There are no transactions on payment order %s."
-msgstr ""
+msgstr "Não há transações na ordem de pagamento %s."
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_payment_order.py:0
 #, python-format
 msgid "There's at least one validation error:\n"
-msgstr ""
+msgstr "Há pelo menos um erro de validação:\n"
 
 #. module: account_payment_order
 #: model:ir.model.fields,help:account_payment_order.field_account_payment_method__payment_order_only
@@ -1252,22 +1285,24 @@ msgid ""
 "This option helps enforcing the use of payment orders for some payment "
 "methods."
 msgstr ""
+"Esta opção ajuda a impor a utilização de ordens de pagamento para alguns métodos"
+"de pagamento."
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_invoice_payment_line_multi_form
 msgid "This wizard will create payment lines for the selected invoices:"
-msgstr ""
+msgstr "Este assistente criará linhas de pagamento para as faturas selecionadas:"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.print_account_payment_order_document
 msgid "Total (Currency)"
-msgstr ""
+msgstr "Total (Moeda)"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__total_company_currency
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_tree
 msgid "Total Company Currency"
-msgstr ""
+msgstr "Total na Moeda da Empresa"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_line_create_form
@@ -1283,7 +1318,7 @@ msgstr "Total na moeda da empresa"
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__payment_line_ids
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_payment_order_form
 msgid "Transactions"
-msgstr ""
+msgstr "Transações"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_line_create__date_type
@@ -1299,7 +1334,7 @@ msgstr "Tipo de importação"
 #. module: account_payment_order
 #: model:ir.model.fields,help:account_payment_order.field_account_payment_order__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo de atividade de exceção registrada"
 
 #. module: account_payment_order
 #: model:ir.model.fields,field_description:account_payment_order.field_account_payment_order__message_unread
@@ -1332,6 +1367,8 @@ msgid ""
 "When checked, the Payment Date won't fast-forward to today and will instead "
 "remain the scheduled date"
 msgstr ""
+"Quando marcada, a Data de Pagamento não avançará para hoje e, em vez disso, "
+"permanece a data agendada"
 
 #. module: account_payment_order
 #: model:ir.model,name:account_payment_order.model_account_payment_line_create
@@ -1345,6 +1382,8 @@ msgid ""
 "You cannot delete an uploaded payment order. You can cancel it in order to "
 "do so."
 msgstr ""
+"Você não pode excluir uma ordem de pagamento carregada. Você pode cancelá-la para "
+"fazer isso."
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_invoice_payment_line_multi_form
@@ -1352,6 +1391,8 @@ msgid ""
 "if there are existing draft payment orders for the payment modes of the "
 "invoices, the payment lines will be added to those payment orders"
 msgstr ""
+"se existirem projetos de ordens de pagamento para as modalidades de pagamento das "
+"faturas, as linhas de pagamento serão adicionadas a essas ordens de pagamento"
 
 #. module: account_payment_order
 #: model_terms:ir.ui.view,arch_db:account_payment_order.view_attachment_simplified_form
@@ -1362,3 +1403,690 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_payment_order.account_invoice_payment_line_multi_form
 msgid "otherwise, new payment orders will be created (one per payment mode)."
 msgstr ""
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/js/payment_render.js:0
+#: code:addons/base_accounting_kit/static/src/js/payment_render.js:0
+#: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
+#: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
+#: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
+#: model:ir.model,name:base_accounting_kit.model_account_account
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_journal_audit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_partnerledger
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_trial_balance
+#, python-format
+msgid "Account"
+msgstr "Conta"
+
+#. module: base_accounting_kit
+#: model:ir.model,name:base_accounting_kit.model_account_print_journal
+msgid "Account Print Journal"
+msgstr "Diário de Impressão de Contas"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "Aged Payable"
+msgstr "Contas Antigas a Pagar"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "Aged Receivable"
+msgstr "Contas Antigas a Receber"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_bank_book_report__target_move__posted
+#: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_cash_book_report__target_move__posted
+#: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_day_book_report__target_move__posted
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.day_book_report_template
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_agedpartnerbalance
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_bank_book
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_cash_book
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_cash_flow
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_financial
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_general_ledger
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_journal_audit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_partnerledger
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_trial_balance
+msgid "All Posted Entries"
+msgstr "Todas as Entradas Postadas"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_trial_balance
+msgid "All accounts"
+msgstr "Todas as contas"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_bank_book
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_cash_book
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_general_ledger
+msgid "All accounts'"
+msgstr "Todas as contas"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "BANK AND CASH BALANCE"
+msgstr "SALDO BANCÁRIO E DE CAIXA"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.day_book_report_template
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_bank_book
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_cash_book
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_financial
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_general_ledger
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_partnerledger
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_trial_balance
+msgid "Balance"
+msgstr "Saldo"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_payment__bank_reference
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_payment_register__bank_reference
+msgid "Bank Reference"
+msgstr "Referência Bancária"
+
+#. module: base_accounting_kit
+#: model:ir.model,name:base_accounting_kit.model_account_bank_statement
+msgid "Bank Statement"
+msgstr "Extrato Bancário"
+
+#. module: base_accounting_kit
+#: model:ir.model,name:base_accounting_kit.model_account_bank_statement_line
+msgid "Bank Statement Line"
+msgstr "Linha de Extrato Bancário"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.account_aged_balance_view
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.account_bank_book_form_view
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.account_cash_book_form_view
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.account_day_book_form_view
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.account_update_lock_date_form_view
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.asset_modify_form
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_depreciation_confirmation_wizard
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_multiple_invoice_layout
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
+msgid "Cancelled Invoice"
+msgstr "Faturas Canceladas"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_aged_trial_balance__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_balance_report__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_book_report__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_cash_book_report__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_account_report__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_partner_report__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_day_book_report__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_followup__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_lock_date__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_print_journal__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_general_ledger__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_asset_report__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__company_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__company_id
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_asset_report_search
+msgid "Company"
+msgstr "Empresa"
+
+#. module: base_accounting_kit
+#: model:ir.model,name:base_accounting_kit.model_res_config_settings
+msgid "Config Settings"
+msgstr "Definições de Configuração"
+
+#. module: base_accounting_kit
+#: model:ir.model,name:base_accounting_kit.model_res_partner
+msgid "Contact"
+msgstr "Contato"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_aged_trial_balance__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_depreciation_line__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_balance_report__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_book_report__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_cash_book_report__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_account_report__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_partner_report__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_day_book_report__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_financial_report__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_followup__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_lock_date__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_print_journal__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_entries_line__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_general_ledger__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_aged_trial_balance__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_depreciation_line__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_balance_report__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_book_report__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_cash_book_report__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_account_report__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_partner_report__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_day_book_report__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_financial_report__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_followup__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_lock_date__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_print_journal__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_entries_line__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_general_ledger__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "Customer Invoice"
+msgstr "Fatura de Clientes"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "INVOICES"
+msgstr "FATURAS"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "Income/Expense"
+msgstr "Receita/Despesa"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__invoice_id
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_asset_form
+#, python-format
+msgid "Invoice"
+msgstr "Fatura"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
+#: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
+#: model:ir.model,name:base_accounting_kit.model_account_journal
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__journal_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments__journal_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__journal_id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__journal_id
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_journal_audit
+#, python-format
+msgid "Journal"
+msgstr "Diário"
+
+#. module: base_accounting_kit
+#: code:addons/base_accounting_kit/models/account_asset.py:0
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_category_form
+#, python-format
+msgid "Journal Entries"
+msgstr "Entradas do Diário"
+
+#. module: base_accounting_kit
+#: model:ir.model,name:base_accounting_kit.model_account_move
+msgid "Journal Entry"
+msgstr "Lançamento de Diário"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_print_journal__sort_selection__move_name
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_journal_audit
+msgid "Journal Entry Number"
+msgstr "Número da Entrada de Diário"
+
+#. module: base_accounting_kit
+#: model:ir.model,name:base_accounting_kit.model_account_move_line
+msgid "Journal Item"
+msgstr "Item de Diário"
+
+#. module: base_accounting_kit
+#: code:addons/base_accounting_kit/models/payment_matching.py:0
+#, python-format
+msgid "Journal Items"
+msgstr "Itens do Diário"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/js/payment_matching.js:0
+#, python-format
+msgid "Journal Items to Reconcile"
+msgstr "Itens do Diário para Reconciliar"
+
+#. module: base_accounting_kit
+#: model:ir.model,name:base_accounting_kit.model_report_base_accounting_kit_report_journal_audit
+msgid "Journal Report"
+msgstr "Relatório do Diário"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_bank_book
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_cash_book
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_general_ledger
+msgid "Journal and Partner"
+msgstr "Diário e Parceiro"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_aged_trial_balance__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_balance_report__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_book_report__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_cash_book_report__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_account_report__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_partner_report__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_day_book_report__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_print_journal__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_general_ledger__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__journal_ids
+#: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__journal_ids
+msgid "Journals"
+msgstr "Diários"
+
+#. module: base_accounting_kit
+#: model:ir.actions.act_window,name:base_accounting_kit.action_account_print_journal_menu
+#: model:ir.actions.report,name:base_accounting_kit.action_report_journal
+#: model:ir.ui.menu,name:base_accounting_kit.menu_print_journal
+msgid "Journals Audit"
+msgstr "Diários Auditados"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_account____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_aged_trial_balance____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_depreciation_line____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_balance_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_book_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_line____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_cash_book_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_account_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_partner_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_day_book_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_financial_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_followup____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_journal____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_lock_date____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_move____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_payment____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_payment_register____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_print_journal____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_reconciliation_widget____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_entries_line____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_general_ledger____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_asset_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_followup_line____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_product_template____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_day_book_report_template____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_agedpartnerbalance____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_bank_book____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_cash_book____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_cash_flow____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_financial____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_general_ledger____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_journal_audit____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_multiple_invoice____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_partnerledger____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_tax____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_trial_balance____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_company____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Última modificação em"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "Last Month"
+msgstr "Último Mês"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
+#, python-format
+msgid "Last Reconciliation:"
+msgstr "Última Reconciliação"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_aged_trial_balance__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_depreciation_line__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_balance_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_book_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_cash_book_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_account_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_partner_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_day_book_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_financial_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_followup__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_lock_date__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_print_journal__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_entries_line__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_general_ledger__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__write_uid
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_aged_trial_balance__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_depreciation_line__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_balance_report__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_book_report__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_cash_book_report__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_account_report__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_partner_report__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_day_book_report__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_financial_report__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_followup__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_lock_date__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_print_journal__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_entries_line__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_general_ledger__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__write_date
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "Last Year"
+msgstr "Último Ano"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_tax
+msgid "Net"
+msgstr "Líquido"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "Net Profit or Loss"
+msgstr "Lucro ou Prejuízo Líquido"
+
+#. module: base_accounting_kit
+#: model:account.financial.report,name:base_accounting_kit.account_financial_report_other_income0
+msgid "Other Income"
+msgstr "Outras Receitas"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.account_recurring_payments_form_view
+msgid "Other Info"
+msgstr "Outras Informações"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.customer_statements_search_view
+msgid "Overdue Invoices"
+msgstr "Faturas Atrasadas"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#, python-format
+msgid "Paid"
+msgstr "Pago"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
+msgid "Paid on"
+msgstr "Pago em"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,help:base_accounting_kit.field_account_print_journal__amount_currency
+msgid ""
+"Print Report with the currency column if the currency differs from the "
+"company currency."
+msgstr ""
+"Imprimir relatório com a coluna de moeda, se a moeda for diferente da moeda "
+"da empresa."
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__code
+msgid "Reference"
+msgstr "Referência"
+
+#. module: base_accounting_kit
+#: model:ir.model,name:base_accounting_kit.model_account_payment_register
+msgid "Register Payment"
+msgstr "Registrar Pagamento"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_category_search
+msgid "Sales"
+msgstr "Vendas"
+
+#. module: base_accounting_kit
+#: model:ir.model,name:base_accounting_kit.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venda"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_book_report__sortby
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_cash_book_report__sortby
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_general_ledger__sortby
+msgid "Sort by"
+msgstr "Ordenar por"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_aged_trial_balance__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_balance_report__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_book_report__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_cash_book_report__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_account_report__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_partner_report__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_day_book_report__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_print_journal__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_general_ledger__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__date_from
+#: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__date_from
+msgid "Start Date"
+msgstr "Data de Início"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "Supplier Invoice"
+msgstr "Faturas de Fornecedores"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "TOP 10 CUSTOMERS"
+msgstr "TOP 10 CLIENTES"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_aged_trial_balance__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_balance_report__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_book_report__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_cash_book_report__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_account_report__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_common_partner_report__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_day_book_report__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_print_journal__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_general_ledger__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__target_move
+#: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__target_move
+msgid "Target Moves"
+msgstr "Movimentos de Destino"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "This Month"
+msgstr "Este Mês"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "This Year"
+msgstr "Este Ano"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.customer_statements_tree_view
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_agedpartnerbalance
+msgid "Total"
+msgstr "Total"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__total_due
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_users__total_due
+msgid "Total Due"
+msgstr "Total Devido"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "Total Expenses"
+msgstr "Despesas Totais"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "Total Income"
+msgstr "Receita Total"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__total_overdue
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_users__total_overdue
+msgid "Total Overdue"
+msgstr "Total Atrasado"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_line__due_amount
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_move__due_amount
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_payment__due_amount
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__due_amount
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_users__due_amount
+#: model:ir.model.fields,field_description:base_accounting_kit.field_sale_order__due_amount
+msgid "Total Sale"
+msgstr "Vendas Totais"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#: code:addons/base_accounting_kit/static/src/js/account_dashboard.js:0
+#, python-format
+msgid "Unreconciled"
+msgstr "Não Reconciliado"
+
+#. module: base_accounting_kit
+#. openerp-web
+#: code:addons/base_accounting_kit/static/src/xml/template.xml:0
+#, python-format
+msgid "Unreconciled items"
+msgstr "Itens Não Reconciliados"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_print_journal__amount_currency
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__amount_currency
+msgid "With Currency"
+msgstr "Com Moeda"
+
+
