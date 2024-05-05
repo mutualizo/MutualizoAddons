@@ -29,8 +29,22 @@ RUN apt-get autoremove -y && \
 # Expose Odoo services
 EXPOSE 8069 8071 8072
 
-# Set the default config file
 ENV ODOO_RC /etc/odoo/odoo.conf
+ENV PG_HOST=localhost
+ENV PG_PORT=5432
+ENV PG_USER=odoo
+ENV PG_DATABASE=False
+ENV PG_PASSWORD=odoo
+ENV ODOO_PASSWORD=Mutual1z02024
+ENV PORT=8069
+ENV LOG_FILE=False
+ENV LONGPOLLING_PORT=8072
+ENV WORKERS=5
+ENV TIME_CPU=6000
+ENV TIME_REAL=7200
+ENV DB_FILTER=False
+ENV LIST_DB=True
+ENV DATA_DIR=/mnt/efs
 
 WORKDIR /opt/
 
