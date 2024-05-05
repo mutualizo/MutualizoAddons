@@ -1,4 +1,4 @@
-FROM mutualizo_base_14:latest
+FROM 652510808251.dkr.ecr.us-east-2.amazonaws.com/soma-14-base:latest
 
 WORKDIR /opt/sources/
 
@@ -35,8 +35,6 @@ ENV ODOO_RC /etc/odoo/odoo.conf
 WORKDIR /opt/
 
 USER root
-
-VOLUME ["/opt/data"]
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
