@@ -1,13 +1,23 @@
 import re
+import json
+import requests
 
 from odoo import http
 from odoo.http import request
+from odoo.exceptions import ValidationError
 
 from datetime import datetime
 from erpbrasil.base import misc
 from erpbrasil.base.fiscal import cnpj_cpf
 
-from .error_messages import FinanceApiErrorMessages as errors
+from odoo.addons.l10n_br_base.tools import check_cnpj_cpf
+
+from .error_messages import FinanceApiErrorMessages as api_errors
+
+
+MAIL_REGEX = re.compile(
+    r"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+"
+)
 
 
 class FinancialAPIsController(http.Controller):
@@ -24,16 +34,24 @@ class FinancialAPIsController(http.Controller):
             invoices = data.get("invoices_receivables", [])
         callbacks = []
         for invoice in invoices:
+            validation_error = self.validate_invoice_data()
+            if validation_error:
+                callbacks.append(
+                    self._format_callback(
+                        invoice.get("external_id"), "not_created", validation_error
+                    )
+                )
+                continue
+
             company_id = self.get_company_by_cnpj(invoice.get("cnpj_singular"))
             env = request.env(user=api_user)
             if not company_id:
                 callbacks.append(
-                    {
-                        "url_callback": invoice.get("url_callback"),
-                        "external_id_installment": invoice.get("external_id"),
-                        "installment_state": "not_created",
-                        "error": errors.COMPANY_NOT_FOUND,
-                    }
+                    self._format_callback(
+                        invoice.get("external_id"),
+                        "not_created",
+                        api_errors.COMPANY_NOT_FOUND,
+                    )
                 )
                 continue
 
@@ -41,7 +59,28 @@ class FinancialAPIsController(http.Controller):
                 env, company_id.id, invoice.get("payer")
             )
             self.create_account_move(env, company_id.id, partner_id.id, invoice)
-        self.send_callbacks(callbacks)
+            callbacks.append(
+                self._format_callback(invoice.get("external_id"), "created")
+            )
+        self.send_callbacks(data.get("url_callback", callbacks))
+
+    def _format_callback(self, external_id, status, error={}):
+        return {
+            "external_id_installment": external_id,
+            "installment_state": status,
+            "error": error,
+        }
+
+    def validate_invoice_data(self, payer):
+        """
+        Check payer CNPJ/CPF and E-Mail
+        """
+        try:
+            check_cnpj_cpf(payer.get("cpf_cnpj") or "")
+        except ValidationError:
+            return api_errors.INVALID_CNPJ_CPF
+        if not re.fullmatch(MAIL_REGEX, payer.get("email")):
+            return api_errors.INVALID_EMAIL
 
     def get_company_by_cnpj(self, cnpj):
         # Search singular company by cnpj
@@ -141,7 +180,7 @@ class FinancialAPIsController(http.Controller):
         )
         partner_contact_list = self.get_invoice_followers(env, company_id, contact_list)
         partner_contact_list.append(partner_id)
-        installment_data_to_create = {
+        invoice_values = {
             "company_id": company_id,
             "move_type": "out_invoice",
             "partner_id": partner_id,
@@ -175,9 +214,7 @@ class FinancialAPIsController(http.Controller):
             ),
         }
         account_move_id = (
-            env["account.move"]
-            .with_company(company_id)
-            .create(installment_data_to_create)
+            env["account.move"].with_company(company_id).create(invoice_values)
         )
         return account_move_id
 
@@ -201,5 +238,19 @@ class FinancialAPIsController(http.Controller):
             partner_contact_list.append(partner_id.id)
         return partner_contact_list
 
-    def send_callbacks(self, callbacks):
-        return
+    def send_callbacks(self, url, callbacks):
+        header = {"Content-Type": "application/json"}
+        url = (
+            request.env["ir.config_parameter"]
+            .sudo()
+            .get_param("financial_apis.nifi_callback_url")
+        )
+        res = requests.request(
+            "POST",
+            url,
+            headers=header,
+            data=json.dumps({"url_callback": url, "items": callbacks}),
+        )
+        if not res.ok:
+            # TODO raise??
+            pass
