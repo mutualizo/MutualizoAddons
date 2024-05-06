@@ -3,6 +3,8 @@ import json
 import logging
 import requests
 
+from werkzeug.exceptions import Forbidden
+
 from odoo import http
 from odoo.http import request
 from odoo.exceptions import ValidationError
@@ -25,19 +27,30 @@ MAIL_REGEX = re.compile(
 
 class FinancialAPIsController(http.Controller):
 
+    def authenticate(self, env):
+        api_key = (
+            env["ir.config_parameter"]
+            .sudo()
+            .get_param("financial_apis.api_key")
+        )
+        if api_key != request.httprequest.headers.get('x-api-key'):
+            raise Forbidden()
+
     @http.route(
         "/invoice/load",
         type="json",
         auth="public",
     )
     def load_invoices(self, **kw):
-        start_time = datetime.now()
         api_user = request.env.ref("mut_financial_apis.api_user")
+        env = request.env(user=api_user)
+        self.authenticate(env)
+
+        start_time = datetime.now()
         data = request.jsonrequest
         if isinstance(data, dict):
             invoices = data.get("invoices_receivables", [])
         callbacks = []
-        env = request.env(user=api_user)
         for invoice in invoices:
             installment_uid = invoice.get("installment", {}).get("external_id")
             validation_error = self.validate_invoice_data(env, invoice)
