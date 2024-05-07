@@ -13,6 +13,7 @@
         "data/data.xml",
         # Views
         "views/account_move.xml",
+        "views/res_config_settings.xml",
     ],
     'installable': True,
     'application': True,

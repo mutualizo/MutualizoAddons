@@ -36,8 +36,8 @@ msgid ""
 "automatically created."
 msgstr ""
 "%d linhas de pagamento adicionadas ao novo rascunho de ordem de pagamento <a href=# data-oe-"
-"model=account.payment.order data-oe-id=%d>%s</a> which has been "
-"automatically created."
+"model=account.payment.order data-oe-id=%d>%s</a> que foi "
+"criada automaticamente."
 
 #. module: account_payment_order
 #: code:addons/account_payment_order/models/account_payment_order.py:0
