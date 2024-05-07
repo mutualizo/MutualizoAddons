@@ -11,6 +11,7 @@
     'data': [
         # Data
         "data/data.xml",
+        "data/mail_template_data.xml",
         # Views
         "views/account_move.xml",
         "views/res_config_settings.xml",

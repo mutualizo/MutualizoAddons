@@ -1,6 +1,7 @@
 from odoo import models, fields
 
-from datetime import timedelta, date
+from werkzeug.urls import url_join
+from datetime import timedelta, date, datetime
 
 
 class AccountMove(models.Model):
@@ -16,7 +17,11 @@ class AccountMove(models.Model):
     )
 
     def _cron_confirm_invoices_generate_boleto_cnab(self):
-        company_ids = self.env["res.company"].search([])
+        company_ids = (
+            self.env["res.company"]
+            .search([])
+            .filtered(lambda x: x in self.env.user.company_ids)
+        )
         for company_id in company_ids:
             invoices_to_confirm = (
                 self.env["account.move"]
@@ -53,6 +58,7 @@ class AccountMove(models.Model):
                     invoice.action_post()
                     if not invoice.file_boleto_pdf_id:
                         invoice.generate_boleto_pdf()
+                    invoice.send_bank_slip_to_invoice_followers()
                 action_payment_order = invoices_to_confirm.create_account_payment_line()
                 payment_order_id = self.env["account.payment.order"].browse(
                     action_payment_order.get("res_id")
@@ -75,3 +81,18 @@ class AccountMove(models.Model):
                         }
                     )
             return
+
+    def get_bank_slip_url(self):
+        base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
+        return url_join(
+            base_url, f"/web/content/{self.file_boleto_pdf_id.id}?download=true"
+        )
+
+    def send_bank_slip_to_invoice_followers(self):
+        mail_template = self.env.ref("mut_financial_apis.email_template_send_bank_slip")
+        for partner_id in self.message_follower_ids.mapped("partner_id"):
+            mail_template.write({
+                "email_from": self.company_id.email,
+                "email_to": partner_id.email,
+            })
+            mail_template.send_mail(self.id, force_send=True)
