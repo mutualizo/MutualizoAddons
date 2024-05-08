@@ -128,7 +128,7 @@ class FinancialAPIsController(http.Controller):
         if not re.fullmatch(MAIL_REGEX, payer.get("email")):
             return api_errors.INVALID_EMAIL
         try:
-            datetime.strptime(due_date, "%Y-%m-%d")
+            datetime.fromisoformat(due_date)
         except (ValueError, TypeError):
             return api_errors.INVALID_DUE_DATE
         try:
@@ -224,7 +224,7 @@ class FinancialAPIsController(http.Controller):
         installment = invoice.get("installment")
         url_callback = invoice.get("url_callback")
         contact_list = invoice.get("contact_list")
-        installment["due_date"] = datetime.strptime(installment["due_date"], "%Y-%m-%d")
+        installment["due_date"] = datetime.fromisoformat(installment["due_date"])
 
         default_product = env.ref("mut_financial_apis.api_product_product")
 
