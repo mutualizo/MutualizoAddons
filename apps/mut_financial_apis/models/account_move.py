@@ -91,8 +91,15 @@ class AccountMove(models.Model):
     def send_bank_slip_to_invoice_followers(self):
         mail_template = self.env.ref("mut_financial_apis.email_template_send_bank_slip")
         for partner_id in self.message_follower_ids.mapped("partner_id"):
-            mail_template.write({
-                "email_from": self.company_id.email,
-                "email_to": partner_id.email,
-            })
+            mail_template.write(
+                {
+                    "email_from": self.company_id.email,
+                    "email_to": partner_id.email,
+                }
+            )
             mail_template.send_mail(self.id, force_send=True)
+
+    def _get_brcobranca_boleto(self, boletos):
+        for boleto in boletos:
+            boleto["instrucoes"] = boleto.pop("instrucao1")
+        return super(AccountMove, self)._get_brcobranca_boleto(boletos)
