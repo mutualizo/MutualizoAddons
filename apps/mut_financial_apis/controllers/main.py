@@ -31,9 +31,9 @@ class FinancialAPIsController(http.Controller):
         api_key = (
             env["ir.config_parameter"]
             .sudo()
-            .get_param("mut_financial_apis.financial_api_key")
+            .get_param("mut_financial_apis.load_api_key")
         )
-        if api_key != request.httprequest.headers.get('x-api-key'):
+        if api_key != request.httprequest.headers.get("x-api-key"):
             raise Forbidden()
 
     @http.route(
@@ -89,19 +89,16 @@ class FinancialAPIsController(http.Controller):
                 )
                 continue
 
-            partner_id = self.get_invoice_partner(
-                env, company_id.id, invoice.get("payer")
-            )
+            partner_id = self.get_invoice_partner(env, invoice.get("payer"))
             self.create_account_move(
                 env, company_id, payment_mode_id, partner_id, invoice
             )
-            callbacks.append(
-                self._format_callback(installment_uid, "created")
-            )
-        interval = (datetime.now() - start_time)
+            callbacks.append(self._format_callback(installment_uid, "created"))
+        interval = datetime.now() - start_time
         logger.info(
             f"Invoice Load API Processing Time: {len(invoices)} "
-            f"items in {interval.seconds}.{interval.microseconds} seconds")
+            f"items in {interval.seconds}.{interval.microseconds} seconds"
+        )
         self.send_callbacks(data.get("url_callback"), callbacks)
 
     def _format_callback(self, external_id, status, error={}):
@@ -154,7 +151,7 @@ class FinancialAPIsController(http.Controller):
         )
         return company_id
 
-    def get_invoice_partner(self, env, company_id, partner_data):
+    def get_invoice_partner(self, env, partner_data):
         # Search partner by cnpn_cpf
         cnpj_cpf_numbers = re.sub("[^0-9]", "", partner_data.get("cpf_cnpj"))
         formatted_cnpj_cpf = cnpj_cpf.formata(str(partner_data.get("cpf_cnpj")))
@@ -300,21 +297,36 @@ class FinancialAPIsController(http.Controller):
         return partner_contact_list
 
     def send_callbacks(self, url, callbacks):
-        header = {"Content-Type": "application/json"}
         callback_url = (
             request.env["ir.config_parameter"]
             .sudo()
-            .get_param("mut_financial_apis.nifi_callback_url")
+            .get_param("mut_financial_apis.callback_url")
         )
+        api_key = (
+            request.env["ir.config_parameter"]
+            .sudo()
+            .get_param("mut_financial_apis.callback_api_key")
+        )
+        headers = {"Content-Type": "application/json", "x-api-key": api_key}
         if not callback_url:
-            # TODO Send an error message
+            logger.error(
+                "The Financial API Callback URL is not set. "
+                "Please set the config parameter 'mut_financial_apis.callback_url'"
+            )
             return
         res = requests.request(
             "POST",
             callback_url,
-            headers=header,
+            headers=headers,
             data=json.dumps({"url_callback": url, "items": callbacks}),
         )
         if not res.ok:
-            # TODO raise??
-            pass
+            logger.error(
+                f"Error communicating with the Financial API Callback URL: {res.text}"
+            )
+            if res.status_code == 403:
+                logger.error(
+                    "Authorization error communicating with the Financial API Callback URL, "
+                    "please set the config parameter 'mut_financial_apis.callback_api_key'"
+                )
+            raise Exception
