@@ -31,7 +31,7 @@ class FinancialAPIsController(http.Controller):
         api_key = (
             env["ir.config_parameter"]
             .sudo()
-            .get_param("financial_apis.api_key")
+            .get_param("mut_financial_apis.financial_api_key")
         )
         if api_key != request.httprequest.headers.get('x-api-key'):
             raise Forbidden()
@@ -210,7 +210,7 @@ class FinancialAPIsController(http.Controller):
         return {
             "zip": formatted_zip_code,
             "street_name": partner_data.get("address"),
-            "street_number": partner_data.get("number"),
+            "street_number": partner_data.get("street_number"),
             "street2": partner_data.get("complement"),
             "district": formatted_district,
             "city_id": city_id.id,
@@ -304,7 +304,7 @@ class FinancialAPIsController(http.Controller):
         callback_url = (
             request.env["ir.config_parameter"]
             .sudo()
-            .get_param("financial_apis.nifi_callback_url")
+            .get_param("mut_financial_apis.nifi_callback_url")
         )
         if not callback_url:
             # TODO Send an error message
