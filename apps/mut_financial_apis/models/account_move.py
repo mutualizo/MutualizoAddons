@@ -3,6 +3,8 @@ from odoo import models, fields
 from werkzeug.urls import url_join
 from datetime import timedelta, date, datetime
 
+from ..helpers import send_callbacks, format_callback
+
 
 class AccountMove(models.Model):
     _inherit = "account.move"
@@ -53,12 +55,13 @@ class AccountMove(models.Model):
                     )
                 )
             )
+            callbacks = []
+            for invoice in invoices_to_confirm:
+                invoice.action_post()
+                if not invoice.file_boleto_pdf_id:
+                    invoice.generate_boleto_pdf()
+                invoice.send_bank_slip_to_invoice_followers()
             if invoices_to_confirm:
-                for invoice in invoices_to_confirm:
-                    invoice.action_post()
-                    if not invoice.file_boleto_pdf_id:
-                        invoice.generate_boleto_pdf()
-                    invoice.send_bank_slip_to_invoice_followers()
                 action_payment_order = invoices_to_confirm.create_account_payment_line()
                 payment_order_id = self.env["account.payment.order"].browse(
                     action_payment_order.get("res_id")
@@ -80,13 +83,27 @@ class AccountMove(models.Model):
                             "user_id": company_id.user_to_notify_cnab.id,
                         }
                     )
-            return
+                for url_callback in set(invoices_to_confirm.mapped("url_callback")):
+                    callbacks = [
+                        format_callback(invoice.installment_uid, "bank_slip_issued")
+                        for invoice in invoices_to_confirm.filtered(
+                            lambda x: x.url_callback == url_callback
+                        )
+                    ]
+                    send_callbacks(url_callback, callbacks)
+        return
 
     def get_bank_slip_url(self):
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
-        return url_join(
-            base_url, f"/web/content/{self.file_boleto_pdf_id.id}?download=true"
-        )
+        bank_slip = self.file_boleto_pdf_id
+        if bank_slip:
+            bank_slip.generate_access_token()
+            return url_join(
+                base_url,
+                f"/web/content/{bank_slip.id}"
+                + f"?download=true&access_token={bank_slip.access_token}",
+            )
+        return ""
 
     def send_bank_slip_to_invoice_followers(self):
         mail_template = self.env.ref("mut_financial_apis.email_template_send_bank_slip")

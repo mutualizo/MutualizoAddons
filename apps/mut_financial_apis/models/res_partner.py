@@ -1,15 +1,8 @@
-from odoo import models, fields, api
+from odoo import models, api
 
 
-class ResCompany(models.Model):
-    _inherit = "res.company"
-
-    user_to_notify_cnab = fields.Many2one(
-        comodel_name="res.users", string="Usuário para Notificar CNAB"
-    )
-    days_until_bank_slips_due = fields.Integer(
-        string="Dias até o vencimento dos boletos",
-    )
+class ResPartner(models.Model):
+    _inherit = "res.partner"
 
     @api.onchange("state_id")
     def _onchange_state_id(self):
@@ -18,7 +11,7 @@ class ResCompany(models.Model):
 
     @api.onchange("zip")
     def _onchange_zip(self):
-        super(ResCompany, self)._onchange_zip()
+        super(ResPartner, self)._onchange_zip()
         if self.zip:
             zip_vals = self.env["l10n_br.zip"]._consultar_cep(self.zip)
             if zip_vals:
