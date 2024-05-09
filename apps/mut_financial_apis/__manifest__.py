@@ -2,7 +2,19 @@
     'name': 'Financial APIs',
     'version': "14.0.0.0",
     'category': 'Extra Tools',
-    'description': """Financial APIs by Mutualizo""",
+    'description':  """
+                    Create the APIs endpoints to load financial data to be invoiced in Odoo
+                    and then sent to customers.
+                    Before run set the following config settings:
+                        - mut_financial_apis.callback_url
+                            The endpoint to send the callback information when there's
+                            status changes in Odoo invoices/bank slips
+                        - mut_financial_apis.callback_api_key
+                            The API KEY required to authenticate the Odoo invoice callbacks
+                        - mut_financial_apis.load_api_key
+                            The API KEY required to authenticate the requests sent to load
+                            the invoices/bank slips in Odoo.
+                    """,
     'author': 'Mutualizo',
     'company': 'Mutualizo',
     'maintainer': 'Mutualizo',
