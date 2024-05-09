@@ -48,6 +48,10 @@ class FinancialAPIsController(http.Controller):
             invoices = data.get("invoices_receivables", [])
         callbacks = []
         for invoice in invoices:
+            """
+            Check if there's a method to handle the given command
+            Otherwise sends an error in the callback message.
+            """
             command = invoice.get("command") or "inclusion"
             if hasattr(self, f"process_invoice_{command}"):
                 callback = getattr(self, f"process_invoice_{command}")(
@@ -116,7 +120,7 @@ class FinancialAPIsController(http.Controller):
 
     def validate_invoice_data(self, env, invoice):
         """
-        Check payer CNPJ/CPF and E-Mail
+        Check payer CNPJ/CPF and E-Mail, due date and amount
         """
         payer = invoice.get("payer")
         installment = invoice.get("installment", {})
@@ -352,6 +356,5 @@ class FinancialAPIsController(http.Controller):
                     limit=1,
                 )
             )
-        if external_id and account_move_id:
             return {"download_url": account_move_id.get_bank_slip_url()}
         return {"download_url": ""}

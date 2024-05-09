@@ -83,4 +83,7 @@ class FinanceApiErrorMessages:
         "code": "07",
         "message": "No invoice was founded for the given 'external_id'."
     }
-
+    COMMAND_NOT_FOUND = {
+        "code": "08",
+        "message": "The value provided in 'command' is not valid."
+    }
