@@ -1,12 +1,11 @@
 import re
 import json
 import logging
-import requests
 
 from werkzeug.exceptions import Forbidden
 
 from odoo import http
-from odoo.http import request
+from odoo.http import request, Response
 from odoo.exceptions import ValidationError
 
 from datetime import datetime
@@ -15,7 +14,8 @@ from erpbrasil.base.fiscal import cnpj_cpf
 
 from odoo.addons.l10n_br_base.tools import check_cnpj_cpf
 
-from .error_messages import FinanceApiErrorMessages as api_errors
+from ..helpers import send_callbacks, format_callback
+from ..helpers import FinanceApiErrorMessages as api_errors
 
 logger = logging.getLogger(__name__)
 
@@ -36,11 +36,7 @@ class FinancialAPIsController(http.Controller):
         if api_key != request.httprequest.headers.get("x-api-key"):
             raise Forbidden()
 
-    @http.route(
-        "/invoice/load",
-        type="json",
-        auth="public",
-    )
+    @http.route("/invoice/load", type="json", auth="public", methods=["POST"])
     def load_invoices(self, **kw):
         api_user = request.env.ref("mut_financial_apis.api_user")
         env = request.env(user=api_user)
@@ -52,61 +48,71 @@ class FinancialAPIsController(http.Controller):
             invoices = data.get("invoices_receivables", [])
         callbacks = []
         for invoice in invoices:
-            installment_uid = invoice.get("installment", {}).get("external_id")
-            validation_error = self.validate_invoice_data(env, invoice)
-            if validation_error:
-                callbacks.append(
-                    self._format_callback(
-                        installment_uid, "not_created", validation_error
-                    )
+            command = invoice.get("command") or "inclusion"
+            if hasattr(self, f"process_invoice_{command}"):
+                callback = getattr(self, f"process_invoice_{command}")(
+                    env, invoice, data.get("url_callback")
                 )
-                continue
-
-            company_id = self.get_company_by_cnpj(invoice.get("cnpj_singular"))
-            if not company_id:
+                callbacks.append(callback)
+            else:
                 callbacks.append(
-                    self._format_callback(
-                        installment_uid,
+                    format_callback(
+                        invoice["installment"]["external_id"],
                         "not_created",
-                        api_errors.COMPANY_NOT_FOUND,
+                        api_errors.COMMAND_NOT_FOUND,
                     )
                 )
-                continue
-
-            bradesco_id = request.env.ref("l10n_br_base.res_bank_237")
-            payment_mode_id = (
-                env["account.payment.mode"]
-                .with_company(company_id)
-                .search([("fixed_journal_id.bank_id", "=", bradesco_id.id)], limit=1)
-            )
-            if not payment_mode_id:
-                callbacks.append(
-                    self._format_callback(
-                        installment_uid,
-                        "not_created",
-                        api_errors.PAYMENT_MODE_NOT_FOUND,
-                    )
-                )
-                continue
-
-            partner_id = self.get_invoice_partner(env, invoice.get("payer"))
-            self.create_account_move(
-                env, company_id, payment_mode_id, partner_id, invoice
-            )
-            callbacks.append(self._format_callback(installment_uid, "created"))
         interval = datetime.now() - start_time
         logger.info(
             f"Invoice Load API Processing Time: {len(invoices)} "
             f"items in {interval.seconds}.{interval.microseconds} seconds"
         )
-        self.send_callbacks(data.get("url_callback"), callbacks)
+        send_callbacks(data.get("url_callback"), callbacks)
 
-    def _format_callback(self, external_id, status, error={}):
-        return {
-            "external_id_installment": external_id,
-            "installment_state": status,
-            "error": error,
-        }
+    def process_invoice_inclusion(self, env, invoice, url_callback):
+        invoice.update({"url_callback": url_callback})
+        installment_uid = invoice.get("installment", {}).get("external_id")
+        validation_error = self.validate_invoice_data(env, invoice)
+        if validation_error:
+            return format_callback(installment_uid, "not_created", validation_error)
+
+        company_id = self.get_company_by_cnpj(invoice.get("cnpj_singular"))
+        if not company_id:
+            return format_callback(
+                installment_uid,
+                "not_created",
+                api_errors.COMPANY_NOT_FOUND,
+            )
+
+        bradesco_id = request.env.ref("l10n_br_base.res_bank_237")
+        payment_mode_id = (
+            env["account.payment.mode"]
+            .with_company(company_id)
+            .search([("fixed_journal_id.bank_id", "=", bradesco_id.id)], limit=1)
+        )
+        if not payment_mode_id:
+            return format_callback(
+                installment_uid,
+                "not_created",
+                api_errors.PAYMENT_MODE_NOT_FOUND,
+            )
+
+        partner_id = self.get_invoice_partner(env, invoice.get("payer"))
+        self.create_account_move(env, company_id, payment_mode_id, partner_id, invoice)
+        return format_callback(installment_uid, "created")
+
+    def process_invoice_cancellation(self, env, invoice, url_callback):
+        invoice.update({"url_callback": url_callback})
+        installment_uid = invoice.get("installment", {}).get("external_id")
+        account_move_id = env["account.move"].search(
+            [("installment_uid", "=", installment_uid)], limit=1
+        )
+        if not account_move_id:
+            return format_callback(
+                installment_uid, "cancellation_error", api_errors.EXTERNAL_ID_NOT_FOUND
+            )
+        account_move_id.button_cancel()
+        return format_callback(installment_uid, "bank_slip_canceled")
 
     def validate_invoice_data(self, env, invoice):
         """
@@ -296,37 +302,56 @@ class FinancialAPIsController(http.Controller):
             partner_contact_list.append(partner_id.id)
         return partner_contact_list
 
-    def send_callbacks(self, url, callbacks):
-        callback_url = (
-            request.env["ir.config_parameter"]
+    @http.route(
+        "/invoice/load/test-callback", auth="public", type="json", methods=["POST"]
+    )
+    def test_load_invoice_calbacks(self, **kw):
+        api_user = request.env.ref("mut_financial_apis.api_user")
+        env = request.env(user=api_user)
+        self.authenticate(env)
+        data = request.jsonrequest
+        if isinstance(data, dict):
+            invoices = data.get("invoices", [])
+        status_per_external_id = {
+            item.get("external_id"): item.get("status") for item in invoices
+        }
+        external_ids = [invoice.get("external_id") for invoice in invoices]
+        invoice_ids = (
+            request.env["account.move"]
             .sudo()
-            .get_param("mut_financial_apis.callback_url")
+            .search([("installment_uid", "in", external_ids)])
         )
-        api_key = (
-            request.env["ir.config_parameter"]
-            .sudo()
-            .get_param("mut_financial_apis.callback_api_key")
-        )
-        headers = {"Content-Type": "application/json", "x-api-key": api_key}
-        if not callback_url:
-            logger.error(
-                "The Financial API Callback URL is not set. "
-                "Please set the config parameter 'mut_financial_apis.callback_url'"
-            )
-            return
-        res = requests.request(
-            "POST",
-            callback_url,
-            headers=headers,
-            data=json.dumps({"url_callback": url, "items": callbacks}),
-        )
-        if not res.ok:
-            logger.error(
-                f"Error communicating with the Financial API Callback URL: {res.text}"
-            )
-            if res.status_code == 403:
-                logger.error(
-                    "Authorization error communicating with the Financial API Callback URL, "
-                    "please set the config parameter 'mut_financial_apis.callback_api_key'"
+        for url_callback in set(invoice_ids.mapped("url_callback")):
+            callbacks = [
+                format_callback(
+                    invoice.installment_uid,
+                    status_per_external_id.get(invoice.installment_uid),
                 )
-            raise Exception
+                for invoice in invoice_ids.filtered(
+                    lambda x: x.url_callback == url_callback
+                )
+            ]
+            send_callbacks(url_callback, callbacks)
+
+    @http.route("/invoice/print-boleto", auth="public", type="json", methods=["GET"])
+    def print_invoice_bank_slip(self, **kw):
+        api_user = request.env.ref("mut_financial_apis.api_user")
+        env = request.env(user=api_user)
+        self.authenticate(env)
+        external_id = request.httprequest.args.get("external_id")
+        if external_id:
+            account_move_id = (
+                env["account.move"]
+                .sudo()
+                .search(
+                    [
+                        ("installment_uid", "=", external_id),
+                        ("move_type", "=", "out_invoice"),
+                        ("state", "=", "posted"),
+                    ],
+                    limit=1,
+                )
+            )
+        if external_id and account_move_id:
+            return {"download_url": account_move_id.get_bank_slip_url()}
+        return {"download_url": ""}
