@@ -119,4 +119,12 @@ class AccountMove(models.Model):
     def _get_brcobranca_boleto(self, boletos):
         for boleto in boletos:
             boleto["instrucoes"] = boleto.pop("instrucao1")
+            boleto["cedente"] = (boleto["cedente"] or "")[:70].strip() + "[...]"
         return super(AccountMove, self)._get_brcobranca_boleto(boletos)
+
+    def generate_boleto_pdf(self):
+        super(AccountMove, self).generate_boleto_pdf()
+        if self.file_boleto_pdf_id and self.contract_number and self.installment_number:
+            self.file_boleto_pdf_id.write(
+                {"name": f"Boleto-{self.contract_number}-{self.installment_number}.pdf"}
+            )
