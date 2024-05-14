@@ -1,4 +1,5 @@
-FROM 652510808251.dkr.ecr.us-east-2.amazonaws.com/soma-14-base:latest
+ARG AWS_REGION=us-east-2
+FROM 652510808251.dkr.ecr.${AWS_REGION}.amazonaws.com/soma-14-base:latest
 
 WORKDIR /opt/sources/
 
