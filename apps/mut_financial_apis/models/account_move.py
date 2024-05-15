@@ -1,7 +1,7 @@
 from odoo import models, fields
 
 from werkzeug.urls import url_join
-from datetime import timedelta, date, datetime
+from datetime import timedelta, date
 
 from ..helpers import send_callbacks, format_callback
 
