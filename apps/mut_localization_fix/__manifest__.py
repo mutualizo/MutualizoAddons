@@ -8,5 +8,8 @@
     "maintainer": "Mutualizo",
     "website": "https://www.mutualizo.com.br",
     "depends": ["l10n_br_account_payment_brcobranca"],
-    "data": [],
+    "data": [
+        # Security
+        "security/security.xml"
+    ],
 }
