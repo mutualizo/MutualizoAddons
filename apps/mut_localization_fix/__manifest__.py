@@ -12,3 +12,4 @@
         # Security
         "security/security.xml"
     ],
+}
