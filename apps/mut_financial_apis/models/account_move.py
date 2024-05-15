@@ -60,7 +60,6 @@ class AccountMove(models.Model):
                 invoice.action_post()
                 if not invoice.file_boleto_pdf_id:
                     invoice.generate_boleto_pdf()
-                invoice.send_bank_slip_to_invoice_followers()
             if invoices_to_confirm:
                 action_payment_order = invoices_to_confirm.create_account_payment_line()
                 payment_order_id = self.env["account.payment.order"].browse(
@@ -107,14 +106,23 @@ class AccountMove(models.Model):
 
     def send_bank_slip_to_invoice_followers(self):
         mail_template = self.env.ref("mut_financial_apis.email_template_send_bank_slip")
+        context = {
+            "invoice_date_due": self.invoice_date_due.strftime("%d/%m/%Y"),
+            "contract_number": self.contract_number,
+            "installment_number": self.installment_number,
+            "company_email": self.company_id.email,
+            "company_name": self.company_id.name,
+            "payer_name": self.partner_id.name,
+            "total_installments": self.total_installments,
+        }
+
         for partner_id in self.message_follower_ids.mapped("partner_id"):
             mail_template.write(
                 {
-                    "email_from": self.company_id.email,
                     "email_to": partner_id.email,
                 }
             )
-            mail_template.send_mail(self.id, force_send=True)
+            mail_template.with_context(context).send_mail(self.id, force_send=True)
 
     def _get_brcobranca_boleto(self, boletos):
         for boleto in boletos:
