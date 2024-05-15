@@ -21,11 +21,14 @@
     'website': "https://www.mutualizo.com.br",
     'depends': ['l10n_br_account_payment_brcobranca'],
     'data': [
+        # Security
+        "security/ir.model.access.csv",
         # Data
         "data/data.xml",
         "data/mail_template_data.xml",
         # Views
         "views/account_move.xml",
+        "views/l10n_br_cnab_return_log.xml",
         "views/res_config_settings.xml",
     ],
     'installable': True,

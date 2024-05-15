@@ -1,4 +1,5 @@
 from . import account_move
 from . import res_config_settings
 from . import res_company
-# from . import credit_statement_import
+from . import financial_callback_log
+from . import l10n_br_cnab_return_log
