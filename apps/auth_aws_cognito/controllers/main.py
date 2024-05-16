@@ -6,13 +6,14 @@ import werkzeug.urls
 import werkzeug.utils
 from werkzeug.exceptions import BadRequest
 
+from werkzeug.urls import url_join
+
 from odoo import http, SUPERUSER_ID
 from odoo.http import request
 from odoo.exceptions import AccessDenied
 
-from odoo.addons.web.controllers.main import ensure_db, _get_login_redirect_url
+from odoo.addons.web.controllers.main import Home, ensure_db, _get_login_redirect_url
 from odoo.addons.auth_oauth.controllers.main import fragment_to_query_string
-
 
 _logger = logging.getLogger(__name__)
 
@@ -72,3 +73,31 @@ class OAuthController(http.Controller):
         redirect = werkzeug.utils.redirect(url, code=303)
         redirect.autocorrect_location_header = False
         return redirect
+
+
+class Home(Home):
+
+    @http.route('/web/login', type='http', auth="none")
+    def web_login(self, redirect=None, admin="", **kw):
+        if len(admin) == 0 and not kw.get("login") and not kw.get("password"):
+            rec = request.env["auth.oauth.provider"].sudo().browse(
+                request.env.ref('auth_aws_cognito.provider_aws_cognito').id
+            )
+            base_url = (
+                request.env["ir.config_parameter"]
+                .sudo()
+                .get_param('web.base.url')
+            )
+            return_url = url_join(base_url, '/auth_oauth/signin')
+            params = dict(
+                client_id=rec.client_id,
+                response_type=rec.response_type,
+                scope=rec.scope,
+                redirect_uri=return_url,
+            )
+            rec.auth_link = "%s?%s" % (rec.auth_endpoint, werkzeug.urls.url_encode(params))
+
+            return werkzeug.utils.redirect(rec.auth_link)
+
+        else:
+            return super(Home, self).web_login(redirect, **kw)
