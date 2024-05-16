@@ -10,7 +10,9 @@
     'company': 'Mutualizo',
     'maintainer': 'Mutualizo',
     'website': "https://www.mutualizo.com.br",
-    'depends': ['auth_oauth'],
+    'depends': ['web',
+                'auth_oauth'
+                ],
     'data': [
         'data/auth_oauth_provider_data.xml',
         'views/auth_oauth_provider_views.xml',
