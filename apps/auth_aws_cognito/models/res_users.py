@@ -181,5 +181,6 @@ class ResUsers(models.Model):
         record = super(ResUsers, cls).authenticate(db, login, password, user_agent_env)
         base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "http://" in base_url and "http://localhost" not in base_url:
-            base_url.replace("http://", "https://")
+            base_url = base_url.replace("http://", "https://")
+            request.env['ir.config_parameter'].sudo().set_param('web.base.url', base_url)
         return record
