@@ -25,11 +25,15 @@ class OAuthLogin(Home):
         rec = request.env["auth.oauth.provider"].sudo().browse(
             request.env.ref('auth_aws_cognito.provider_aws_cognito').id
         )
+
         base_url = (
             request.env["ir.config_parameter"]
             .sudo()
             .get_param('web.base.url')
         )
+        if "http://" in base_url and "http://localhost" not in base_url:
+            base_url.replace("http://", "https://")
+
         return_url = url_join(base_url, '/auth_oauth/signin')
         params = dict(
             client_id=rec.client_id,
