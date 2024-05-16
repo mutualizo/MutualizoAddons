@@ -174,3 +174,12 @@ class ResUsers(models.Model):
         if provider and params:
             return (self.env.cr.dbname, login, access_token)
         return super(ResUsers, self).auth_oauth(provider, params)
+
+    @classmethod
+    def authenticate(cls, db, login, password, user_agent_env):
+
+        record = super(ResUsers, cls).authenticate(db, login, password, user_agent_env)
+        base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "http://" in base_url and "http://localhost" not in base_url:
+            base_url.replace("http://", "https://")
+        return record
