@@ -59,9 +59,3 @@ class L10nBrCNABReturnLog(models.Model):
                 for uid, status in installment_status.items()
             ]
             self.log_and_send_callbacks(url_callback, callbacks)
-
-    @api.model
-    def create(self, vals):
-        res = super(L10nBrCNABReturnLog, self).create(vals)
-        res.send_cnab_return_callbacks()
-        return res
