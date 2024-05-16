@@ -90,7 +90,7 @@ class Home(Home):
                 .get_param('web.base.url')
             )
             if "http://" in base_url and "http://localhost" not in base_url:
-                base_url.replace("http%3A%2F%2F", "https%3A%2F%2F")
+                base_url.replace("http://", "https://")
 
             return_url = url_join(base_url, '/auth_oauth/signin')
             params = dict(
