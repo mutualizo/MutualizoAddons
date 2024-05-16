@@ -19,6 +19,7 @@
                             <field name="payload" />
                             <field name="success" />
                             <field name="error" />
+                            <field name="create_date" />
                         </tree>
                     </field>
                 </page>

@@ -10,6 +10,8 @@
     "depends": ["l10n_br_account_payment_brcobranca", "l10n_br_zip"],
     "data": [
         # Security
-        "security/security.xml"
+        "security/security.xml",
+        # Views
+        "views/l10n_br_cnab_return_log.xml",
     ],
 }
