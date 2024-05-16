@@ -8,9 +8,8 @@ class IrConfigParameter(models.Model):
     _inherit = 'ir.config_parameter'
 
     def write(self, vals):
-        record = super(IrConfigParameter, self).write(vals)
         if 'value' in vals:
             if "http://" in vals['value'] and "http://localhost" not in vals['value']:
                 base_url = vals['value'].replace("http://", "https://")
                 vals['value'] = base_url
-        return record
+        return super(IrConfigParameter, self).write(vals)
