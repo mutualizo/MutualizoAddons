@@ -8,5 +8,5 @@ class ResCompany(models.Model):
         comodel_name="res.users", string="Usuário para Notificar CNAB"
     )
     days_until_bank_slips_due = fields.Integer(
-        string="Dias até o vencimento dos boletos",
+        string="Dias até o vencimento dos boletos"
     )
