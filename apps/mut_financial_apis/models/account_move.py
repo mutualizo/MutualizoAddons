@@ -17,6 +17,11 @@ class AccountMove(models.Model):
     additional_description_installment = fields.Text(
         string="Additional Description Installment"
     )
+    notification_status = fields.Selection(
+        [("not_sent", "Not Sent"), ("in_queue", "In Queue"), ("sent", "Sent")],
+        string="Notification Status",
+        default="not_sent",
+    )
 
     def _cron_confirm_invoices_generate_boleto_cnab(self):
         company_ids = (
@@ -78,7 +83,7 @@ class AccountMove(models.Model):
                                 "account_payment_order.model_account_payment_order"
                             ).id,
                             "res_id": payment_order_id.id,
-                            "date_deadline": date.today() + timedelta(days=5),
+                            "date_deadline": date.today(),
                             "user_id": company_id.user_to_notify_cnab.id,
                         }
                     )
@@ -126,8 +131,10 @@ class AccountMove(models.Model):
 
     def _get_brcobranca_boleto(self, boletos):
         for boleto in boletos:
+            cedente = (boleto["cedente"] or "")
+            cedente = cedente if len(cedente) < 70 else cedente[:70].strip() + "[...]"
             boleto["instrucoes"] = boleto.pop("instrucao1")
-            boleto["cedente"] = (boleto["cedente"] or "")[:70].strip() + "[...]"
+            boleto["cedente"] = cedente
         return super(AccountMove, self)._get_brcobranca_boleto(boletos)
 
     def generate_boleto_pdf(self):
@@ -136,3 +143,11 @@ class AccountMove(models.Model):
             self.file_boleto_pdf_id.write(
                 {"name": f"Boleto-{self.contract_number}-{self.installment_number}.pdf"}
             )
+
+    def _cron_send_bank_slip_to_invoice_followers(self):
+        account_move_ids = self.env["account.move"].search(
+            [("notification_status", "=", "in_queue")], limit=500
+        )
+        for account_move in account_move_ids:
+            account_move.send_bank_slip_to_invoice_followers()
+        account_move_ids.write({"notification_status": "sent"})
