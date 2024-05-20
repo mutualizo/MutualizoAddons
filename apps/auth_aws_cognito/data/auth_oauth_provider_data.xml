@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Creating the AWS Cognito auth provider -->
-    <data>
+    <data noupdate="1">
         <record id="provider_aws_cognito" model="auth.oauth.provider">
             <field name="name">AWS Cognito</field>
             <field name="client_id">2l62n8b9i8ejhohrmfpfbigj5j</field>
