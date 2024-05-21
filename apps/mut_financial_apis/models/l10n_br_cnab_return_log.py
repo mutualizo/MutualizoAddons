@@ -54,6 +54,8 @@ class L10nBrCNABReturnLog(models.Model):
                 installment_uid = event.invoice_id.installment_uid
                 status = CALLBACK_STATUS.get(event.occurrences)
                 installment_status[installment_uid] = status
+                if status:
+                    event.invoice_id.write({"bank_slip_status": status})
             callbacks = [
                 format_callback(uid, status)
                 for uid, status in installment_status.items()

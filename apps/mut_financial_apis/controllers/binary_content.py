@@ -62,7 +62,8 @@ class BinaryInherit(Binary):
         )
         if payment_order_id.state != "generated":
             return res
-        for invoice in payment_order_id.payment_line_ids.mapped("move_id"):
-            invoice.send_bank_slip_to_invoice_followers()
+        payment_order_id.payment_line_ids.mapped("move_id").write(
+            {"notification_status": "in_queue"}
+        )
         payment_order_id.generated2uploaded()
         return res
