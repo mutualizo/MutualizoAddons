@@ -1,14 +1,13 @@
 import re
-import json
 import logging
 
 from werkzeug.exceptions import Forbidden
 
 from odoo import http
-from odoo.http import request, Response
+from odoo.http import request
 from odoo.exceptions import ValidationError
 
-from datetime import datetime
+from datetime import datetime, date
 from erpbrasil.base import misc
 from erpbrasil.base.fiscal import cnpj_cpf
 
@@ -247,7 +246,7 @@ class FinancialAPIsController(http.Controller):
             "total_installments": installment.get("total_installments"),
             "installment_uid": installment.get("external_id"),
             "installment_number": installment.get("number"),
-            "invoice_date": installment.get("due_date"),
+            "invoice_date": date.today(),
             "invoice_date_due": installment.get("due_date"),
             "payment_mode_id": payment_mode_id.id,
             "invoice_line_ids": [

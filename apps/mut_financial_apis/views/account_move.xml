@@ -28,6 +28,13 @@
             <field name="invoice_partner_display_name" position="after">
                 <field name="contract_number"/>
             </field>
+            <field name="payment_state" position="replace">
+                <field name="payment_state" invisible="1"/>
+                <field name="bank_slip_status" widget="badge"
+                    decoration-muted="bank_slip_status == 'bank_slip_not_issued'" decoration-info="bank_slip_status == 'bank_slip_issued'"
+                    decoration-danger="bank_slip_status in ('bank_slip_error', 'bank_slip_canceled')"
+                    decoration-warning="bank_slip_status == 'bank_slip_registered'" decoration-success="bank_slip_status == 'bank_slip_paid'"/>
+            </field>
         </field>
     </record>
 
