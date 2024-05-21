@@ -22,6 +22,18 @@ class AccountMove(models.Model):
         string="Notification Status",
         default="not_sent",
     )
+    bank_slip_status = fields.Selection(
+        [
+            ("bank_slip_not_issued", "Não Emitido"),
+            ("bank_slip_issued", "Emitido"),
+            ("bank_slip_error", "Erro"),
+            ("bank_slip_registered", "Registrado"),
+            ("bank_slip_paid", "Pago"),
+            ("bank_slip_canceled", "Cancelado"),
+        ],
+        string="Status do Boleto",
+        default="bank_slip_not_issued"
+    )
 
     def _cron_confirm_invoices_generate_boleto_cnab(self):
         company_ids = (
@@ -65,6 +77,7 @@ class AccountMove(models.Model):
                 invoice.action_post()
                 if not invoice.file_boleto_pdf_id:
                     invoice.generate_boleto_pdf()
+                invoices_to_confirm.write({"bank_slip_status": "bank_slip_issued"})
             if invoices_to_confirm:
                 action_payment_order = invoices_to_confirm.create_account_payment_line()
                 payment_order_id = self.env["account.payment.order"].browse(
