@@ -1,6 +1,6 @@
 import json
 
-from odoo import fields, models, api
+from odoo import fields, models
 
 from ..helpers import send_callbacks, format_callback
 
