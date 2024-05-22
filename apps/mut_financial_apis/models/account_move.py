@@ -32,52 +32,43 @@ class AccountMove(models.Model):
             ("bank_slip_canceled", "Cancelado"),
         ],
         string="Status do Boleto",
-        default="bank_slip_not_issued"
+        default="bank_slip_not_issued",
+        tracking=True,
     )
 
     def _cron_confirm_invoices_generate_boleto_cnab(self):
-        company_ids = (
-            self.env["res.company"]
-            .search([])
-            .filtered(lambda x: x in self.env.user.company_ids)
+        company_ids = self.env["res.company"].search(
+            [
+                ("user_ids", "in", self.env.user.id),
+                ("days_until_bank_slips_due", "!=", False),
+            ]
         )
         for company_id in company_ids:
-            invoices_to_confirm = (
-                self.env["account.move"]
-                .search(
-                    [
-                        ("company_id", "=", company_id.id),
-                        ("move_type", "=", "out_invoice"),
-                        ("state", "=", "draft"),
-                        (
-                            "payment_mode_id.fixed_journal_id.bank_id",
-                            "=",
-                            self.env.ref("l10n_br_base.res_bank_237").id,
-                        ),
-                        ("contract_number", "!=", False),
-                        ("invoice_line_ids", "!=", False),
-                    ]
-                )
-                .filtered(
-                    lambda x: (
-                        (
-                            x.invoice_date_due
-                            <= (
-                                date.today()
-                                + timedelta(days=company_id.days_until_bank_slips_due)
-                            )
-                        )
-                        if company_id.days_until_bank_slips_due
-                        else x
-                    )
-                )
+            invoices_to_confirm = self.env["account.move"].search(
+                [
+                    ("company_id", "=", company_id.id),
+                    ("move_type", "=", "out_invoice"),
+                    ("state", "=", "draft"),
+                    (
+                        "payment_mode_id.fixed_journal_id.bank_id",
+                        "=",
+                        self.env.ref("l10n_br_base.res_bank_237").id,
+                    ),
+                    ("contract_number", "!=", False),
+                    ("invoice_line_ids", "!=", False),
+                    (
+                        "invoice_date_due",
+                        "<=",
+                        date.today()
+                        + timedelta(days=company_id.days_until_bank_slips_due),
+                    ),
+                ]
             )
             callbacks = []
             for invoice in invoices_to_confirm:
                 invoice.action_post()
                 if not invoice.file_boleto_pdf_id:
                     invoice.generate_boleto_pdf()
-                invoices_to_confirm.write({"bank_slip_status": "bank_slip_issued"})
             if invoices_to_confirm:
                 action_payment_order = invoices_to_confirm.create_account_payment_line()
                 payment_order_id = self.env["account.payment.order"].browse(
@@ -144,7 +135,7 @@ class AccountMove(models.Model):
 
     def _get_brcobranca_boleto(self, boletos):
         for boleto in boletos:
-            cedente = (boleto["cedente"] or "")
+            cedente = boleto["cedente"] or ""
             cedente = cedente if len(cedente) < 70 else cedente[:70].strip() + "[...]"
             boleto["instrucoes"] = boleto.pop("instrucao1")
             boleto["cedente"] = cedente
@@ -156,6 +147,7 @@ class AccountMove(models.Model):
             self.file_boleto_pdf_id.write(
                 {"name": f"Boleto-{self.contract_number}-{self.installment_number}.pdf"}
             )
+        self.write({"bank_slip_status": "bank_slip_issued"})
 
     def _cron_send_bank_slip_to_invoice_followers(self):
         account_move_ids = self.env["account.move"].search(
