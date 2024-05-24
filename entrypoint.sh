@@ -41,22 +41,23 @@ function check_config() {
     DB_ARGS+=("${value}")
 }
 
+check_config "db_host" "$PG_HOST"
+check_config "db_port" "$PG_PORT"
+check_config "db_user" "$PG_USER"
+check_config "db_password" "$PG_PASSWORD"
+
 if [ "$UPGRADE_MODULE" ] && [ "$UPGRADE_DATABASE" ];
 then
 	echo "Iniciando em modo de upgrade no modulo '$UPGRADE_MODULE', na base '$UPGRADE_DATABASE'"
 	sleep 5
-	exec odoo-server "--conf=$ODOO_RC" "--update=$UPGRADE_MODULE" "--database=$UPGRADE_DATABASE"
+    wait-for-psql.py ${DB_ARGS[@]} --timeout=60
+	exec odoo-server q"${DB_ARGS[@]}" "--update=$UPGRADE_MODULE" "--database=$UPGRADE_DATABASE"
 else
 	echo "Iniciando em modo normal de execução"
 	echo $PG_HOST
 	echo $PG_PORT
 	echo $PG_USER
 	echo $PG_PASSWORD
-
-	check_config "db_host" "$PG_HOST"
-	check_config "db_port" "$PG_PORT"
-	check_config "db_user" "$PG_USER"
-	check_config "db_password" "$PG_PASSWORD"
 
 	echo ${DB_ARGS[@]}
 
