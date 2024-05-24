@@ -10,12 +10,20 @@
 ###################################################
 import json, logging, requests
 from odoo.http import request
-from odoo import api, models
+from odoo import api, models, fields
 from odoo import exceptions
 from odoo.addons import base
 from odoo.addons.auth_signup.models.res_users import SignupError
 
+import boto3
+from botocore.exceptions import ClientError
+
+AWS_REGION = 'us-east-1'
+USER_POOL_ID = 'us-east-1_QWi225cTs'
+CLIENT_ID = '2l62n8b9i8ejhohrmfpfbigj5j'
+
 base.models.res_users.USER_PRIVATE_FIELDS.append('oauth_access_token')
+base.models.res_users.USER_PRIVATE_FIELDS.append('oauth_token_uid')
 _logger = logging.getLogger(__name__)
 
 try:
@@ -31,6 +39,97 @@ class ResUsers(models.Model):
     """This class is used to inheriting the res.users and provides the oauth
     access"""
     _inherit = 'res.users'
+
+    oauth_token_uid = fields.Char(string='OAuth User ID', help="Oauth Provider user_id", copy=False)
+
+    def get_all_cnpjs_for_string(self, company_ids: list):
+        cnpjs = ""
+        companies = self.env["res.company"].browse(company_ids)
+        for record in companies:
+            cnpjs += record.cnpj_cpf + ", "
+        return cnpjs
+
+    def get_user_attributes(self, access_token):
+        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+
+        try:
+            response = client.get_user(
+                AccessToken=access_token
+            )
+            return response['UserAttributes']
+
+        except ClientError as e:
+            print(f"Um erro ocorreu: {e}")
+            return None
+
+    def update_user_attributes(self, access_token, user_attributes):
+        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+
+        try:
+            response = client.update_user_attributes(
+                AccessToken=access_token,
+                UserAttributes=user_attributes
+            )
+            return response
+
+        except ClientError as e:
+            print(f"Um erro ocorreu: {e}")
+            return None
+
+    def register_user_without_password(self, name: str, email: str, companies_ids: str, mobile="", address=""):
+        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+
+        try:
+            response = client.admin_create_user(
+                UserPoolId=USER_POOL_ID,
+                Username=email.split('@')[0],
+                UserAttributes=[
+                    {
+                        'Name': 'name',
+                        'Value': name
+                    },
+                    {
+                        'Name': 'email_verified',
+                        'Value': 'false'
+                    },
+                    {
+                        'Name': 'email',
+                        'Value': email
+                    },
+                    {
+                        'Name': 'custom:companies_enabled',
+                        'Value': companies_ids
+                    },
+                    {
+                        'Name': 'phone_number',
+                        'Value': mobile
+                    },
+                    {
+                        'Name': 'address',
+                        'Value': address
+                    }
+                ],
+                DesiredDeliveryMediums=['EMAIL']
+            )
+            return response
+
+        except ClientError as e:
+            print(f"An error occurred: {e}")
+            return None
+
+    def find_user_by_email(self, email: str):
+        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+
+        try:
+            response = client.list_users(
+                UserPoolId=USER_POOL_ID,
+                Filter=f'email="{email}"'
+            )
+            return response['Users']
+
+        except ClientError as e:
+            print(f"An error occurred: {e}")
+            return None
 
     @api.model
     def _auth_oauth_rpc(self, endpoint, access_token):
@@ -68,59 +167,6 @@ class ResUsers(models.Model):
                                         access_token)
         validation.update(data)
         return validation
-
-    @api.model
-    def _auth_oauth_signin(self, provider, validation, params):
-        """ Retrieve and sign in the user corresponding to provider and validated access token
-                    :param provider: oauth provider id (int)
-                    :param validation: result of validation of access token (dict)
-                    :param params: oauth parameters (dict)
-                    :return: user login (str)
-                    :raise: AccessDenied if signin failed
-
-                    This method can be overridden to add alternative signin methods.
-                """
-        user = self.search([('login', '=', str(validation.get('email')))])
-        if not user:
-            user = self.create({
-                'login': str(validation.get('email')),
-                'name': str(validation.get('email')),
-                'oauth_provider_id': provider
-            })
-            provider_id = self.env['auth.oauth.provider'].sudo().browse(
-                provider)
-            if provider_id.template_user_id:
-                user.is_contractor = provider_id.template_user_id.is_contractor
-                user.contractor = provider_id.template_user_id.contractor
-                user.groups_id = [
-                    (6, 0, provider_id.template_user_id.groups_id.ids)]
-        user.write({
-            'oauth_provider_id': provider,
-            'oauth_uid': validation['user_id'],
-            'oauth_access_token': params['access_token'],
-        })
-        oauth_uid = validation['user_id']
-        try:
-            oauth_user = self.search([("oauth_uid", "=", oauth_uid),
-                                      ('oauth_provider_id', '=', provider)])
-            if not oauth_user:
-                raise exceptions.AccessDenied()
-            assert len(oauth_user) == 1
-            oauth_user.write({'oauth_access_token': params['access_token']})
-            return oauth_user.login
-        except (exceptions.AccessDenied, exceptions.access_denied_exception):
-            if self.env.context.get('no_user_creation'):
-                return None
-            state = json.loads(params['state'])
-            token = state.get('t')
-            values = self._generate_signup_values(provider, validation, params)
-            try:
-                _, login, _ = self.signup(values, token)
-                return login
-            except SignupError:
-                raise exceptions.access_denied_exception
-        return super()._auth_oauth_signin(provider, validation,
-                                                        params)
 
     @api.model
     def _auth_oauth_validate(self, provider, access_token):
@@ -174,3 +220,75 @@ class ResUsers(models.Model):
         if provider and params:
             return (self.env.cr.dbname, login, access_token)
         return super(ResUsers, self).auth_oauth(provider, params)
+
+    @api.model
+    def _auth_oauth_signin(self, provider, validation, params):
+        """ Retrieve and sign in the user corresponding to provider and validated access token
+                    :param provider: oauth provider id (int)
+                    :param validation: result of validation of access token (dict)
+                    :param params: oauth parameters (dict)
+                    :return: user login (str)
+                    :raise: AccessDenied if signin failed
+
+                    This method can be overridden to add alternative signin methods.
+                """
+        try:
+            user = self.search([
+                '|', ('login', '=', validation.get('email'), ("oauth_uid", "=", validation['user_id']))
+            ])
+            companies = self.get_all_cnpjs_for_string(self.env['res.company'].search([
+                ('cnpj_cpf', 'in', validation['custom:companies_enabled'])
+            ]).ids)
+            if not user and len(companies) > 0:
+
+                user = self.create({
+                    'login': str(validation.get('email')),
+                    'name': str(validation.get('email')),
+                    'oauth_provider_id': provider
+                }, companies_enabled=companies)
+                provider_id = self.env['auth.oauth.provider'].sudo().browse(
+                    provider)
+                if provider_id.template_user_id:
+                    user.is_contractor = provider_id.template_user_id.is_contractor
+                    user.contractor = provider_id.template_user_id.contractor
+                    user.groups_id = [
+                        (6, 0, provider_id.template_user_id.groups_id.ids)]
+            if not user:
+                raise exceptions.AccessDenied()
+            user.write({
+                'oauth_provider_id': provider,
+                'oauth_uid': validation['user_id'],
+                'oauth_token_uid': validation['id_token'],
+                'oauth_access_token': params['access_token'],
+            })
+            return user.login
+        except (exceptions.AccessDenied, exceptions.access_denied_exception):
+            if self.env.context.get('no_user_creation'):
+                return None
+            state = json.loads(params['state'])
+            token = state.get('t')
+            values = self._generate_signup_values(provider, validation, params)
+            try:
+                _, login, _ = self.signup(values, token)
+                return login
+            except SignupError:
+                raise exceptions.access_denied_exception
+        return super()._auth_oauth_signin(provider, validation, params)
+
+    @api.model_create_multi
+    def create(self, vals_list, companies_enabled=None):
+        # connect to cognito
+        if not companies_enabled:
+            for vals in vals_list:
+                if not self.find_user_by_email(vals['login']):
+                    self.register_user_without_password(
+                        vals['name'],
+                        vals['login'],
+                        companies_enabled,
+                        vals['mobile'] or vals['phone'] or "",
+                    )
+        else:
+            for vals in vals_list:
+                self.register_user_without_password(vals['name'], vals['login'], companies_enabled)
+
+        return super(ResUsers, self).create(vals_list)
