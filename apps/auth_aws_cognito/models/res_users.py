@@ -10,9 +10,10 @@
 ###################################################
 import json, logging, requests
 from odoo.http import request
-from odoo import api, models, fields
+from odoo import api, models, fields, _
 from odoo import exceptions
 from odoo.addons import base
+from odoo.exceptions import UserError
 from odoo.addons.auth_signup.models.res_users import SignupError
 
 import boto3
@@ -40,7 +41,8 @@ class ResUsers(models.Model):
     access"""
     _inherit = 'res.users'
 
-    oauth_token_uid = fields.Char(string='OAuth User ID', help="Oauth Provider user_id", copy=False)
+    oauth_token_uid = fields.Char(string='OAuth User Token ID', help="Oauth Provider user_id", copy=False)
+    email_verified = fields.Boolean(string='User Email Verified', default=False)
 
     def get_all_cnpjs_for_string(self, company_ids: list):
         cnpjs = ""
@@ -57,20 +59,6 @@ class ResUsers(models.Model):
                 AccessToken=access_token
             )
             return response['UserAttributes']
-
-        except ClientError as e:
-            print(f"Um erro ocorreu: {e}")
-            return None
-
-    def update_user_attributes(self, access_token, user_attributes):
-        client = boto3.client('cognito-idp', region_name=AWS_REGION)
-
-        try:
-            response = client.update_user_attributes(
-                AccessToken=access_token,
-                UserAttributes=user_attributes
-            )
-            return response
 
         except ClientError as e:
             print(f"Um erro ocorreu: {e}")
@@ -129,6 +117,50 @@ class ResUsers(models.Model):
 
         except ClientError as e:
             print(f"An error occurred: {e}")
+            return None
+
+    def disable_user(self, username):
+        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+
+        try:
+            response = client.admin_disable_user(
+                UserPoolId=USER_POOL_ID,
+                Username=username
+            )
+            print(f"User {username} has been disabled successfully.")
+            return response
+
+        except ClientError as e:
+            print(f"An error occurred: {e}")
+            return None
+
+    def enable_user(self, username):
+        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+
+        try:
+            response = client.admin_enable_user(
+                UserPoolId=USER_POOL_ID,
+                Username=username
+            )
+            print(f"User {username} has been enabled successfully.")
+            return response
+
+        except ClientError as e:
+            print(f"An error occurred: {e}")
+            return None
+
+    def update_user_attributes(self, access_token, user_attributes):
+        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+
+        try:
+            response = client.update_user_attributes(
+                AccessToken=access_token,
+                UserAttributes=user_attributes
+            )
+            return response
+
+        except ClientError as e:
+            print(f"Um erro ocorreu: {e}")
             return None
 
     @api.model
@@ -218,7 +250,7 @@ class ResUsers(models.Model):
         if not login:
             raise exceptions.AccessDenied()
         if provider and params:
-            return (self.env.cr.dbname, login, access_token)
+            return self.env.cr.dbname, login, access_token
         return super(ResUsers, self).auth_oauth(provider, params)
 
     @api.model
@@ -273,7 +305,7 @@ class ResUsers(models.Model):
                 return login
             except SignupError:
                 raise exceptions.access_denied_exception
-        return super()._auth_oauth_signin(provider, validation, params)
+        return super(ResUsers, self)._auth_oauth_signin(provider, validation, params)
 
     @api.model_create_multi
     def create(self, vals_list, companies_enabled=None):
@@ -292,3 +324,67 @@ class ResUsers(models.Model):
                 self.register_user_without_password(vals['name'], vals['login'], companies_enabled)
 
         return super(ResUsers, self).create(vals_list)
+
+    def unlink(self):
+        if SUPERUSER_ID in self.ids:
+            raise UserError(_('You can not remove the admin user as it is used internally for resources created by '
+                              'Odoo (updates, module installation, ...)'))
+        else:
+            for user in self.ids:
+                self.browse(user).write({'active': False})
+
+    def write(self, values):
+        if 'login' in values:
+            raise UserError(
+                _('You cannot change the login, as it is used internally for the primary key "username" for resources '
+                  'created by Soma. If you really need to do this action, you can disable/delete the user in '
+                  'question and create a new one with the new login...'))
+
+        for user in self.ids:
+            user_id = self.browse(user)
+            if not user_id.email_verified:
+                user_attributes = user_id.get_user_attributes(user_id.oauth_access_token)
+                if user_attributes['email_verified'] == 'true':
+                    user_id.email_verified = True
+            if 'active' in values:
+                if not values['active']:
+                    user_id.disable_user(values.get('login') or user.login)
+                else:
+                    user_id.enable_user(values.get('login') or user.login)
+            if 'name' or 'mobile' or 'company_ids' in values:
+                user_id.update_user_attributes(
+                    access_token=user_id.oauth_access_token,
+                    user_attributes=[
+                        {
+                            'Name': 'name',
+                            'Value': values.get('name') or user_id.name
+                        },
+                        {
+                            'Name': 'phone_number',
+                            'Value': user_id.mobile or user_id.phone or ""
+                        },
+                        {
+                            'Name': 'address',
+                            'Value': user_id.partner_id.contact_address
+                        }
+                    ]
+                )
+            if 'company_ids' in values:
+                user_id = self.browse(user)
+                empresas = self.get_all_cnpjs_for_string(values.get('company_ids')) if ('@mutualizo.com' not in
+                                                                                        user_id.login) else ''
+                if '@mutualizo.com' in user_id.login:
+                    user_id.update_user_attributes(
+                        access_token=user_id.oauth_access_token,
+                        user_attributes=[
+                            {
+                                'Name': 'custom:companies_enabled',
+                                'Value': empresas
+                            },
+                            {
+                                'Name': 'address',
+                                'Value': user_id.partner_id.contact_address
+                            }
+                        ]
+                    )
+        return super(ResUsers, self).write(values)

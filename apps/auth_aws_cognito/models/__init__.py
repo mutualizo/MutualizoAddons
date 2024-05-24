@@ -12,4 +12,3 @@ from . import auth_oauth_provider
 from . import res_users
 from . import auth_oauth
 from . import ir_config_parameter
-from . import res_partner
