@@ -10,7 +10,7 @@
 ###################################################
 import json, logging, requests
 from odoo.http import request
-from odoo import api, models, fields, _
+from odoo import api, models, fields, _, SUPERUSER_ID
 from odoo import exceptions
 from odoo.addons import base
 from odoo.exceptions import UserError
@@ -47,8 +47,10 @@ class ResUsers(models.Model):
     def get_all_cnpjs_for_string(self, company_ids: list):
         cnpjs = ""
         companies = self.env["res.company"].browse(company_ids)
-        for record in companies:
-            cnpjs += record.cnpj_cpf + ", "
+        for record in company_ids:
+            companies = self.env["res.company"].browse(record)
+            if companies.cnpj_cpf:
+                cnpjs += companies.cnpj_cpf + ", "
         return cnpjs
 
     def get_user_attributes(self, access_token):
@@ -61,16 +63,15 @@ class ResUsers(models.Model):
             return response['UserAttributes']
 
         except ClientError as e:
-            print(f"Um erro ocorreu: {e}")
-            return None
+            return f"Um erro ocorreu: {e}"
 
-    def register_user_without_password(self, name: str, email: str, companies_ids: str, mobile="", address=""):
+    def register_user_without_password(self, name: str, email: str, companies_ids="", mobile="", address=""):
         client = boto3.client('cognito-idp', region_name=AWS_REGION)
 
         try:
             response = client.admin_create_user(
                 UserPoolId=USER_POOL_ID,
-                Username=email.split('@')[0],
+                Username=email,
                 UserAttributes=[
                     {
                         'Name': 'name',
@@ -102,8 +103,7 @@ class ResUsers(models.Model):
             return response
 
         except ClientError as e:
-            print(f"An error occurred: {e}")
-            return None
+            return f"An error occurred: {e}"
 
     def find_user_by_email(self, email: str):
         client = boto3.client('cognito-idp', region_name=AWS_REGION)
@@ -116,8 +116,7 @@ class ResUsers(models.Model):
             return response['Users']
 
         except ClientError as e:
-            print(f"An error occurred: {e}")
-            return None
+            return f"An error occurred: {e}"
 
     def disable_user(self, username):
         client = boto3.client('cognito-idp', region_name=AWS_REGION)
@@ -127,12 +126,10 @@ class ResUsers(models.Model):
                 UserPoolId=USER_POOL_ID,
                 Username=username
             )
-            print(f"User {username} has been disabled successfully.")
             return response
 
         except ClientError as e:
-            print(f"An error occurred: {e}")
-            return None
+            return f"An error occurred: {e}"
 
     def enable_user(self, username):
         client = boto3.client('cognito-idp', region_name=AWS_REGION)
@@ -142,12 +139,10 @@ class ResUsers(models.Model):
                 UserPoolId=USER_POOL_ID,
                 Username=username
             )
-            print(f"User {username} has been enabled successfully.")
             return response
 
         except ClientError as e:
-            print(f"An error occurred: {e}")
-            return None
+            return f"An error occurred: {e}"
 
     def update_user_attributes(self, access_token, user_attributes):
         client = boto3.client('cognito-idp', region_name=AWS_REGION)
@@ -160,8 +155,7 @@ class ResUsers(models.Model):
             return response
 
         except ClientError as e:
-            print(f"Um erro ocorreu: {e}")
-            return None
+            return f"An error occurred: {e}"
 
     @api.model
     def _auth_oauth_rpc(self, endpoint, access_token):
@@ -265,12 +259,9 @@ class ResUsers(models.Model):
                     This method can be overridden to add alternative signin methods.
                 """
         try:
-            user = self.search([
-                '|', ('login', '=', validation.get('email'), ("oauth_uid", "=", validation['user_id']))
-            ])
+            user = self.search([('login', '=', validation.get('email'))])
             companies = self.get_all_cnpjs_for_string(self.env['res.company'].search([
-                ('cnpj_cpf', 'in', validation['custom:companies_enabled'])
-            ]).ids)
+                ('cnpj_cpf', 'in', validation.get('custom:companies_enabled'))]).ids)
             if not user and len(companies) > 0:
 
                 user = self.create({
@@ -289,15 +280,15 @@ class ResUsers(models.Model):
                 raise exceptions.AccessDenied()
             user.write({
                 'oauth_provider_id': provider,
-                'oauth_uid': validation['user_id'],
-                'oauth_token_uid': validation['id_token'],
-                'oauth_access_token': params['access_token'],
+                'oauth_uid': params.get('user_id'),
+                'oauth_token_uid': params.get('id_token'),
+                'oauth_access_token': params.get('access_token'),
             })
             return user.login
         except (exceptions.AccessDenied, exceptions.access_denied_exception):
             if self.env.context.get('no_user_creation'):
                 return None
-            state = json.loads(params['state'])
+            state = json.loads(params.get('state'))
             token = state.get('t')
             values = self._generate_signup_values(provider, validation, params)
             try:
@@ -307,21 +298,23 @@ class ResUsers(models.Model):
                 raise exceptions.access_denied_exception
         return super(ResUsers, self)._auth_oauth_signin(provider, validation, params)
 
-    @api.model_create_multi
     def create(self, vals_list, companies_enabled=None):
         # connect to cognito
         if not companies_enabled:
             for vals in vals_list:
                 if not self.find_user_by_email(vals['login']):
+                    empresas = self.get_all_cnpjs_for_string(vals.get('company_ids')[0][2]) if ('@mutualizo.com' not in
+                                                                                            vals['login']) else ''
                     self.register_user_without_password(
-                        vals['name'],
-                        vals['login'],
-                        companies_enabled,
-                        vals['mobile'] or vals['phone'] or "",
+                        name=vals['name'],
+                        email=vals.get('login'),
+                        companies_ids=empresas,
+                        mobile=vals.get('mobile') or vals.get('phone') or "",
                     )
         else:
             for vals in vals_list:
-                self.register_user_without_password(vals['name'], vals['login'], companies_enabled)
+                self.register_user_without_password(vals['name'], vals['login'], companies_enabled if ('@mutualizo.com' not in
+                                                                                            vals['login']) else '')
 
         return super(ResUsers, self).create(vals_list)
 
@@ -343,25 +336,28 @@ class ResUsers(models.Model):
         for user in self.ids:
             user_id = self.browse(user)
             if not user_id.email_verified:
-                user_attributes = user_id.get_user_attributes(user_id.oauth_access_token)
-                if user_attributes['email_verified'] == 'true':
-                    user_id.email_verified = True
+                user_attributes = user_id.get_user_attributes(values.get('oauth_access_token') or
+                                                              self.env.user.oauth_access_token or
+                                                              user_id.oauth_access_token)
+                for idx in range(len(user_attributes)):
+                    if user_attributes[idx]['Name'] == 'email_verified':
+                        values['email_verified'] = user_attributes[idx]['Value'] == 'true'
+                        break
             if 'active' in values:
                 if not values['active']:
-                    user_id.disable_user(values.get('login') or user.login)
+                    user_id.disable_user(values.get('login') or user_id.login)
                 else:
-                    user_id.enable_user(values.get('login') or user.login)
-            if 'name' or 'mobile' or 'company_ids' in values:
+                    user_id.enable_user(values.get('login') or user_id.login)
+            if 'company_ids' in values:
+                user_id = self.browse(user)
+                empresas = self.get_all_cnpjs_for_string(values.get('company_ids')[0][2]) if ('@mutualizo.com' not in
+                                                                                        user_id.login) else ''
                 user_id.update_user_attributes(
-                    access_token=user_id.oauth_access_token,
+                    access_token=self.env.user.oauth_access_token,
                     user_attributes=[
                         {
-                            'Name': 'name',
-                            'Value': values.get('name') or user_id.name
-                        },
-                        {
-                            'Name': 'phone_number',
-                            'Value': user_id.mobile or user_id.phone or ""
+                            'Name': 'custom:companies_enabled',
+                            'Value': empresas
                         },
                         {
                             'Name': 'address',
@@ -369,22 +365,22 @@ class ResUsers(models.Model):
                         }
                     ]
                 )
-            if 'company_ids' in values:
-                user_id = self.browse(user)
-                empresas = self.get_all_cnpjs_for_string(values.get('company_ids')) if ('@mutualizo.com' not in
-                                                                                        user_id.login) else ''
-                if '@mutualizo.com' in user_id.login:
-                    user_id.update_user_attributes(
-                        access_token=user_id.oauth_access_token,
-                        user_attributes=[
-                            {
-                                'Name': 'custom:companies_enabled',
-                                'Value': empresas
-                            },
-                            {
-                                'Name': 'address',
-                                'Value': user_id.partner_id.contact_address
-                            }
-                        ]
-                    )
+
+            user_id.update_user_attributes(
+                access_token=self.env.user.oauth_access_token,
+                user_attributes=[
+                    {
+                        'Name': 'name',
+                        'Value': values.get('name') or user_id.name
+                    },
+                    {
+                        'Name': 'phone_number',
+                        'Value': user_id.mobile or user_id.phone or ""
+                    },
+                    {
+                        'Name': 'address',
+                        'Value': user_id.partner_id.contact_address
+                    }
+                ]
+            )
         return super(ResUsers, self).write(values)
