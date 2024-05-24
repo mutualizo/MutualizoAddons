@@ -61,12 +61,10 @@ class ResUsers(models.Model):
                 UserPoolId=USER_POOL_ID,
                 Username=username
             )
-            attributes = {attr['Name']: attr['Value'] for attr in response['UserAttributes']}
-            return attributes
+            return response['UserAttributes']
 
         except ClientError as e:
-            print(f"An error occurred: {e}")
-            return None
+            return f"An error occurred: {e}"
 
     def register_user_without_password(self, name: str, email: str, companies_ids="", mobile="", address=""):
         client = boto3.client('cognito-idp', region_name=AWS_REGION)
