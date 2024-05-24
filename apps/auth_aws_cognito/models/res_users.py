@@ -53,17 +53,18 @@ class ResUsers(models.Model):
                 cnpjs += companies.cnpj_cpf + ", "
         return cnpjs
 
-    def get_user_attributes(self, access_token):
+    def get_user_attributes(self, username):
         client = boto3.client('cognito-idp', region_name=AWS_REGION)
 
         try:
-            response = client.get_user(
-                AccessToken=access_token
+            response = client.admin_get_user(
+                UserPoolId=USER_POOL_ID,
+                Username=username
             )
             return response['UserAttributes']
 
         except ClientError as e:
-            return f"Um erro ocorreu: {e}"
+            return f"An error occurred: {e}"
 
     def register_user_without_password(self, name: str, email: str, companies_ids="", mobile="", address=""):
         client = boto3.client('cognito-idp', region_name=AWS_REGION)
@@ -338,9 +339,7 @@ class ResUsers(models.Model):
         for user in self.ids:
             user_id = self.browse(user)
             if not user_id.email_verified:
-                user_attributes = user_id.get_user_attributes(values.get('oauth_access_token') or
-                                                              self.env.user.oauth_access_token or
-                                                              user_id.oauth_access_token)
+                user_attributes = user_id.get_user_attributes(user_id.login)
                 for idx in range(len(user_attributes)):
                     if user_attributes[idx]['Name'] == 'email_verified':
                         values['email_verified'] = user_attributes[idx]['Value'] == 'true'
