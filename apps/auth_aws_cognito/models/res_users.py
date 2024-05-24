@@ -20,7 +20,6 @@ import boto3
 from botocore.exceptions import ClientError
 
 base.models.res_users.USER_PRIVATE_FIELDS.append('oauth_access_token')
-base.models.res_users.USER_PRIVATE_FIELDS.append('oauth_token_uid')
 _logger = logging.getLogger(__name__)
 
 try:
@@ -37,7 +36,6 @@ class ResUsers(models.Model):
     access"""
     _inherit = 'res.users'
 
-    oauth_token_uid = fields.Char(string='OAuth User Token ID', help="Oauth Provider user_id", copy=False)
     email_verified = fields.Boolean(string='User Email Verified', default=False)
 
     def get_all_cnpjs_for_string(self, company_ids: list):
@@ -293,7 +291,6 @@ class ResUsers(models.Model):
             user.write({
                 'oauth_provider_id': provider,
                 'oauth_uid': params.get('user_id'),
-                'oauth_token_uid': params.get('id_token'),
                 'oauth_access_token': params.get('access_token'),
             })
             return user.login
