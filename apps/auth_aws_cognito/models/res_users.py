@@ -144,12 +144,13 @@ class ResUsers(models.Model):
         except ClientError as e:
             return f"An error occurred: {e}"
 
-    def update_user_attributes(self, access_token, user_attributes):
+    def update_user_attributes(self, username, user_attributes):
         client = boto3.client('cognito-idp', region_name=AWS_REGION)
 
         try:
-            response = client.update_user_attributes(
-                AccessToken=access_token,
+            response = client.admin_update_user_attributes(
+                UserPoolId=USER_POOL_ID,
+                Username=username,
                 UserAttributes=user_attributes
             )
             return response
@@ -261,7 +262,8 @@ class ResUsers(models.Model):
         try:
             user = self.search([('login', '=', validation.get('email'))])
             companies = self.get_all_cnpjs_for_string(self.env['res.company'].search([
-                ('cnpj_cpf', 'in', validation.get('custom:companies_enabled'))]).ids)
+                ('cnpj_cpf', 'in', validation.get('custom:companies_enabled'))]).ids) if (
+                    '@mutualizo.com' not in validation.get('email')) else ''
             if not user and len(companies) > 0:
 
                 user = self.create({
@@ -353,7 +355,7 @@ class ResUsers(models.Model):
                 empresas = self.get_all_cnpjs_for_string(values.get('company_ids')[0][2]) if ('@mutualizo.com' not in
                                                                                         user_id.login) else ''
                 user_id.update_user_attributes(
-                    access_token=self.env.user.oauth_access_token,
+                    username=user_id.login,
                     user_attributes=[
                         {
                             'Name': 'custom:companies_enabled',
@@ -367,7 +369,7 @@ class ResUsers(models.Model):
                 )
 
             user_id.update_user_attributes(
-                access_token=self.env.user.oauth_access_token,
+                username=user_id.login,
                 user_attributes=[
                     {
                         'Name': 'name',
