@@ -19,10 +19,6 @@ from odoo.addons.auth_signup.models.res_users import SignupError
 import boto3
 from botocore.exceptions import ClientError
 
-AWS_REGION = 'us-east-1'
-USER_POOL_ID = 'us-east-1_QWi225cTs'
-CLIENT_ID = '2l62n8b9i8ejhohrmfpfbigj5j'
-
 base.models.res_users.USER_PRIVATE_FIELDS.append('oauth_access_token')
 base.models.res_users.USER_PRIVATE_FIELDS.append('oauth_token_uid')
 _logger = logging.getLogger(__name__)
@@ -54,11 +50,13 @@ class ResUsers(models.Model):
         return cnpjs
 
     def get_user_attributes(self, username):
-        client = boto3.client('cognito-idp', region_name=AWS_REGION)
-
+        auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
+            request.env.ref('auth_aws_cognito.provider_aws_cognito').id
+        )
+        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
         try:
             response = client.admin_get_user(
-                UserPoolId=USER_POOL_ID,
+                UserPoolId=auth_oauth_provider.cognito_user_pool_id,
                 Username=username
             )
             return response['UserAttributes']
@@ -67,11 +65,14 @@ class ResUsers(models.Model):
             return f"An error occurred: {e}"
 
     def register_user_without_password(self, name: str, email: str, companies_ids="", mobile="", address=""):
-        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+        auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
+            request.env.ref('auth_aws_cognito.provider_aws_cognito').id
+        )
+        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
 
         try:
             response = client.admin_create_user(
-                UserPoolId=USER_POOL_ID,
+                UserPoolId=auth_oauth_provider.cognito_user_pool_id,
                 Username=email,
                 UserAttributes=[
                     {
@@ -107,11 +108,14 @@ class ResUsers(models.Model):
             return f"An error occurred: {e}"
 
     def find_user_by_email(self, email: str):
-        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+        auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
+            request.env.ref('auth_aws_cognito.provider_aws_cognito').id
+        )
+        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
 
         try:
             response = client.list_users(
-                UserPoolId=USER_POOL_ID,
+                UserPoolId=auth_oauth_provider.cognito_user_pool_id,
                 Filter=f'email="{email}"'
             )
             return response['Users']
@@ -120,11 +124,14 @@ class ResUsers(models.Model):
             return f"An error occurred: {e}"
 
     def disable_user(self, username):
-        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+        auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
+            request.env.ref('auth_aws_cognito.provider_aws_cognito').id
+        )
+        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
 
         try:
             response = client.admin_disable_user(
-                UserPoolId=USER_POOL_ID,
+                UserPoolId=auth_oauth_provider.cognito_user_pool_id,
                 Username=username
             )
             return response
@@ -146,11 +153,14 @@ class ResUsers(models.Model):
             return f"An error occurred: {e}"
 
     def update_user_attributes(self, username, user_attributes):
-        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+        auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
+            request.env.ref('auth_aws_cognito.provider_aws_cognito').id
+        )
+        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
 
         try:
             response = client.admin_update_user_attributes(
-                UserPoolId=USER_POOL_ID,
+                UserPoolId=auth_oauth_provider.cognito_user_pool_id,
                 Username=username,
                 UserAttributes=user_attributes
             )
@@ -172,7 +182,6 @@ class ResUsers(models.Model):
         auth_oauth_provider = self.env['auth.oauth.provider'].browse(provider)
         req_params = dict(
             client_id=auth_oauth_provider.client_id,
-            client_secret=auth_oauth_provider.client_secret_id,
             grant_type='authorization_code',
             code=code,
             redirect_uri=request.httprequest.url_root + 'auth_oauth/signin',
