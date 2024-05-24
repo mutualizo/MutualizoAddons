@@ -33,7 +33,7 @@ class OAuthLogin(Home):
         return_url = url_join(base_url, '/auth_oauth/signin')
         params = dict(
             client_id=rec.client_id,
-            response_type=rec.response_type,
+            response_type=rec.cognito_response_type,
             scope=rec.scope,
             redirect_uri=return_url,
         )
