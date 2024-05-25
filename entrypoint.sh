@@ -51,7 +51,7 @@ then
 	echo "Iniciando em modo de upgrade no modulo '$UPGRADE_MODULE', na base '$UPGRADE_DATABASE'"
 	sleep 5
     wait-for-psql.py ${DB_ARGS[@]} --timeout=60
-	exec odoo-server q"${DB_ARGS[@]}" "--update=$UPGRADE_MODULE" "--database=$UPGRADE_DATABASE"
+	exec odoo-server "${DB_ARGS[@]}" "--update=$UPGRADE_MODULE" "--database=$UPGRADE_DATABASE"
 else
 	echo "Iniciando em modo normal de execução"
 	echo $PG_HOST
