@@ -4,7 +4,7 @@
             <field name="name">Send Bank Slip</field>
             <field name="model_id" ref="account.model_account_move"/>
             <field name="subject">Seu Boleto está disponível</field>
-            <field name="email_from">${object.company_id.name}</field>
+            <field name="email_from">${ ctx['company_email'] }</field>
             <field name="email_to"></field>
             <field name="body_html" type="html">
                 <div style="margin: 0px; padding: 0px;">
@@ -12,12 +12,12 @@
                         Ola!
                         <br/>
                         <br/>
-                        O seu boleto com vencimento em ${object.invoice_date_due} já está disponível!
+                        O seu boleto com vencimento em ${ ctx['invoice_date_due'] } já está disponível!
                         <br/>
                         <br/>
-                        Número de Contrato: ${object.contract_number}
+                        Número de Contrato: ${ ctx['contract_number'] }
                         <br/>
-                        Parcela: ${object.installment_number}
+                        Parcela: ${ ctx['installment_number'] }
                         <br/>
                         <br/>
                     </p>
@@ -25,7 +25,7 @@
                         style="background-color:#0275D8; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px;">Acessar Boleto</a>
                     <br/>
                     <br/>
-                    ${object.company_id.name}
+                    ${ ctx['company_name'] }
                 </div>
             </field>
             <field name="auto_delete" eval="False"/>

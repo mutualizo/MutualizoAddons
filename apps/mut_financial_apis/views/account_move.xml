@@ -28,6 +28,13 @@
             <field name="invoice_partner_display_name" position="after">
                 <field name="contract_number"/>
             </field>
+            <field name="payment_state" position="replace">
+                <field name="payment_state" optional="hide"/>
+                <field name="bank_slip_status" widget="badge" optional="show"
+                    decoration-muted="bank_slip_status == 'bank_slip_not_issued'" decoration-info="bank_slip_status == 'bank_slip_issued'"
+                    decoration-danger="bank_slip_status in ('bank_slip_error', 'bank_slip_canceled')"
+                    decoration-warning="bank_slip_status == 'bank_slip_registered'" decoration-success="bank_slip_status == 'bank_slip_paid'"/>
+            </field>
         </field>
     </record>
 
@@ -44,4 +51,41 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_account_invoice_filter_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.select.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <filter name="myinvoices" position="after">
+                <separator/>
+                <filter name="bank_slip_not_issued" string="Boleto Não Emitido" domain="[('bank_slip_status', '=', 'bank_slip_not_issued')]"/>
+                <filter name="bank_slip_issued" string="Boleto Emitido" domain="[('bank_slip_status', '=', 'bank_slip_issued')]"/>
+                <filter name="bank_slip_error" string="Erro no Boleto" domain="[('bank_slip_status', '=', 'bank_slip_error')]"/>
+                <filter name="bank_slip_registered" string="Boleto Registrado" domain="[('bank_slip_status', '=', 'bank_slip_registered')]"/>
+                <filter name="bank_slip_paid" string="Boleto Pago" domain="[('bank_slip_status', '=', 'bank_slip_paid')]"/>
+                <filter name="bank_slip_canceled" string="Boleto Cancelado" domain="[('bank_slip_status', '=', 'bank_slip_canceled')]"/>
+            </filter>
+
+            <filter name="in_payment" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </filter>
+            <filter name="partial" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </filter>
+            <filter name="paid" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </filter>
+            <filter name="unpaid" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </filter>
+            <filter name="reversed" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </filter>
+            <filter name="late" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </filter>
+        </field>
+    </record>
+
 </odoo>

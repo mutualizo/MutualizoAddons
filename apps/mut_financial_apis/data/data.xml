@@ -34,6 +34,18 @@
           <field name="interval_type">days</field>
           <field name="doall" eval="False"/>
         </record>
+
+        <record id="cron_send_bank_slip_to_invoice_followers" model="ir.cron">
+          <field name="name">Send Bank Slip to Invoice Followers</field>
+          <field name="model_id" ref="mut_financial_apis.model_account_move"/>
+          <field name="state">code</field>
+          <field name="code">model._cron_send_bank_slip_to_invoice_followers()</field>
+          <field name="active" eval="True"/>
+          <field name="user_id" ref="mut_financial_apis.api_user"/>
+          <field name="interval_number">10</field>
+          <field name="interval_type">minutes</field>
+          <field name="doall" eval="False"/>
+        </record>
     </data>
 
 </odoo>
