@@ -138,7 +138,10 @@ class ResUsers(models.Model):
             return f"An error occurred: {e}"
 
     def enable_user(self, username):
-        client = boto3.client('cognito-idp', region_name=AWS_REGION)
+        auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
+            request.env.ref('auth_aws_cognito.provider_aws_cognito').id
+        )
+        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
 
         try:
             response = client.admin_enable_user(
