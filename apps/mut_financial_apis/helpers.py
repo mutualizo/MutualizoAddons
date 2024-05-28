@@ -44,11 +44,10 @@ def send_callbacks(url, callbacks):
         )
         if res.status_code == 403:
             logger.error(
-                "Authorization error communicating with the Financial API Callback URL,"
-                " please set the config parameter 'mut_financial_apis.callback_api_key'"
+                "Authorization error communicating with the Financial API Callback URL, "
+                "please set the config parameter 'mut_financial_apis.callback_api_key'"
             )
-        raise Exception(res.text)
-    return res
+        raise Exception
 
 
 class FinanceApiErrorMessages:
