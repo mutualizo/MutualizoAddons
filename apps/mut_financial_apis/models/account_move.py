@@ -62,7 +62,7 @@ class AccountMove(models.Model):
                         date.today()
                         + timedelta(days=company_id.days_until_bank_slips_due),
                     ),
-                ], limit=2000
+                ], limit=2000, order="id asc"
             )
             for invoice in invoices_to_confirm:
                 invoice.action_post()
@@ -140,7 +140,7 @@ class AccountMove(models.Model):
 
     def _cron_send_bank_slip_to_invoice_followers(self):
         account_move_ids = self.env["account.move"].search(
-            [("notification_status", "=", "in_queue")], limit=500
+            [("notification_status", "=", "in_queue")], limit=500, order="id asc"
         )
         for account_move in account_move_ids:
             if not account_move.file_boleto_pdf_id:
