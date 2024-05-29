@@ -14,14 +14,14 @@ def format_callback(external_id, status, error={}):
         "error": error,
     }
 
-def send_callbacks(url, callbacks):
+def send_callbacks(env, url, callbacks):
     callback_url = (
-        request.env["ir.config_parameter"]
+        env["ir.config_parameter"]
         .sudo()
         .get_param("mut_financial_apis.callback_url")
     )
     api_key = (
-        request.env["ir.config_parameter"]
+        env["ir.config_parameter"]
         .sudo()
         .get_param("mut_financial_apis.callback_api_key")
     )

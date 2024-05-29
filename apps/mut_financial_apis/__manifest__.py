@@ -19,7 +19,7 @@
     'company': 'Mutualizo',
     'maintainer': 'Mutualizo',
     'website': "https://www.mutualizo.com.br",
-    'depends': ['l10n_br_account_payment_brcobranca'],
+    'depends': ['l10n_br_account_payment_brcobranca', 'base_accounting_kit'],
     'data': [
         # Security
         "security/ir.model.access.csv",
