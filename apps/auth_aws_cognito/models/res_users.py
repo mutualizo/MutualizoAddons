@@ -323,11 +323,12 @@ class ResUsers(models.Model):
                 """
         try:
             user = self.search([('login', '=', validation.get('email'))])
-            get_user_attributes = self.get_user_attributes(validation.get('email'))
             companies_enabled = ''
-            for idx in range(len(get_user_attributes)):
-                if get_user_attributes[idx]['Name'] == 'custom:companies_enabled':
-                    companies_enabled = get_user_attributes[idx]['Value']
+            for user_attributes in self.get_user_attributes(validation.get('email')):
+                if not isinstance(user_attributes, dict):
+                    continue
+                if user_attributes.get('Name') == 'custom:companies_enabled':
+                    companies_enabled = user_attributes.get('Value', '')
                     break
 
             companies_in_system = ''
