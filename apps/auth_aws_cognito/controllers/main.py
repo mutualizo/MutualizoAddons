@@ -39,8 +39,6 @@ class OAuthController(http.Controller):
                 .auth_oauth(provider, kw)
             )
             request.env.cr.commit()
-            if not request.uid:
-                request.uid = SUPERUSER_ID
             url = "/web"
             pre_uid = request.session.authenticate(dbname, login, key)
             resp = werkzeug.utils.redirect(

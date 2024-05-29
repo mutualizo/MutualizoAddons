@@ -356,12 +356,6 @@ class ResUsers(models.Model):
                 template_user = self.browse(template_user_id)
                 if template_user.exists():
                     user.groups_id = [(6, 0, template_user.groups_id.ids)]
-            # TODO Remove this log
-            # TODO Remove this log
-            # TODO Remove this log
-            # TODO Remove this log
-            _logger.info(f"DEBUG Params user: {user}")
-            _logger.info(f"DEBUG Params companies_in_system: {user}")
             if not user:
                 raise exceptions.AccessDenied()
             if (user.oauth_provider_id.id != provider or
@@ -378,11 +372,6 @@ class ResUsers(models.Model):
         except exceptions.AccessDenied:
             if self.env.context.get('no_user_creation'):
                 return None
-            # TODO Remove this log
-            # TODO Remove this log
-            # TODO Remove this log
-            # TODO Remove this log
-            _logger.info(f"DEBUG Params: {params}")
             state = json.loads(params.get('state'))
             token = state.get('t')
             values = self._generate_signup_values(provider, validation, params)
