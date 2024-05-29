@@ -70,7 +70,7 @@ class FinancialAPIsController(http.Controller):
             f"Invoice Load API Processing Time: {len(invoices)} "
             f"items in {interval.seconds}.{interval.microseconds} seconds"
         )
-        send_callbacks(data.get("url_callback"), callbacks)
+        send_callbacks(env, data.get("url_callback"), callbacks)
 
     def process_invoice_inclusion(self, env, invoice, url_callback):
         invoice.update({"url_callback": url_callback})
@@ -334,7 +334,7 @@ class FinancialAPIsController(http.Controller):
                     lambda x: x.url_callback == url_callback
                 )
             ]
-            send_callbacks(url_callback, callbacks)
+            send_callbacks(env, url_callback, callbacks)
 
     @http.route("/invoice/print-boleto", auth="public", type="json", methods=["GET"])
     def print_invoice_bank_slip(self, **kw):

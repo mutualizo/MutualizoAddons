@@ -23,15 +23,15 @@
             <field name="uom_id" ref="uom.product_uom_unit"/>
         </record>
 
-        <record id="cron_confirm_invoices_generate_boleto_cnab" model="ir.cron">
-          <field name="name">Confirm Invoices Generate Boleto Cnab</field>
+        <record id="cron_confirm_invoices_generate_cnab" model="ir.cron">
+          <field name="name">Confirm Invoices and Generate Cnab</field>
           <field name="model_id" ref="mut_financial_apis.model_account_move"/>
           <field name="state">code</field>
-          <field name="code">model._cron_confirm_invoices_generate_boleto_cnab()</field>
+          <field name="code">model._cron_confirm_invoices_generate_cnab()</field>
           <field name="active" eval="True"/>
           <field name="user_id" ref="mut_financial_apis.api_user"/>
-          <field name="interval_number">1</field>
-          <field name="interval_type">days</field>
+          <field name="interval_number">2</field>
+          <field name="interval_type">hours</field>
           <field name="doall" eval="False"/>
           <field name="numbercall">-1</field>
         </record>
@@ -43,7 +43,7 @@
           <field name="code">model._cron_send_bank_slip_to_invoice_followers()</field>
           <field name="active" eval="True"/>
           <field name="user_id" ref="mut_financial_apis.api_user"/>
-          <field name="interval_number">10</field>
+          <field name="interval_number">20</field>
           <field name="interval_type">minutes</field>
           <field name="doall" eval="False"/>
           <field name="numbercall">-1</field>
