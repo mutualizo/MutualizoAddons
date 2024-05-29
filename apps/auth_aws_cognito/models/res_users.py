@@ -40,9 +40,49 @@ class ResUsers(models.Model):
     oauth_token_uid = fields.Char(string='OAuth User Token ID', help="Oauth Provider user_id", copy=False)
     email_verified = fields.Boolean(string='User Email Verified', default=False)
 
+    def create_cognito_client(self, user_pool_id, region_name):
+        if not self.env.user.oauth_access_token:
+            raise UserError(
+                _('You must be logged in to AWS Cognito to perform this action.'))
+
+        # Logins requer um mapeamento de identificador para o token de identidade
+        logins = {
+            f'cognito-idp.{region_name}.amazonaws.com/{user_pool_id}': self.env.user.oauth_token_uid
+        }
+
+        cognito_identity_client = boto3.client('cognito-identity', region_name=region_name)
+
+        # Obtenha as credenciais temporárias do usuário autenticado
+        response = cognito_identity_client.get_id(
+            IdentityPoolId='us-east-1:7890c1de-cb95-46d8-934c-f3801199a1e9',
+            Logins=logins
+        )
+        identity_id = response['IdentityId']
+
+        credentials = cognito_identity_client.get_credentials_for_identity(
+            IdentityId=identity_id,
+            Logins=logins
+        )
+
+        # Extrai as credenciais temporárias
+        temporary_credentials = credentials['Credentials']
+        aws_access_key_id = temporary_credentials['AccessKeyId']
+        aws_secret_access_key = temporary_credentials['SecretKey']
+        aws_session_token = temporary_credentials['SessionToken']
+
+        # Configura o cliente boto3 com as credenciais temporárias
+        session = boto3.Session(
+            aws_access_key_id=aws_access_key_id,
+            aws_secret_access_key=aws_secret_access_key,
+            aws_session_token=aws_session_token,
+            region_name=region_name
+        )
+        cognito_client = session.client('cognito-idp')
+
+        return cognito_client
+
     def get_all_cnpjs_for_string(self, company_ids: list):
         cnpjs = ""
-        companies = self.env["res.company"].browse(company_ids)
         for record in company_ids:
             companies = self.env["res.company"].browse(record)
             if companies.cnpj_cpf:
@@ -53,7 +93,8 @@ class ResUsers(models.Model):
         auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
             request.env.ref('auth_aws_cognito.provider_aws_cognito').id
         )
-        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
+        client = self.create_cognito_client(auth_oauth_provider.cognito_user_pool_id,
+                                            auth_oauth_provider.cognito_aws_region)
         try:
             response = client.admin_get_user(
                 UserPoolId=auth_oauth_provider.cognito_user_pool_id,
@@ -68,7 +109,8 @@ class ResUsers(models.Model):
         auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
             request.env.ref('auth_aws_cognito.provider_aws_cognito').id
         )
-        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
+        client = self.create_cognito_client(auth_oauth_provider.cognito_user_pool_id,
+                                            auth_oauth_provider.cognito_aws_region)
 
         try:
             response = client.admin_create_user(
@@ -111,7 +153,8 @@ class ResUsers(models.Model):
         auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
             request.env.ref('auth_aws_cognito.provider_aws_cognito').id
         )
-        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
+        client = self.create_cognito_client(auth_oauth_provider.cognito_user_pool_id,
+                                            auth_oauth_provider.cognito_aws_region)
 
         try:
             response = client.list_users(
@@ -127,7 +170,8 @@ class ResUsers(models.Model):
         auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
             request.env.ref('auth_aws_cognito.provider_aws_cognito').id
         )
-        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
+        client = self.create_cognito_client(auth_oauth_provider.cognito_user_pool_id,
+                                            auth_oauth_provider.cognito_aws_region)
 
         try:
             response = client.admin_disable_user(
@@ -143,7 +187,8 @@ class ResUsers(models.Model):
         auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
             request.env.ref('auth_aws_cognito.provider_aws_cognito').id
         )
-        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
+        client = self.create_cognito_client(auth_oauth_provider.cognito_user_pool_id,
+                                            auth_oauth_provider.cognito_aws_region)
 
         try:
             response = client.admin_enable_user(
@@ -159,7 +204,8 @@ class ResUsers(models.Model):
         auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
             request.env.ref('auth_aws_cognito.provider_aws_cognito').id
         )
-        client = boto3.client('cognito-idp', region_name=auth_oauth_provider.cognito_aws_region)
+        client = self.create_cognito_client(auth_oauth_provider.cognito_user_pool_id,
+                                            auth_oauth_provider.cognito_aws_region)
 
         try:
             response = client.admin_update_user_attributes(
@@ -382,22 +428,22 @@ class ResUsers(models.Model):
                         }
                     ]
                 )
-
-            user_id.update_user_attributes(
-                username=user_id.login,
-                user_attributes=[
-                    {
-                        'Name': 'name',
-                        'Value': values.get('name') or user_id.name
-                    },
-                    {
-                        'Name': 'phone_number',
-                        'Value': user_id.mobile or user_id.phone or ""
-                    },
-                    {
-                        'Name': 'address',
-                        'Value': user_id.partner_id.contact_address
-                    }
-                ]
-            )
+            if 'name' in values or 'mobile' in values or 'phone' in values:
+                user_id.update_user_attributes(
+                    username=user_id.login,
+                    user_attributes=[
+                        {
+                            'Name': 'name',
+                            'Value': values.get('name') or user_id.name
+                        },
+                        {
+                            'Name': 'phone_number',
+                            'Value': user_id.mobile or user_id.phone or ""
+                        },
+                        {
+                            'Name': 'address',
+                            'Value': user_id.partner_id.contact_address
+                        }
+                    ]
+                )
         return super(ResUsers, self).write(values)
