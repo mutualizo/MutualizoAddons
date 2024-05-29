@@ -192,3 +192,26 @@ class AccountRegisterPayments(models.TransientModel):
             if float_compare(vl_fee, wizard.vl_fee, 2):
                 wizard.vl_fee = vl_fee 
 
+    # -------------------------------------------------------------------------
+    # BUSINESS METHODS
+    # -------------------------------------------------------------------------
+
+    def _create_payment_vals_from_wizard(self, batch_result):
+        res = super(AccountRegisterPayments,self)._create_payment_vals_from_wizard(batch_result)
+        res.update({
+            'amount': self.vl_principal,
+            'discount': self.vl_discount,
+            'interest': self.vl_interest,
+            'fee': self.vl_fee
+        })
+        return res
+
+    def _create_payment_vals_from_batch(self, batch_result):
+        res = super(AccountRegisterPayments,self)._create_payment_vals_from_batch(batch_result)
+        res.update({
+            'amount': self.vl_principal,
+            'discount': self.vl_discount,
+            'interest': self.vl_interest,
+            'fee': self.vl_fee
+        })
+        return res
