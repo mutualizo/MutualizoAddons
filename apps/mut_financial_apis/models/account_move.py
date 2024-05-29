@@ -67,8 +67,6 @@ class AccountMove(models.Model):
             callbacks = []
             for invoice in invoices_to_confirm:
                 invoice.action_post()
-                if not invoice.file_boleto_pdf_id:
-                    invoice.generate_boleto_pdf()
             if invoices_to_confirm:
                 action_payment_order = invoices_to_confirm.create_account_payment_line()
                 payment_order_id = self.env["account.payment.order"].browse(
@@ -154,5 +152,7 @@ class AccountMove(models.Model):
             [("notification_status", "=", "in_queue")], limit=500
         )
         for account_move in account_move_ids:
+            if not account_move.file_boleto_pdf_id:
+                account_move.generate_boleto_pdf()
             account_move.send_bank_slip_to_invoice_followers()
         account_move_ids.write({"notification_status": "sent"})
