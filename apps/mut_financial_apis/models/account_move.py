@@ -36,7 +36,7 @@ class AccountMove(models.Model):
         tracking=True,
     )
 
-    def _cron_confirm_invoices_generate_boleto_cnab(self):
+    def _cron_confirm_invoices_generate_cnab(self):
         company_ids = self.env["res.company"].search(
             [
                 ("user_ids", "in", self.env.user.id),
@@ -62,9 +62,8 @@ class AccountMove(models.Model):
                         date.today()
                         + timedelta(days=company_id.days_until_bank_slips_due),
                     ),
-                ]
+                ], limit=2000, order="id asc"
             )
-            callbacks = []
             for invoice in invoices_to_confirm:
                 invoice.action_post()
             if invoices_to_confirm:
@@ -89,14 +88,6 @@ class AccountMove(models.Model):
                             "user_id": company_id.user_to_notify_cnab.id,
                         }
                     )
-                for url_callback in set(invoices_to_confirm.mapped("url_callback")):
-                    callbacks = [
-                        format_callback(invoice.installment_uid, "bank_slip_issued")
-                        for invoice in invoices_to_confirm.filtered(
-                            lambda x: x.url_callback == url_callback
-                        )
-                    ]
-                    send_callbacks(url_callback, callbacks)
         return
 
     def get_bank_slip_url(self):
@@ -149,10 +140,21 @@ class AccountMove(models.Model):
 
     def _cron_send_bank_slip_to_invoice_followers(self):
         account_move_ids = self.env["account.move"].search(
-            [("notification_status", "=", "in_queue")], limit=500
+            [("notification_status", "=", "in_queue")], limit=500, order="id asc"
         )
         for account_move in account_move_ids:
             if not account_move.file_boleto_pdf_id:
                 account_move.generate_boleto_pdf()
             account_move.send_bank_slip_to_invoice_followers()
         account_move_ids.write({"notification_status": "sent"})
+        api_user = self.env.ref("mut_financial_apis.api_user")
+        env = self.env(user=api_user)
+        callbacks = []
+        for url_callback in set(account_move_ids.mapped("url_callback")):
+            callbacks = [
+                format_callback(invoice.installment_uid, "bank_slip_issued")
+                for invoice in account_move_ids.filtered(
+                    lambda x: x.url_callback == url_callback
+                )
+            ]
+            send_callbacks(env, url_callback, callbacks)

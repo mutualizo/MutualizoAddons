@@ -23,7 +23,7 @@ class L10nBrCNABReturnLog(models.Model):
 
     def log_and_send_callbacks(self, url_callback, callbacks):
         try:
-            res = send_callbacks(url_callback, callbacks)
+            res = send_callbacks(self.env, url_callback, callbacks)
             success, error = res.ok, ""
         except Exception as e:
             success, error = False, str(e)
