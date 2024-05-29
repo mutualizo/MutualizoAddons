@@ -1,6 +1,6 @@
 <odoo>
 
-    <data>
+    <data noupdate="1">
         <record id="api_user" model="res.users">
             <field name="name">Finance API User</field>
             <field name="active">False</field>
