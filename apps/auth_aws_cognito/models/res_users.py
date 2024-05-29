@@ -335,6 +335,8 @@ class ResUsers(models.Model):
             if '@mutualizo.com' in validation.get('email'):
                 companies_in_system = self.get_all_cnpjs_for_string(self.env['res.company'].search([]).ids)
             elif companies_enabled != '':
+                # TODO I believe companies_in_system equals to companies_enabled after
+                # these 4 lines of code
                 companies_in_system = ''
                 cnpj_list = [cnpj.strip() for cnpj in companies_enabled.split(', ')]
                 for cnpj in cnpj_list:
@@ -354,6 +356,12 @@ class ResUsers(models.Model):
                 template_user = self.browse(template_user_id)
                 if template_user.exists():
                     user.groups_id = [(6, 0, template_user.groups_id.ids)]
+            # TODO Remove this log
+            # TODO Remove this log
+            # TODO Remove this log
+            # TODO Remove this log
+            _logger.info(f"DEBUG Params user: {user}")
+            _logger.info(f"DEBUG Params companies_in_system: {user}")
             if not user:
                 raise exceptions.AccessDenied()
             if (user.oauth_provider_id.id != provider or
@@ -370,6 +378,11 @@ class ResUsers(models.Model):
         except exceptions.AccessDenied:
             if self.env.context.get('no_user_creation'):
                 return None
+            # TODO Remove this log
+            # TODO Remove this log
+            # TODO Remove this log
+            # TODO Remove this log
+            _logger.info(f"DEBUG Params: {params}")
             state = json.loads(params.get('state'))
             token = state.get('t')
             values = self._generate_signup_values(provider, validation, params)
@@ -412,11 +425,13 @@ class ResUsers(models.Model):
         for user in self.ids:
             user_id = self.browse(user)
             if not user_id.email_verified:
-                user_attributes = user_id.get_user_attributes(user_id.login)
-                for idx in range(len(user_attributes)):
-                    if user_attributes[idx]['Name'] == 'email_verified':
-                        values['email_verified'] = user_attributes[idx]['Value'] == 'true'
+                for user_attributes in user_id.get_user_attributes(user_id.login):
+                    if not isinstance(user_attributes, dict):
+                        continue
+                    if user_attributes.get('Name') == 'email_verified':
+                        values['email_verified'] = user_attributes.get('Value') == 'true'
                         break
+
             if 'active' in values:
                 if not values['active']:
                     user_id.disable_user(values.get('login') or user_id.login)
