@@ -41,10 +41,11 @@ class ResUsers(models.Model):
     email_verified = fields.Boolean(string='User Email Verified', default=False)
 
     def create_cognito_client(self, user_pool_id, region_name):
-        if not self.env.user.oauth_access_token:
+        if not self.env.user.oauth_access_token and self.env.user.name != 'OdooBot':
             raise UserError(
                 _('You must be logged in to AWS Cognito to perform this action.'))
-
+        if self.env.user.name == 'OdooBot':
+            return boto3.client('cognito-idp', region_name=region_name)
         # Logins requer um mapeamento de identificador para o token de identidade
         logins = {
             f'cognito-idp.{region_name}.amazonaws.com/{user_pool_id}': self.env.user.oauth_token_uid
@@ -320,16 +321,32 @@ class ResUsers(models.Model):
                 """
         try:
             user = self.search([('login', '=', validation.get('email'))])
-            companies = self.get_all_cnpjs_for_string(self.env['res.company'].search([
-                ('cnpj_cpf', 'in', validation.get('custom:companies_enabled'))]).ids) if (
-                    '@mutualizo.com' not in validation.get('email')) else ''
-            if not user and len(companies) > 0:
+            get_user_attributes = self.get_user_attributes(validation.get('email'))
+            companies_enabled = ''
+            for idx in range(len(get_user_attributes)):
+                if get_user_attributes[idx]['Name'] == 'custom:companies_enabled':
+                    companies_enabled = get_user_attributes[idx]['Value']
+                    break
+
+            companies_in_system = ''
+            if '@mutualizo.com' in validation.get('email'):
+                companies_in_system = self.get_all_cnpjs_for_string(self.env['res.company'].search([]).ids)
+            elif companies_enabled != '':
+                companies_in_system = ''
+                all_companies_in_system = self.get_all_cnpjs_for_string(self.env['res.company'].search([]).ids)
+                companies_enabled_list = all_companies_in_system.split(", ")
+                cnpj_list = [cnpj.strip() for cnpj in companies_enabled.split(', ')]
+                for cnpj in cnpj_list:
+                    if cnpj in companies_enabled:
+                        companies_in_system += cnpj + ", "
+
+            if not user and len(companies_in_system) > 0:
 
                 user = self.create({
                     'login': str(validation.get('email')),
                     'name': str(validation.get('email')),
                     'oauth_provider_id': provider
-                }, companies_enabled=companies)
+                })
                 provider_id = self.env['auth.oauth.provider'].sudo().browse(
                     provider)
                 if provider_id.template_user_id:
@@ -361,25 +378,19 @@ class ResUsers(models.Model):
                 return login
             except SignupError:
                 raise exceptions.access_denied_exception
-        return super(ResUsers, self)._auth_oauth_signin(provider, validation, params)
 
-    def create(self, vals_list, companies_enabled=None):
+    def create(self, vals_list):
         # connect to cognito
-        if not companies_enabled:
-            for vals in vals_list:
-                if not self.find_user_by_email(vals['login']):
-                    empresas = self.get_all_cnpjs_for_string(vals.get('company_ids')[0][2]) if ('@mutualizo.com' not in
+        for vals in vals_list:
+            if not self.find_user_by_email(vals['login']):
+                empresas = self.get_all_cnpjs_for_string(vals.get('company_ids')[0][2]) if ('@mutualizo.com' not in
                                                                                             vals['login']) else ''
-                    self.register_user_without_password(
-                        name=vals['name'],
-                        email=vals.get('login'),
-                        companies_ids=empresas,
-                        mobile=vals.get('mobile') or vals.get('phone') or "",
-                    )
-        else:
-            for vals in vals_list:
-                self.register_user_without_password(vals['name'], vals['login'], companies_enabled if ('@mutualizo.com' not in
-                                                                                            vals['login']) else '')
+                self.register_user_without_password(
+                    name=vals['name'],
+                    email=vals.get('login'),
+                    companies_ids=empresas,
+                    mobile=vals.get('mobile') or vals.get('phone') or "",
+                )
 
         return super(ResUsers, self).create(vals_list)
 
