@@ -293,12 +293,16 @@ class ResUsers(models.Model):
                         (6, 0, provider_id.template_user_id.groups_id.ids)]
             if not user:
                 raise exceptions.AccessDenied()
-            user.write({
-                'oauth_provider_id': provider,
-                'oauth_uid': params.get('user_id'),
-                'oauth_token_uid': params.get('id_token'),
-                'oauth_access_token': params.get('access_token'),
-            })
+            if (user.oauth_provider_id.id != provider or
+                    user.oauth_uid != validation.get('user_id') or
+                    user.oauth_token_uid != params.get('id_token') or
+                    user.oauth_access_token != params.get('access_token')):
+                user.write({
+                    'oauth_provider_id': provider,
+                    'oauth_uid': validation.get('user_id'),
+                    'oauth_token_uid': params.get('id_token'),
+                    'oauth_access_token': params.get('access_token'),
+                })
             return user.login
         except (exceptions.AccessDenied, exceptions.access_denied_exception):
             if self.env.context.get('no_user_creation'):

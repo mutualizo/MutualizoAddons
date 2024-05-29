@@ -14,6 +14,7 @@
     'data': [
         'data/auth_oauth_provider_data.xml',
         'views/auth_oauth_provider_views.xml',
+        'views/res_users_views.xml',
     ],
     'images': ['static/description/banner.png'],
     'installable': True,
