@@ -8,7 +8,10 @@
 # |_|  |_|\__,_|\__|\__,_|\__,_|_|_/___\___/      #
 #                                                 #
 ###################################################
-import json, logging, requests
+import json, logging, requests, boto3
+
+from ast import literal_eval
+
 from odoo.http import request
 from odoo import api, models, fields, _, SUPERUSER_ID
 from odoo import exceptions
@@ -16,7 +19,6 @@ from odoo.addons import base
 from odoo.exceptions import UserError
 from odoo.addons.auth_signup.models.res_users import SignupError
 
-import boto3
 from botocore.exceptions import ClientError
 
 base.models.res_users.USER_PRIVATE_FIELDS.append('oauth_access_token')
@@ -333,8 +335,6 @@ class ResUsers(models.Model):
                 companies_in_system = self.get_all_cnpjs_for_string(self.env['res.company'].search([]).ids)
             elif companies_enabled != '':
                 companies_in_system = ''
-                all_companies_in_system = self.get_all_cnpjs_for_string(self.env['res.company'].search([]).ids)
-                companies_enabled_list = all_companies_in_system.split(", ")
                 cnpj_list = [cnpj.strip() for cnpj in companies_enabled.split(', ')]
                 for cnpj in cnpj_list:
                     if cnpj in companies_enabled:
@@ -347,13 +347,12 @@ class ResUsers(models.Model):
                     'name': str(validation.get('email')),
                     'oauth_provider_id': provider
                 })
-                provider_id = self.env['auth.oauth.provider'].sudo().browse(
-                    provider)
-                if provider_id.template_user_id:
-                    user.is_contractor = provider_id.template_user_id.is_contractor
-                    user.contractor = provider_id.template_user_id.contractor
-                    user.groups_id = [
-                        (6, 0, provider_id.template_user_id.groups_id.ids)]
+                template_user_id = literal_eval(
+                    self.env['ir.config_parameter'].sudo().get_param('base.default_user', 'False')
+                )
+                template_user = self.browse(template_user_id)
+                if template_user.exists():
+                    user.groups_id = [(6, 0, template_user.groups_id.ids)]
             if not user:
                 raise exceptions.AccessDenied()
             if (user.oauth_provider_id.id != provider or
@@ -367,7 +366,7 @@ class ResUsers(models.Model):
                     'oauth_access_token': params.get('access_token'),
                 })
             return user.login
-        except (exceptions.AccessDenied, exceptions.access_denied_exception):
+        except exceptions.AccessDenied:
             if self.env.context.get('no_user_creation'):
                 return None
             state = json.loads(params.get('state'))
@@ -377,7 +376,7 @@ class ResUsers(models.Model):
                 _, login, _ = self.signup(values, token)
                 return login
             except SignupError:
-                raise exceptions.access_denied_exception
+                raise exceptions.AccessDenied
 
     def create(self, vals_list):
         # connect to cognito
