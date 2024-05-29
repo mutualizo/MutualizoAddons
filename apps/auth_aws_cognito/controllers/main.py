@@ -52,12 +52,13 @@ class OAuthController(http.Controller):
             ).path == "/web" and not request.env.user.has_group("base.group_user"):
                 resp.location = "/"
             return resp
-        except AttributeError:  # TODO juc master: useless since ensure_db()
+        except AttributeError as e:  # TODO juc master: useless since ensure_db()
             # auth_signup is not installed
             _logger.error(
                 "auth_signup not installed on database %s: oauth sign up cancelled.",
                 dbname,
             )
+            _logger.error("auth_signup error %s.", e)
             url = "/web/login?oauth_error=1"
         except AccessDenied:
             # oauth credentials not valid, user could be on a temporary session
