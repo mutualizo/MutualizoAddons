@@ -78,8 +78,8 @@ class OAuthController(http.Controller):
 class Home(Home):
 
     @http.route('/web/login', type='http', auth="none")
-    def web_login(self, redirect=None, admin="", **kw):
-        if len(admin) == 0 and not kw.get("login") and not kw.get("password"):
+    def web_login(self, redirect=None, admin="", oauth_error="", **kw):
+        if len(admin) == 0 and len(oauth_error) == 0 and not kw.get("login") and not kw.get("password"):
             rec = request.env["auth.oauth.provider"].sudo().browse(
                 request.env.ref('auth_aws_cognito.provider_aws_cognito').id
             )
