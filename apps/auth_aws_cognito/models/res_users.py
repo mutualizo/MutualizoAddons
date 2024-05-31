@@ -90,6 +90,10 @@ class ResUsers(models.Model):
             companies = self.env["res.company"].browse(record)
             if companies.cnpj_cpf:
                 cnpjs += companies.cnpj_cpf + ", "
+
+        if cnpjs:
+            cnpjs = cnpjs[:-2]
+
         return cnpjs
 
     def get_user_attributes(self, username):
@@ -200,6 +204,27 @@ class ResUsers(models.Model):
             )
             return response
 
+        except ClientError as e:
+            return f"An error occurred: {e}"
+
+    def is_user_enabled(self, username):
+        auth_oauth_provider = request.env["auth.oauth.provider"].sudo().browse(
+            request.env.ref('auth_aws_cognito.provider_aws_cognito').id
+        )
+        client = self.create_cognito_client(auth_oauth_provider.cognito_user_pool_id,
+                                            auth_oauth_provider.cognito_aws_region)
+
+        try:
+            # Retrieve user details
+            response = client.admin_get_user(
+                UserPoolId=auth_oauth_provider.cognito_user_pool_id,
+                Username=username
+            )
+            # Check the user's status
+            user_status = response['UserStatus']
+            # User is considered enabled if the status is 'CONFIRMED'
+            is_enabled = user_status == 'CONFIRMED'
+            return is_enabled
         except ClientError as e:
             return f"An error occurred: {e}"
 
@@ -324,31 +349,38 @@ class ResUsers(models.Model):
         try:
             user = self.search([('login', '=', validation.get('email'))])
             companies_enabled = ''
+
+            if not self.is_user_enabled(validation.get('email')) or not user.active:
+                raise exceptions.AccessDenied()
+
             for user_attributes in self.get_user_attributes(validation.get('email')):
                 if not isinstance(user_attributes, dict):
                     continue
+
                 if user_attributes.get('Name') == 'custom:companies_enabled':
                     companies_enabled = user_attributes.get('Value', '')
                     break
 
-            companies_in_system = ''
-            if '@mutualizo.com' in validation.get('email'):
-                companies_in_system = self.get_all_cnpjs_for_string(self.env['res.company'].search([]).ids)
-            elif companies_enabled != '':
-                # TODO I believe companies_in_system equals to companies_enabled after
-                # these 4 lines of code
-                companies_in_system = ''
-                cnpj_list = [cnpj.strip() for cnpj in companies_enabled.split(', ')]
-                for cnpj in cnpj_list:
-                    if cnpj in companies_enabled:
-                        companies_in_system += cnpj + ", "
+            if companies_enabled == '':
+                raise exceptions.AccessDenied()
 
-            if not user and len(companies_in_system) > 0:
+            companies_in_system_enable = []
+
+            for all_companies in self.env['res.company'].search([]):
+                if all_companies.cnpj_cpf:
+                    if all_companies.cnpj_cpf in companies_enabled:
+                        companies_in_system_enable.append(all_companies.id)
+
+            if not companies_in_system_enable:
+                raise exceptions.AccessDenied()
+
+            if not user:
 
                 user = self.create({
                     'login': str(validation.get('email')),
                     'name': str(validation.get('email')),
-                    'oauth_provider_id': provider
+                    'oauth_provider_id': provider,
+                    'company_ids': [(6, 0, companies_in_system_enable)],
                 })
                 template_user_id = literal_eval(
                     self.env['ir.config_parameter'].sudo().get_param('base.default_user', 'False')
@@ -356,8 +388,10 @@ class ResUsers(models.Model):
                 template_user = self.browse(template_user_id)
                 if template_user.exists():
                     user.groups_id = [(6, 0, template_user.groups_id.ids)]
+
             if not user:
                 raise exceptions.AccessDenied()
+
             if (user.oauth_provider_id.id != provider or
                     user.oauth_uid != validation.get('user_id') or
                     user.oauth_token_uid != params.get('id_token') or
@@ -385,8 +419,7 @@ class ResUsers(models.Model):
         # connect to cognito
         for vals in vals_list:
             if not self.find_user_by_email(vals['login']):
-                empresas = self.get_all_cnpjs_for_string(vals.get('company_ids')[0][2]) if ('@mutualizo.com' not in
-                                                                                            vals['login']) else ''
+                empresas = self.get_all_cnpjs_for_string(vals.get('company_ids')[0][2])
                 self.register_user_without_password(
                     name=vals['name'],
                     email=vals.get('login'),
@@ -426,16 +459,52 @@ class ResUsers(models.Model):
                     user_id.disable_user(values.get('login') or user_id.login)
                 else:
                     user_id.enable_user(values.get('login') or user_id.login)
-            if 'company_ids' in values:
+
+            if 'company_ids' in values or 'company_id' in values:
                 user_id = self.browse(user)
-                empresas = self.get_all_cnpjs_for_string(values.get('company_ids')[0][2]) if ('@mutualizo.com' not in
-                                                                                        user_id.login) else ''
+                copanies_registered = ''
+                companies_editable = ''
+
+                for user_attributes in self.get_user_attributes(user_id.login):
+                    if not isinstance(user_attributes, dict):
+                        continue
+                    if user_attributes.get('Name') == 'custom:companies_enabled':
+                        copanies_registered = user_attributes.get('Value', '')
+                        break
+
+                if not copanies_registered:
+                    companies_editable = self.get_all_cnpjs_for_string(values.get('company_ids')[0][2] or
+                                                                       values.get('company_id'))
+
+                elif len(values.get('company_ids')[0][2]) or len(values.get('company_id')):
+                    copanies_registered_list = copanies_registered.split(', ')
+                    companies_toedit = self.get_all_cnpjs_for_string(
+                        values.get('company_ids')[0][2] or values.get('company_id')
+                    ).split(', ')
+                    companies_all_to_remove = self.get_all_cnpjs_for_string(
+                        self.env['res.company'].search([]).ids
+                    ).split(', ')
+
+                    if companies_all_to_remove != ['']:
+                        match = set(copanies_registered.split(', ')) & set(companies_all_to_remove)
+
+                        if match:
+                            for m in match:
+                                copanies_registered_list.remove(m)
+
+                        copanies_registered_list.extend(companies_toedit)
+                        companies_editable = ", ".join(str(element) for element in copanies_registered_list)
+
+                    else:
+                        copanies_registered_list.extend(companies_toedit)
+                        companies_editable = ", ".join(str(element) for element in copanies_registered_list)
+
                 user_id.update_user_attributes(
                     username=user_id.login,
                     user_attributes=[
                         {
                             'Name': 'custom:companies_enabled',
-                            'Value': empresas
+                            'Value': companies_editable
                         },
                         {
                             'Name': 'address',
