@@ -37,7 +37,9 @@ class OAuthLogin(Home):
             scope=rec.scope,
             redirect_uri=return_url,
         )
-        rec.auth_link = "%s?%s" % (rec.auth_endpoint, werkzeug.urls.url_encode(params))
+        rec.write({
+            'auth_link': "%s?%s" % (rec.auth_endpoint, werkzeug.urls.url_encode(params)),
+        })
 
         return list(rec)
 
