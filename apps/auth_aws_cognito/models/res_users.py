@@ -473,14 +473,24 @@ class ResUsers(models.Model):
                         break
 
                 if not copanies_registered:
-                    companies_editable = self.get_all_cnpjs_for_string(values.get('company_ids')[0][2] or
-                                                                       values.get('company_id'))
+                    if values.get('company_id') and not values.get('company_ids'):
+                        if len(user_id.company_ids) > 1:
+                            companies_editable = self.get_all_cnpjs_for_string(user_id.company_ids.ids).split(', ')
+                        else:
+                            companies_editable = self.get_all_cnpjs_for_string(values.get('company_id')).split(', ')
+                    else:
+                        companies_editable = self.get_all_cnpjs_for_string(values.get('company_ids')[0][2]).split(', ')
 
-                elif len(values.get('company_ids')[0][2]) or len(values.get('company_id')):
+                elif values.get('company_ids') or values.get('company_id'):
+                    if values.get('company_id') and not values.get('company_ids'):
+                        if len(user_id.company_ids) > 1:
+                            companies_toedit = self.get_all_cnpjs_for_string(user_id.company_ids.ids).split(', ')
+                        else:
+                            companies_toedit = self.get_all_cnpjs_for_string(values.get('company_id')).split(', ')
+                    else:
+                        companies_toedit = self.get_all_cnpjs_for_string(values.get('company_ids')[0][2]).split(', ')
+
                     copanies_registered_list = copanies_registered.split(', ')
-                    companies_toedit = self.get_all_cnpjs_for_string(
-                        values.get('company_ids')[0][2] or values.get('company_id')
-                    ).split(', ')
                     companies_all_to_remove = self.get_all_cnpjs_for_string(
                         self.env['res.company'].search([]).ids
                     ).split(', ')
