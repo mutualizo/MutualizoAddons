@@ -36,11 +36,16 @@ class L10nBrCNABReturnLog(models.Model):
             "error": error
         })
 
+    def update_bank_slip_status(self):
+        for event in self.event_ids.filtered(lambda x: x.invoice_id):
+            status = CALLBACK_STATUS.get(event.occurrences)
+            if status:
+                event.invoice_id.write({"bank_slip_status": status})
+
     def send_cnab_return_callbacks(self):
         event_ids = self.event_ids.filtered(
             lambda x: x.invoice_id.url_callback and x.invoice_id.installment_uid
         )
-
         for url_callback in set(event_ids.invoice_id.mapped("url_callback")):
             """
                 Get the status for each 'installment_uid'
@@ -54,8 +59,6 @@ class L10nBrCNABReturnLog(models.Model):
                 installment_uid = event.invoice_id.installment_uid
                 status = CALLBACK_STATUS.get(event.occurrences)
                 installment_status[installment_uid] = status
-                if status:
-                    event.invoice_id.write({"bank_slip_status": status})
             callbacks = [
                 format_callback(uid, status)
                 for uid, status in installment_status.items()
