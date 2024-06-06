@@ -54,12 +54,6 @@ then
 	exec odoo-server "${DB_ARGS[@]}" "--update=$UPGRADE_MODULE" "--database=$UPGRADE_DATABASE"
 else
 	echo "Iniciando em modo normal de execução"
-	echo $PG_HOST
-	echo $PG_PORT
-	echo $PG_USER
-	echo $PG_PASSWORD
-
-	echo ${DB_ARGS[@]}
 
 	case "$1" in
     	-- | odoo)
