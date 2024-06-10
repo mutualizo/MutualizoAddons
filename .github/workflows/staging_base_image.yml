@@ -41,7 +41,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build \
-            -t $ECR_REGISTRY/$ECR_REPOSITORY:ltast ./docker-base/Dockerfile
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./docker-base/
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: Tag and push image as latest to Amazon ECR
