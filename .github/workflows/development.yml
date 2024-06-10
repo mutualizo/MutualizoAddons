@@ -7,7 +7,7 @@ on:
 env:
   AWS_REGION: us-east-1
   STAGE: dev
-  ECR_REPOSITORY: ${{vars.SERVICE_NAME}}-dev
+  ECR_REPOSITORY: ${{vars.SERVICE_NAME}}-dev-14
   ECS_CLUSTER: ${{vars.ECS_CLUSTER}}-dev
 
 jobs:
