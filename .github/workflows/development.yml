@@ -3,11 +3,11 @@ name: Deploy to Development
 on:
   push:
     branches:
-      - 14.0_dev
+      - 14.0_development
 env:
   AWS_REGION: us-east-1
   STAGE: dev
-  ECR_REPOSITORY: ${{vars.SERVICE_NAME}}-dev-14
+  ECR_REPOSITORY: ${{vars.SERVICE_NAME}}-dev
   ECS_CLUSTER: ${{vars.ECS_CLUSTER}}-dev
 
 jobs:
