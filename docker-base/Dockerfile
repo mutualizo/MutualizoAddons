@@ -62,7 +62,9 @@ RUN wget https://github.com/odoo/odoo/archive/refs/heads/14.0.zip -O odoo.zip &&
     wget https://github.com/OCA/bank-payment/archive/14.0.zip -O bank-payment.zip && \
     wget https://github.com/OCA/l10n-brazil/archive/14.0.zip -O l10n-brazil.zip && \
     wget https://github.com/muk-it/muk_web/archive/14.0.zip -O muk_web.zip && \
+    wget https://github.com/OCA/bank-statement-import/archive/14.0.zip -O bank-statement-import.zip && \
     wget https://github.com/CybroOdoo/CybroAddons/archive/refs/heads/14.0.zip -O CybroAddons.zip
+    
 
 RUN unzip -q odoo.zip && rm odoo.zip && mv odoo-14.0 /opt/odoo && \
     unzip -q design-themes.zip && rm design-themes.zip && mv design-themes-14.0 /opt/addons/design-themes && \
@@ -71,6 +73,9 @@ RUN unzip -q odoo.zip && rm odoo.zip && mv odoo-14.0 /opt/odoo && \
     unzip -q bank-payment.zip && rm bank-payment.zip && mv bank-payment-14.0 /opt/addons/bank-payment && \
     unzip -q l10n-brazil.zip && rm l10n-brazil.zip && mv l10n-brazil-14.0 /opt/addons/l10n-brazil && \
     unzip -q muk_web.zip && rm muk_web.zip && mv muk_web-14.0 /opt/addons/muk_web && \
-    unzip -q CybroAddons.zip && rm CybroAddons.zip && mv CybroAddons-14.0 /opt/addons/CybroAddons
+    unzip -q bank-statement-import.zip && rm bank-statement-import.zip && mv bank-statement-import-14.0 /opt/addons/bank-statement-import && \
+    unzip -q CybroAddons.zip && rm CybroAddons.zip && mv CybroAddons-14.0 /opt/addons/CybroAddons && \
+    find . -name "*.po" -not -name "pt_BR.po" -not -name "pt.po"  -type f -delete && \
+    find . -path "*l10n_*" -not -name "*l10n_br*" -delete
 
 RUN pip3 install -r /opt/addons/l10n-brazil/requirements.txt
