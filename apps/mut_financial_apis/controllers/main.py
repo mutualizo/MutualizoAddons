@@ -231,9 +231,9 @@ class FinancialAPIsController(http.Controller):
         url_callback = invoice.get("url_callback")
         contact_list = invoice.get("contact_list")
         installment["due_date"] = datetime.fromisoformat(installment["due_date"])
-
-        default_product = env.ref("mut_financial_apis.api_product_product")
-
+        product_id = env["product.product"].search(
+            [("default_code", "=", invoice.get("account_type"))], limit=1
+        ) or env.ref("mut_financial_apis.api_product_product")
         partner_contact_list = self.get_invoice_followers(env, company_id, contact_list)
         partner_contact_list.append(partner_id)
 
@@ -254,11 +254,11 @@ class FinancialAPIsController(http.Controller):
                     0,
                     0,
                     {
-                        "product_id": default_product.id,
-                        "name": default_product.name,
+                        "product_id": product_id.id,
+                        "name": product_id.name,
                         "price_unit": float(installment.get("amount")),
                         "quantity": 1,
-                        "tax_ids": [(6, 0, default_product.taxes_id.ids)],
+                        "tax_ids": [(6, 0, product_id.taxes_id.ids)],
                     },
                 )
             ],
