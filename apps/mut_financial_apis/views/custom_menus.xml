@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_redirect_to_slides" name="Treinamentos" sequence="350" web_icon="mut_financial_apis,static/src/img/slides_icon.png"/>
+
+        <record id="action_redirect_to_slides" model="ir.actions.act_url">
+            <field name="name">Redirecionar para Página de Treinamentos</field>
+            <field name="type">ir.actions.act_url</field>
+            <field name="url">/slides</field>
+            <field name="target">self</field>
+        </record>
+
+        <menuitem id="menu_treinamentos" parent="menu_redirect_to_slides"
+            action="action_redirect_to_slides" sequence="350"/>
+
+        <record id="action_redirect_to_apps" model="ir.actions.client">
+            <field name="name">Aplicativos</field>
+            <field name="tag">redirect_to_apps</field>
+            <field name="type">ir.actions.client</field>
+        </record>
+
+    </data>
+</odoo>
