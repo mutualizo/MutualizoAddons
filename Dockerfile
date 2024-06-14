@@ -1,5 +1,6 @@
 ARG AWS_REGION=us-east-2
-FROM 652510808251.dkr.ecr.${AWS_REGION}.amazonaws.com/soma-14-base:latest
+ARG STAGE=dev
+FROM 652510808251.dkr.ecr.${AWS_REGION}.amazonaws.com/soma-14-base-${STAGE}:latest
 
 WORKDIR /opt/sources/
 

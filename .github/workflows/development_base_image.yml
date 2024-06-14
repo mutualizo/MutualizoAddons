@@ -1,13 +1,13 @@
-name: Building Base Image for Staging
+name: Building Base Image for Development
 
 on:
   push:
     branches:
-      - 14.0_staging_base_image
+      - 14.0_development_base_image
 env:
   AWS_REGION: us-east-2
-  STAGE: stg
-  ECR_REPOSITORY: soma-14-base-stg
+  STAGE: dev
+  ECR_REPOSITORY: soma-14-base-dev
 
 jobs:
   build-and-push:

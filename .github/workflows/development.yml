@@ -3,11 +3,11 @@ name: Deploy to Development
 on:
   push:
     branches:
-      - 14.0_dev
+      - 14.0_development
 env:
-  AWS_REGION: us-east-1
+  AWS_REGION: us-east-2
   STAGE: dev
-  ECR_REPOSITORY: ${{vars.SERVICE_NAME}}-dev-14
+  ECR_REPOSITORY: ${{vars.SERVICE_NAME}}-dev
   ECS_CLUSTER: ${{vars.ECS_CLUSTER}}-dev
 
 jobs:
@@ -43,6 +43,7 @@ jobs:
         run: |
           docker build \
             --build-arg AWS_REGION=${{ env.AWS_REGION }} \
+            --build-arg STAGE=${{ env.STAGE }} \
             -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
