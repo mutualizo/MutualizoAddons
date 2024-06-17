@@ -2,7 +2,7 @@
 <odoo>
     <template id="assets_backend_inherit_mut" inherit_id="web.assets_backend" name="Mut backend assets">
         <xpath expr="script[last()]" position="after">
-            <script type="text/javascript" src="/mut_financial_apis/static/src/js/redirect_to_apps.js"></script>
+            <script type="text/javascript" src="/mut_ui_improvements/static/src/js/redirect_to_apps.js"></script>
         </xpath>
     </template>
 </odoo>
