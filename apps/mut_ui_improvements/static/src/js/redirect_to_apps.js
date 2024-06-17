@@ -1,4 +1,4 @@
-odoo.define('mut_financial_apis.redirect_to_apps', function (require) {
+odoo.define('mut_ui_improvements.redirect_to_apps', function (require) {
     "use strict";
     
     var AbstractAction = require('web.AbstractAction');

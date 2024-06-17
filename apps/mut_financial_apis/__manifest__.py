@@ -30,8 +30,6 @@
         "views/account_move.xml",
         "views/l10n_br_cnab_return_log.xml",
         "views/res_config_settings.xml",
-        "views/custom_menus.xml",
-        "views/assets.xml",
     ],
     'installable': True,
     'application': True,
