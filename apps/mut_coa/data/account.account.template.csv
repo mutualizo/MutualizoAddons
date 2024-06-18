@@ -1,0 +1,451 @@
+id,code,name,note,user_type_id:id,reconcile,chart_template_id:id
+account_account_1_1_1_1_1_0_0_0_0_0_0_0_0_0_1,1.1.1.1.1.0.0.0.0.0.0.0.0.0.1,CAIXA MATRIZ,,account.data_account_type_liquidity,1,mut_coa_template
+account_account_1_1_1_3_1_0_0_0_0_0_0_0_0_0_1,1.1.1.3.1.0.0.0.0.0.0.0.0.0.1,BRADESCO,,account.data_account_type_liquidity,1,mut_coa_template
+account_account_1_1_1_3_1_0_0_0_0_0_0_0_0_0_2,1.1.1.3.1.0.0.0.0.0.0.0.0.0.2,BRADESCO,,account.data_account_type_liquidity,1,mut_coa_template
+account_account_1_1_1_3_1_0_0_0_0_0_0_0_0_0_5,1.1.1.3.1.0.0.0.0.0.0.0.0.0.5,SANTANDER,,account.data_account_type_liquidity,1,mut_coa_template
+account_account_1_1_2_1_1_1_1_0_0_0_0_0_0_0_1,1.1.2.1.1.1.1.0.0.0.0.0.0.0.1,FUNDO RESTEC - SOBERANO,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_1_1_1_2_0_0_0_0_0_0_0_1,1.1.2.1.1.1.2.0.0.0.0.0.0.0.1,FUNDO RESTEC - SOBERANO,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_1_2_1_1_0_0_0_0_0_0_0_1,1.1.2.1.2.1.1.0.0.0.0.0.0.0.1,BRADESCO - TÍTULO DE CAPITALIZAÇÃO,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_1_2_1_1_0_0_0_0_0_0_0_2,1.1.2.1.2.1.1.0.0.0.0.0.0.0.2,APLICAÇÃO AUTOMÁTICA BRADESCO,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_1_2_1_1_0_0_0_0_0_0_0_3,1.1.2.1.2.1.1.0.0.0.0.0.0.0.3,FUNDO DE INVESTIMENTO BRADESCO FIC RF SIMPLES,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_1_2_1_2_0_0_0_0_0_0_0_1,1.1.2.1.2.1.2.0.0.0.0.0.0.0.1,BRADESCO - TÍTULO DE CAPITALIZAÇÃO,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_1_2_1_2_0_0_0_0_0_0_0_2,1.1.2.1.2.1.2.0.0.0.0.0.0.0.2,APLICAÇÃO AUTOMÁTICA BRADESCO,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_1_2_1_2_0_0_0_0_0_0_0_3,1.1.2.1.2.1.2.0.0.0.0.0.0.0.3,FUNDO DE INVESTIMENTO BRADESCO FIC RF SIMPLES,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_2_1_1_1_0_0_0_0_0_0_0_1,1.1.2.2.1.1.1.0.0.0.0.0.0.0.1,LFT - COBERTURA PROV TECNICAS,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_2_1_1_2_0_0_0_0_0_0_0_1,1.1.2.2.1.1.2.0.0.0.0.0.0.0.1,LFT - COBERTURA PROV TECNICAS,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_2_2_1_1_0_0_0_0_0_0_0_1,1.1.2.2.2.1.1.0.0.0.0.0.0.0.1,LTN - SEM COBERTURA DE PROVISÕES TÉCNICAS,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_2_2_1_2_0_0_0_0_0_0_0_1,1.1.2.2.2.1.2.0.0.0.0.0.0.0.1,LTN - SEM COBERTURA DE PROVISÕES TÉCNICAS,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_8_2_8_1_0_0_0_0_0_0_01,1.1.2.8.2.8.1.0.0.0.0.0.0.01,VALOR ORIGINAL,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_2_8_2_8_2_0_0_0_0_0_0_0_1,1.1.2.8.2.8.2.0.0.0.0.0.0.0.1,AJUSTE AO VALOR DE MERCADO,,mut_coa.account_type_revenue_financial,1,mut_coa_template
+account_account_1_1_3_1_1_1_0_0_0_0_0_0_0_01,1.1.3.1.1.1.0.0.0.0.0.0.0.01,PREMIOS - RISCOS VIGENTES EMITIDOS,,account.data_account_type_receivable,1,mut_coa_template
+account_account_1_1_3_1_5_0_0_0_0_0_0_0_0_01,1.1.3.1.5.0.0.0.0.0.0.0.0.01,PREMIOS - RISCOS VIGENTES NÃO EMITIDOS,,account.data_account_type_receivable,1,mut_coa_template
+account_account_1_1_3_1_9_0_0_0_0_0_0_0_0_01,1.1.3.1.9.0.0.0.0.0.0.0.0.01,PROVISÃO PARA REDUÇÃO AO VALOR RECUPERÁVEL,,l10n_br_coa.data_account_type_current_assets_receivable_loss,1,mut_coa_template
+account_account_1_1_4_4_1_2_0_0_0_0_0_0_0_0_1,1.1.4.4.1.2.0.0.0.0.0.0.0.0.1,ANTECIPAÇÃO DE IMPOSTO DE RENDA,,mut_coa.account_type_taxes_to_compensate_recover,1,mut_coa_template
+account_account_1_1_4_4_1_3_0_0_0_0_0_0_0_0_1,1.1.4.4.1.3.0.0.0.0.0.0.0.0.1,IMPOSTO DE RENDA EM RESTITUIÇÃO,,mut_coa.account_type_taxes_to_compensate_recover,1,mut_coa_template
+account_account_1_1_4_4_2_1_0_0_0_0_0_0_0_0_1,1.1.4.4.2.1.0.0.0.0.0.0.0.0.1,CONTRIBUIÇÃO SOCIAL A COMPENSAR,,mut_coa.account_type_taxes_to_compensate_recover,1,mut_coa_template
+account_account_1_1_4_4_2_2_0_0_0_0_0_0_0_0_1,1.1.4.4.2.2.0.0.0.0.0.0.0.0.1,ANTECIPAÇÃO DE CONTRIBUIÇÃO SOCIAL,,mut_coa.account_type_taxes_to_compensate_recover,1,mut_coa_template
+account_account_1_1_4_4_5_1_0_0_0_0_0_0_0_0_1,1.1.4.4.5.1.0.0.0.0.0.0.0.0.1,COFINS A COMPENSAR,,mut_coa.account_type_taxes_to_compensate_recover,1,mut_coa_template
+account_account_1_1_4_4_5_2_0_0_0_0_0_0_0_0_1,1.1.4.4.5.2.0.0.0.0.0.0.0.0.1,PIS A COMPENSAR,,mut_coa.account_type_taxes_to_compensate_recover,1,mut_coa_template
+account_account_1_1_4_4_4_8_0_0_0_0_0_0_0_0_1,1.1.4.4.4.8.0.0.0.0.0.0.0.0.1,IMPOSTOS A RECUPERAR,,mut_coa.account_type_taxes_to_compensate_recover,1,mut_coa_template
+account_account_1_1_4_5_1_0_0_0_0_0_0_0_0_0_1,1.1.4.5.1.0.0.0.0.0.0.0.0.0.1,ADIANTAMENTO DE SALÁRIOS,,account.data_account_type_prepayments,1,mut_coa_template
+account_account_1_1_4_5_2_0_0_0_0_0_0_0_0_0_1,1.1.4.5.2.0.0.0.0.0.0.0.0.0.1,ADIANTAMENTO DE FÉRIAS,,account.data_account_type_prepayments,1,mut_coa_template
+account_account_1_1_4_5_3_0_0_0_0_0_0_0_0_0_1,1.1.4.5.3.0.0.0.0.0.0.0.0.0.1,ADIANTAMENTO DE 13º SALÁRIO,,account.data_account_type_prepayments,1,mut_coa_template
+account_account_1_1_4_5_8_0_0_0_0_0_0_0_0_0_1,1.1.4.5.8.0.0.0.0.0.0.0.0.0.1,OUTROS ADIANTAMENTOS,,account.data_account_type_prepayments,1,mut_coa_template
+account_account_1_1_4_6_1_0_0_0_0_0_0_0_0_0_1,1.1.4.6.1.0.0.0.0.0.0.0.0.0.1,ADIANTAMENTOS PARA VIAGENS,,account.data_account_type_prepayments,1,mut_coa_template
+account_account_1_1_4_6_2_0_0_0_0_0_0_0_0_0_1,1.1.4.6.2.0.0.0.0.0.0.0.0.0.1,ADIANTAMENTOS A FORNECEDORES,,account.data_account_type_prepayments,1,mut_coa_template
+account_account_1_1_4_6_8_1_0_0_0_0_0_0_0_0_1,1.1.4.6.8.1.0.0.0.0.0.0.0.0.1,FUNDO FIXO,,account.data_account_type_prepayments,1,mut_coa_template
+account_account_1_1_4_7_7_0_0_0_0_0_0_0_0_0_1,1.1.4.7.7.0.0.0.0.0.0.0.0.0.1,DEPÓSITOS JUDICIAIS CÍVEIS,,account.data_account_type_current_assets,1,mut_coa_template
+account_account_1_1_4_8_1_0_0_0_0_0_0_0_0_0_1,1.1.4.8.1.0.0.0.0.0.0.0.0.0.1,BLOQUEIOS JUDICIAIS,,mut_coa.account_type_other_credits,1,mut_coa_template
+account_account_1_1_4_8_8_0_0_0_0_0_0_0_0_0_1,1.1.4.8.8.0.0.0.0.0.0.0.0.0.1,OUTROS CRÉDITOS,,l10n_br_coa.data_account_type_current_assets_other_credits,1,mut_coa_template
+account_account_1_1_7_2_1_0_0_0_0_0_0_0_0_0_1,1.1.7.2.1.0.0.0.0.0.0.0.0.0.1,ADIANTAMENTO DE CORRETORES,,account.data_account_type_prepayments,1,mut_coa_template
+account_account_1_1_7_2_1_0_0_0_0_0_0_0_0_0_2,1.1.7.2.1.0.0.0.0.0.0.0.0.0.2,SEGUROS,,mut_coa.account_type_operating_expenses_anticipated,1,mut_coa_template
+account_account_1_1_7_2_1_0_0_0_0_0_0_0_0_0_3,1.1.7.2.1.0.0.0.0.0.0.0.0.0.3,TICKET FUNCIONÁRIO,,mut_coa.account_type_operating_expenses_anticipated,1,mut_coa_template
+account_account_1_1_7_2_1_0_0_0_0_0_0_0_0_0_4,1.1.7.2.1.0.0.0.0.0.0.0.0.0.4,VALE TRANSPORTE FUNCIONÁRIO,,mut_coa.account_type_operating_expenses_anticipated,1,mut_coa_template
+account_account_1_1_8_1_1_2_0_0_0_0_0_0_0_0_1,1.1.8.1.1.2.0.0.0.0.0.0.0.0.1,COMISSÃO DE SEGUROS - CAD,,mut_coa.account_type_acquisition_costs_deferred,1,mut_coa_template
+account_account_1_1_8_1_1_2_0_0_0_0_0_0_0_0_2,1.1.8.1.1.2.0.0.0.0.0.0.0.0.2,DIFERIMENTO - VIGÊNCIA DO RISCO,,mut_coa.account_type_acquisition_costs_deferred,1,mut_coa_template
+account_account_1_1_9_1_1_1_0_0_0_0_0_0_0_0_1,1.1.9.1.1.1.0.0.0.0.0.0.0.0.1,PPNG RVE RESSEG - LOCAL,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_1_1_1_0_0_0_0_0_0_0_0_2,1.1.9.1.1.1.0.0.0.0.0.0.0.0.2,PPNG RVE RESSEG - ADMITIDA,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_1_1_1_0_0_0_0_0_0_0_0_3,1.1.9.1.1.1.0.0.0.0.0.0.0.0.3,PPNG RVE RESSEG - EVENTUAL,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_1_1_2_0_0_0_0_0_0_0_0_1,1.1.9.1.1.2.0.0.0.0.0.0.0.0.1,DCD RVE RESSEG. LOCAL,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_1_1_2_0_0_0_0_0_0_0_0_2,1.1.9.1.1.2.0.0.0.0.0.0.0.0.2,DCD RVE RESSEG. ADMITIDA,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_1_1_2_0_0_0_0_0_0_0_0_3,1.1.9.1.1.2.0.0.0.0.0.0.0.0.3,DCD RVE RESSEG. EVENTUAL,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_1_2_0_0_0_0_0_0_0_0_0_1,1.1.9.1.2.0.0.0.0.0.0.0.0.0.1,PPNG RVNE RESSEG - LOCAL,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_1_2_0_0_0_0_0_0_0_0_0_2,1.1.9.1.2.0.0.0.0.0.0.0.0.0.2,PPNG RVNE RESSEG - ADMITIDA,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_1_2_0_0_0_0_0_0_0_0_0_3,1.1.9.1.2.0.0.0.0.0.0.0.0.0.3,PPNG RVNE RESSEG - EVENTUAL,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_3_1_1_0_0_0_0_0_0_0_0_1,1.1.9.3.1.1.0.0.0.0.0.0.0.0.1,SINISTROS OCORRIDOS RESSEGURADORA - LOCAL - PSA,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_3_1_1_0_0_0_0_0_0_0_0_2,1.1.9.3.1.1.0.0.0.0.0.0.0.0.2,SINISTROS OCORRIDOS RESSEGURADORA - LOCAL - PSL LIQUIDAÇÃO,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_3_1_2_0_0_0_0_0_0_0_0_1,1.1.9.3.1.2.0.0.0.0.0.0.0.0.1,IBNER RESSEGURADORA - LOCAL,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_3_2_0_0_0_0_0_0_0_0_0_1,1.1.9.3.2.0.0.0.0.0.0.0.0.0.1,IBNR RESSEGURADORA - LOCAL,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_4_1_1_0_0_0_0_0_0_0_0_1,1.1.9.4.1.1.0.0.0.0.0.0.0.0.1,SINISTROS OCORRIDOS RESSEGURADORA - LOCAL - PDR AVISADOS,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_1_9_4_1_1_0_0_0_0_0_0_0_0_2,1.1.9.4.1.1.0.0.0.0.0.0.0.0.2,SINISTROS OCORRIDOS RESSEGURADORA - LOCAL - PDR LIQUIDAÇÃO,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_2_1_1_1_1_1_1_0_0_0_0_0_0_1,1.2.1.1.1.1.1.1.0.0.0.0.0.0.1,FUNDO EXCLUSIVO DE RESERVA TÉCNICA,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_2_1_1_1_1_1_2_0_0_0_0_0_0_1,1.2.1.1.1.1.1.2.0.0.0.0.0.0.1,FUNDO EXCLUSIVO DE RESERVA TÉCNICA,,mut_coa.account_type_technical_provisions_asset,1,mut_coa_template
+account_account_1_2_2_1_8_0_0_0_0_0_0_0_0_0_1,1.2.2.1.8.0.0.0.0.0.0.0.0.0.1,OUTROS INVESTIMENTOS DE TERCEIROS,,l10n_br_coa.data_account_type_non_current_investments,1,mut_coa_template
+account_account_1_2_2_1_8_0_0_0_0_0_0_0_0_0_2,1.2.2.1.8.0.0.0.0.0.0.0.0.0.2,PARTICIPAÇÕES DE CAPITAL,,l10n_br_coa.data_account_type_non_current_investments,1,mut_coa_template
+account_account_1_2_2_1_8_0_0_0_0_0_0_0_0_0_3,1.2.2.1.8.0.0.0.0.0.0.0.0.0.3,PARTICIPAÇÕES COMPRA DE TÍTULOS,,l10n_br_coa.data_account_type_non_current_investments,1,mut_coa_template
+account_account_1_2_3_2_1_1_0_0_0_0_0_0_0_0_1,1.2.3.2.1.1.0.0.0.0.0.0.0.0.1,COMPUTADORES E PERIFÉRICOS,,mut_coa.account_type_noncurrent_assets_fixed,1,mut_coa_template
+account_account_1_2_3_2_1_2_2_0_0_0_0_0_0_0_1,1.2.3.2.1.2.2.0.0.0.0.0.0.0.1,SISTEMAS APLICATIVOS,,mut_coa.account_type_noncurrent_assets_fixed,1,mut_coa_template
+account_account_1_2_3_2_9_1_0_0_0_0_0_0_0_0_1,1.2.3.2.9.1.0.0.0.0.0.0.0.0.1,DEPRECIAÇÃO HARDWARE,,account.data_account_type_depreciation,1,mut_coa_template
+account_account_1_2_3_3_1_0_0_0_0_0_0_0_0_0_1,1.2.3.3.1.0.0.0.0.0.0.0.0.0.1,MÁQUINAS,,mut_coa.account_type_noncurrent_assets_fixed,1,mut_coa_template
+account_account_1_2_3_3_1_0_0_0_0_0_0_0_0_0_2,1.2.3.3.1.0.0.0.0.0.0.0.0.0.2,MÓVEIS E UTENSÍLIOS,,mut_coa.account_type_noncurrent_assets_fixed,1,mut_coa_template
+account_account_1_2_3_3_9_0_0_0_0_0_0_0_0_0_1,1.2.3.3.9.0.0.0.0.0.0.0.0.0.1,"DEPRECIAÇÃO MOVEIS, MAQUINAS E UTENSILIOS",,account.data_account_type_depreciation,1,mut_coa_template
+account_account_1_2_3_4_1_0_0_0_0_0_0_0_0_0_1,1.2.3.4.1.0.0.0.0.0.0.0.0.0.1,VEÍCULOS,,mut_coa.account_type_noncurrent_assets_fixed,1,mut_coa_template
+account_account_1_2_3_4_1_0_0_0_0_0_0_0_0_0_2,1.2.3.4.1.0.0.0.0.0.0.0.0.0.2,CAMINHÕES DA FROTA,,mut_coa.account_type_noncurrent_assets_fixed,1,mut_coa_template
+account_account_1_2_3_4_1_0_0_0_0_0_0_0_0_0_3,1.2.3.4.1.0.0.0.0.0.0.0.0.0.3,AUTOMÓVEIS E UTILITÁRIOS DA FROTA,,mut_coa.account_type_noncurrent_assets_fixed,1,mut_coa_template
+account_account_1_2_3_4_1_0_0_0_0_0_0_0_0_0_4,1.2.3.4.1.0.0.0.0.0.0.0.0.0.4,GUINDASTE,,mut_coa.account_type_noncurrent_assets_fixed,1,mut_coa_template
+account_account_1_2_3_4_1_0_0_0_0_0_0_0_0_0_5,1.2.3.4.1.0.0.0.0.0.0.0.0.0.5,VEÍCULOS NÃO LOCALIZADOS,,mut_coa.account_type_noncurrent_assets_fixed,1,mut_coa_template
+account_account_1_2_3_4_1_0_0_0_0_0_0_0_0_0_6,1.2.3.4.1.0.0.0.0.0.0.0.0.0.6,VEÍCULOS LOCALIZADOS,,mut_coa.account_type_noncurrent_assets_fixed,1,mut_coa_template
+account_account_1_2_3_4_9_0_0_0_0_0_0_0_0_0_1,1.2.3.4.9.0.0.0.0.0.0.0.0.0.1,DEPRECIAÇÃO VEICULOS,,account.data_account_type_depreciation,1,mut_coa_template
+account_account_1_2_3_4_9_0_0_0_0_0_0_0_0_0_2,1.2.3.4.9.0.0.0.0.0.0.0.0.0.2,DEPRECIAÇÃO VEICULOS SINISTRADOS,,account.data_account_type_depreciation,1,mut_coa_template
+account_account_1_2_4_8_2_0_0_0_0_0_0_0_0_0_1,1.2.4.8.2.0.0.0.0.0.0.0.0.0.1,SOFTWARE,,l10n_br_coa.data_account_type_intangible_assets,1,mut_coa_template
+account_account_2_1_1_1_1_0_0_0_0_0_0_0_0_0_1,2.1.1.1.1.0.0.0.0.0.0.0.0.0.1,SERVIÇOS TÉCNICOS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_1_0_0_0_0_0_0_0_0_0_2,2.1.1.1.1.0.0.0.0.0.0.0.0.0.2,AUDITORES,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_1_0_0_0_0_0_0_0_0_0_3,2.1.1.1.1.0.0.0.0.0.0.0.0.0.3,ADVOGADOS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_1_0_0_0_0_0_0_0_0_0_4,2.1.1.1.1.0.0.0.0.0.0.0.0.0.4,ATUARIO,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_1_0_0_0_0_0_0_0_0_0_5,2.1.1.1.1.0.0.0.0.0.0.0.0.0.5,CONTADOR,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_1_0_0_0_0_0_0_0_0_0_6,2.1.1.1.1.0.0.0.0.0.0.0.0.0.6,INFORMATICA,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_2_0_0_0_0_0_0_0_0_0_1,2.1.1.1.2.0.0.0.0.0.0.0.0.0.1,IMÓVEIS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_4_0_0_0_0_0_0_0_0_0_1,2.1.1.1.4.0.0.0.0.0.0.0.0.0.1,"DIVIDENDOS, BONIFICAÇÕES E JUROS SOBRE CAPITAL",,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_6_0_0_0_0_0_0_0_0_0_1,2.1.1.1.6.0.0.0.0.0.0.0.0.0.1,SALÁRIOS A PAGAR,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_1_6_0_0_0_0_0_0_0_0_0_2,2.1.1.1.6.0.0.0.0.0.0.0.0.0.2,PROLABORE A PAGAR,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_1_6_0_0_0_0_0_0_0_0_0_3,2.1.1.1.6.0.0.0.0.0.0.0.0.0.3,INDENIZAÇÕES TRABALHISTAS A PAGAR,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_1_6_0_0_0_0_0_0_0_0_0_4,2.1.1.1.6.0.0.0.0.0.0.0.0.0.4,PLR EMPREGADOS,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_1_7_1_0_0_0_0_0_0_0_0_1,2.1.1.1.7.1.0.0.0.0.0.0.0.0.1,SERVIÇOS DE ASSISTÊNCIA,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_7_1_0_0_0_0_0_0_0_0_2,2.1.1.1.7.1.0.0.0.0.0.0.0.0.2,SERVIÇOS DE REGULAÇÃO DE SINISTROS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_7_2_0_0_0_0_0_0_0_0_1,2.1.1.1.7.2.0.0.0.0.0.0.0.0.1,CREDITOS DEVOLVIDOS PELO BANCO,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_7_2_0_0_0_0_0_0_0_0_2,2.1.1.1.7.2.0.0.0.0.0.0.0.0.2,CHEQUES EM TRANSITO,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_1_7_2_0_0_0_0_0_0_0_0_3,2.1.1.1.7.2.0.0.0.0.0.0.0.0.3,OUTROS PAGAMENTOS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_2_1_0_0_0_0_0_0_0_0_0_1,2.1.1.2.1.0.0.0.0.0.0.0.0.0.1,IRRF S/ SALÁRIOS E PRO-LABORE,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_2_2_0_0_0_0_0_0_0_0_0_1,2.1.1.2.2.0.0.0.0.0.0.0.0.0.1,IRRF DE TERCEIROS A RECOLHER,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_2_3_0_0_0_0_0_0_0_0_0_1,2.1.1.2.3.0.0.0.0.0.0.0.0.0.1,ISS RETIDO A RECOLHER,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_2_4_0_0_0_0_0_0_0_0_0_1,2.1.1.2.4.0.0.0.0.0.0.0.0.0.1,I.O.F A RECOLHER,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_2_5_0_0_0_0_0_0_0_0_0_1,2.1.1.2.5.0.0.0.0.0.0.0.0.0.1,INSS A RECOLHER,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_2_6_0_0_0_0_0_0_0_0_0_1,2.1.1.2.6.0.0.0.0.0.0.0.0.0.1,FGTS A RECOLHER,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_2_8_0_0_0_0_0_0_0_0_0_1,2.1.1.2.8.0.0.0.0.0.0.0.0.0.1,TAXAS E CONTRIBUIÇÕES A RECOLHER,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_2_8_0_0_0_0_0_0_0_0_0_2,2.1.1.2.8.0.0.0.0.0.0.0.0.0.2,PIS/COFINS/CSLL RETIDO A RECOLHER,,l10n_br_coa.data_account_type_current_liabilities_fiscal,1,mut_coa_template
+account_account_2_1_1_3_1_0_0_0_0_0_0_0_0_0_1,2.1.1.3.1.0.0.0.0.0.0.0.0.0.1,13 SALÁRIO A PAGAR,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_3_2_0_0_0_0_0_0_0_0_0_1,2.1.1.3.2.0.0.0.0.0.0.0.0.0.1,FÉRIAS A PAGAR,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_3_3_0_0_0_0_0_0_0_0_0_1,2.1.1.3.3.0.0.0.0.0.0.0.0.0.1,INSS S/ 13 SALÁRIO,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_3_3_0_0_0_0_0_0_0_0_0_2,2.1.1.3.3.0.0.0.0.0.0.0.0.0.2,FGTS S/ 13 SALÁRIO,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_3_3_0_0_0_0_0_0_0_0_0_3,2.1.1.3.3.0.0.0.0.0.0.0.0.0.3,INSS S/ FÉRIAS,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_3_3_0_0_0_0_0_0_0_0_0_4,2.1.1.3.3.0.0.0.0.0.0.0.0.0.4,FGTS S/ FÉRIAS,,l10n_br_coa.data_account_type_current_liabilities_labor,1,mut_coa_template
+account_account_2_1_1_6_1_1_0_0_0_0_0_0_0_0_1,2.1.1.6.1.1.0.0.0.0.0.0.0.0.1,IRPJ A RECOLHER,,l10n_br_coa.data_account_type_current_liabilities_fiscal,1,mut_coa_template
+account_account_2_1_1_6_1_2_0_0_0_0_0_0_0_0_1,2.1.1.6.1.2.0.0.0.0.0.0.0.0.1,ANTECIPAÇÃO DE IRPJ,,l10n_br_coa.data_account_type_current_liabilities_fiscal,1,mut_coa_template
+account_account_2_1_1_6_2_1_0_0_0_0_0_0_0_0_1,2.1.1.6.2.1.0.0.0.0.0.0.0.0.1,CSLL A RECOLHER,,l10n_br_coa.data_account_type_current_liabilities_fiscal,1,mut_coa_template
+account_account_2_1_1_6_2_2_0_0_0_0_0_0_0_0_1,2.1.1.6.2.2.0.0.0.0.0.0.0.0.1,ANTECIPAÇÃO DE CSLL,,l10n_br_coa.data_account_type_current_liabilities_fiscal,1,mut_coa_template
+account_account_2_1_1_6_3_0_0_0_0_0_0_0_0_0_1,2.1.1.6.3.0.0.0.0.0.0.0.0.0.1,COFINS,,l10n_br_coa.data_account_type_current_liabilities_fiscal,1,mut_coa_template
+account_account_2_1_1_6_4_0_0_0_0_0_0_0_0_0_1,2.1.1.6.4.0.0.0.0.0.0.0.0.0.1,PIS/PASEP,,l10n_br_coa.data_account_type_current_liabilities_fiscal,1,mut_coa_template
+account_account_2_1_1_9_1_0_0_0_0_0_0_0_0_0_2,2.1.1.9.1.0.0.0.0.0.0.0.0.0.2,JUROS SOBRE CAPITAL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_1_9_1_0_0_0_0_0_0_0_0_0_1,2.1.1.9.1.0.0.0.0.0.0.0.0.0.1,OUTRAS CONTAS A PAGAR,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_1_1_1_0_0_0_0_0_0_0_0_1,2.1.2.1.1.1.0.0.0.0.0.0.0.0.1,PRÊMIOS A RESTITUIR,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_2_3_1_0_0_0_0_0_0_0_0_1,2.1.2.2.3.1.0.0.0.0.0.0.0.0.1,PRÊMIOS LÍQUIDOS DE COMISSÕES,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_2_3_4_1_0_0_0_0_0_0_0_1,2.1.2.2.3.4.1.0.0.0.0.0.0.0.1,SINISTROS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_2_3_5_1_0_0_0_0_0_0_0_1,2.1.2.2.3.5.1.0.0.0.0.0.0.0.1,COMERCIALIZAÇÃO,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_1_1_1_0_0_0_0_0_0_0_1,2.1.2.3.1.1.1.0.0.0.0.0.0.0.1,PREMIO EMITIDO RESSEG. LOCAL - QS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_1_1_1_0_0_0_0_0_0_0_2,2.1.2.3.1.1.1.0.0.0.0.0.0.0.2,PREMIO EMITIDO RESSEG. LOCAL - XL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_1_1_2_0_0_0_0_0_0_0_1,2.1.2.3.1.1.2.0.0.0.0.0.0.0.1,RVNE RESSEG. LOCAL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_1_1_2_0_0_0_0_0_0_0_2,2.1.2.3.1.1.2.0.0.0.0.0.0.0.2,RVNE RESSEG. LOCAL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_1_1_3_0_0_0_0_0_0_0_1,2.1.2.3.1.1.3.0.0.0.0.0.0.0.1,COMISSAO RESSEGURADORA LOCAL - QS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_1_1_3_0_0_0_0_0_0_0_2,2.1.2.3.1.1.3.0.0.0.0.0.0.0.2,COMISSAO RESSEGURADORA LOCAL - XL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_2_1_1_0_0_0_0_0_0_0_1,2.1.2.3.2.1.1.0.0.0.0.0.0.0.1,PREMIO RESSEGURO A LIQUIDAR - RESSEGURADORA LOCAL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_2_1_2_0_0_0_0_0_0_0_1,2.1.2.3.2.1.2.0.0.0.0.0.0.0.1,COMISSAO RESSEGURADORA LOCAL - QS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_2_1_2_0_0_0_0_0_0_0_2,2.1.2.3.2.1.2.0.0.0.0.0.0.0.2,COMISSAO RESSEGURADORA LOCAL - XL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_3_1_1_0_0_0_0_0_0_0_1,2.1.2.3.3.1.1.0.0.0.0.0.0.0.1,PREMIO EMITIDO RESSEG. ADMITIDA - QS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_3_1_1_0_0_0_0_0_0_0_2,2.1.2.3.3.1.1.0.0.0.0.0.0.0.2,PREMIO EMITIDO RESSEG. ADMITIDA - XL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_3_1_2_0_0_0_0_0_0_0_1,2.1.2.3.3.1.2.0.0.0.0.0.0.0.1,RVNE RESSEG. - ADMITIDA - QS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_3_1_2_0_0_0_0_0_0_0_2,2.1.2.3.3.1.2.0.0.0.0.0.0.0.2,RVNE RESSEG. - ADMITIDA - XL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_3_1_3_0_0_0_0_0_0_0_1,2.1.2.3.3.1.3.0.0.0.0.0.0.0.1,COMISSAO RESSEGURADORA ADMITIDA - QS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_3_1_3_0_0_0_0_0_0_0_2,2.1.2.3.3.1.3.0.0.0.0.0.0.0.2,COMISSAO RESSEGURADORA ADMITIDA - XL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_5_1_1_0_0_0_0_0_0_0_1,2.1.2.3.5.1.1.0.0.0.0.0.0.0.1,PREMIO EMITIDO RESSEGURADORA EVENTUAL - QS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_5_1_1_0_0_0_0_0_0_0_2,2.1.2.3.5.1.1.0.0.0.0.0.0.0.2,PREMIO EMITIDO RESSEGURADORA EVENTUAL - XL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_5_1_2_0_0_0_0_0_0_0_1,2.1.2.3.5.1.2.0.0.0.0.0.0.0.1,RVNE RESSEG. - EVENTUAL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_5_1_2_0_0_0_0_0_0_0_2,2.1.2.3.5.1.2.0.0.0.0.0.0.0.2,RVNE RESSEG. - EVENTUAL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_5_1_3_0_0_0_0_0_0_0_1,2.1.2.3.5.1.3.0.0.0.0.0.0.0.1,COMISSAO RESSEGURADORA EVENTUAL - QS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_5_1_3_0_0_0_0_0_0_0_2,2.1.2.3.5.1.3.0.0.0.0.0.0.0.2,COMISSAO RESSEGURADORA EVENTUAL - XL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_6_1_1_0_0_0_0_0_0_0_1,2.1.2.3.6.1.1.0.0.0.0.0.0.0.1,PREMIO RESSEGURO A LIQUIDAR RESSEGURADORA EVENTUAL - QS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_6_1_2_0_0_0_0_0_0_0_1,2.1.2.3.6.1.2.0.0.0.0.0.0.0.1,COMISSÃO RESSEGURO A LIQUIDAR RESSEGURADORA EVENTUAL - QS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_3_6_1_2_0_0_0_0_0_0_0_2,2.1.2.3.6.1.2.0.0.0.0.0.0.0.2,COMISSÃO RESSEGURO A LIQUIDAR RESSEGURADORA EVENTUAL - XL,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_4_1_0_0_0_0_0_0_0_0_0_1,2.1.2.4.1.0.0.0.0.0.0.0.0.0.1,COMISSÕES A PAGAR - PF,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_4_1_0_0_0_0_0_0_0_0_0_2,2.1.2.4.1.0.0.0.0.0.0.0.0.0.2,COMISSÕES A PAGAR - PJ,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_5_1_1_1_0_0_0_0_0_0_0_1,2.1.2.5.1.1.1.0.0.0.0.0.0.0.1,COMISSÕES PAGAS - PJ,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_5_1_1_1_0_0_0_0_0_0_0_2,2.1.2.5.1.1.1.0.0.0.0.0.0.0.2,COMISSÕES PAGAS - PF,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_8_1_0_0_0_0_0_0_0_0_0_1,2.1.2.8.1.0.0.0.0.0.0.0.0.0.1,AGENTES E CORRESPONDENTES DE MICROSSEGURO,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_8_2_0_0_0_0_0_0_0_0_0_1,2.1.2.8.2.0.0.0.0.0.0.0.0.0.1,ESTIPULANTES DE MICROSSEGUROS,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_2_8_8_0_0_0_0_0_0_0_0_0_1,2.1.2.8.8.0.0.0.0.0.0.0.0.0.1,OUTROS DÉBITOS OPERAÇÕES,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_3_3_1_0_0_0_0_0_0_0_0_0_1,2.1.3.3.1.0.0.0.0.0.0.0.0.0.1,COMISSÕES A PAGAR,,l10n_br_coa.data_account_type_current_liabilities,1,mut_coa_template
+account_account_2_1_5_4_1_0_0_0_0_0_0_0_0_0_1,2.1.5.4.1.0.0.0.0.0.0.0.0.0.1,RECEBIMENTO DE PRÊMIOS DE SEGUROS,,mut_coa.account_type_advances_anticipation,1,mut_coa_template
+account_account_2_1_5_8_1_0_0_0_0_0_0_0_0_0_1,2.1.5.8.1.0.0.0.0.0.0.0.0.0.1,DEPÓSITO DE TERCEIROS,,mut_coa.account_type_advances_anticipation,1,mut_coa_template
+account_account_2_1_6_1_1_1_1_0_0_0_0_0_0_0_1,2.1.6.1.1.1.1.0.0.0.0.0.0.0.1,PPNG - DANOS,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_1_1_1_2_0_0_0_0_0_0_0_1,2.1.6.1.1.1.2.0.0.0.0.0.0.0.1,RVNE - DANOS,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_1_3_1_1_0_0_0_0_0_0_0_1,2.1.6.1.3.1.1.0.0.0.0.0.0.0.1,PROVISÃO TAP,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_1_3_1_1_0_0_0_0_0_0_0_2,2.1.6.1.3.1.1.0.0.0.0.0.0.0.2,PROVISÃO PCC,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_1_5_1_1_0_0_0_0_0_0_0_1,2.1.6.1.5.1.1.0.0.0.0.0.0.0.1,PSL - DANOS - ADMINISTRATIVA,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_1_5_5_1_1_0_0_0_0_0_0_1,2.1.6.1.5.5.1.1.0.0.0.0.0.0.1,PROVISÃO IBNER,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_1_5_5_2_1_0_0_0_0_0_0_1,2.1.6.1.5.5.2.1.0.0.0.0.0.0.1,PSL - DANOS - JUDICIAL,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_1_5_5_2_2_0_0_0_0_0_0_1,2.1.6.1.5.5.2.2.0.0.0.0.0.0.1,PSL - DANOS - COSSEGURO ACEITO,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_1_6_1_1_0_0_0_0_0_0_0_1,2.1.6.1.6.1.1.0.0.0.0.0.0.0.1,IBNR - DANOS - ADMINISTRATIVA,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_1_7_1_1_0_0_0_0_0_0_0_1,2.1.6.1.7.1.1.0.0.0.0.0.0.0.1,PDR - DANOS - ADMINISTRATIVA,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_1_9_1_1_0_0_0_0_0_0_0_1,2.1.6.1.9.1.1.0.0.0.0.0.0.0.1,PROVISÃO TAP - DANOS,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_2_1_1_1_0_0_0_0_0_0_0_1,2.1.6.2.1.1.1.0.0.0.0.0.0.0.1,PPNG - VIDA,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_2_1_1_2_0_0_0_0_0_0_0_1,2.1.6.2.1.1.2.0.0.0.0.0.0.0.1,RVNE - VIDA,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_2_5_1_1_0_0_0_0_0_0_0_1,2.1.6.2.5.1.1.0.0.0.0.0.0.0.1,PSL - VIDA - ADMINISTRATIVA,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_2_6_1_1_0_0_0_0_0_0_0_1,2.1.6.2.6.1.1.0.0.0.0.0.0.0.1,IBNR - VIDA,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_2_7_1_1_0_0_0_0_0_0_0_1,2.1.6.2.7.1.1.0.0.0.0.0.0.0.1,PDR - VIDA - ADMINISTRATIVO,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_2_7_2_1_0_0_0_0_0_0_0_1,2.1.6.2.7.2.1.0.0.0.0.0.0.0.1,PDR - VIDA - JUDICIAL,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_2_8_1_0_0_0_0_0_0_0_0_1,2.1.6.2.8.1.0.0.0.0.0.0.0.0.1,PROVISÃO TAP - VIDA,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_6_2_8_1_0_0_0_0_0_0_0_0_2,2.1.6.2.8.1.0.0.0.0.0.0.0.0.2,PROVISÃO TAP - DANOS,,mut_coa.account_type_technical_provisions_liability,1,mut_coa_template
+account_account_2_1_9_3_1_0_0_0_0_0_0_0_0_0_1,2.1.9.3.1.0.0.0.0.0.0.0.0.0.1,PROVISÃO DE 13º SALÁRIO,,l10n_br_coa.data_account_type_current_liabilities_reserve,1,mut_coa_template
+account_account_2_1_9_3_1_0_0_0_0_0_0_0_0_0_2,2.1.9.3.1.0.0.0.0.0.0.0.0.0.2,PROVISÃO DE FÉRIAS,,l10n_br_coa.data_account_type_current_liabilities_reserve,1,mut_coa_template
+account_account_2_1_9_4_1_0_0_0_0_0_0_0_0_0_1,2.1.9.4.1.0.0.0.0.0.0.0.0.0.1,AÇÕES DE DEFESA PERANTE SEGURADOS,,l10n_br_coa.data_account_type_current_liabilities_reserve,1,mut_coa_template
+account_account_2_1_9_4_1_0_0_0_0_0_0_0_0_0_2,2.1.9.4.1.0.0.0.0.0.0.0.0.0.2,AÇÕES DE DEFESA PERANTE A SUSEP,,l10n_br_coa.data_account_type_current_liabilities_reserve,1,mut_coa_template
+account_account_2_1_9_9_1_0_0_0_0_0_0_0_0_0_1,2.1.9.9.1.0.0.0.0.0.0.0.0.0.1,OUTRAS ENTRADAS,,l10n_br_coa.data_account_type_current_liabilities_reserve,1,mut_coa_template
+account_account_2_1_9_9_1_0_0_0_0_0_0_0_0_0_2,2.1.9.9.1.0.0.0.0.0.0.0.0.0.2,OUTROS REPASSES,,l10n_br_coa.data_account_type_current_liabilities_reserve,1,mut_coa_template
+account_account_2_2_1_1_9_0_0_0_0_0_0_0_0_0_1,2.2.1.1.9.0.0.0.0.0.0.0.0.0.1,OBRIGAÇÕES COM PRESTADORES DE SERVIÇOS,,mut_coa.account_type_noncurrent_assets_payable,1,mut_coa_template
+account_account_2_2_1_2_1_0_0_0_0_0_0_0_0_0_1,2.2.1.2.1.0.0.0.0.0.0.0.0.0.1,IMPOSTO DE RENDA DIFERIDO,,mut_coa.account_type_deferred_taxes,1,mut_coa_template
+account_account_2_2_1_2_2_0_0_0_0_0_0_0_0_0_1,2.2.1.2.2.0.0.0.0.0.0.0.0.0.1,CONTRIBUIÇÃO SOCIAL DIFERIDA,,mut_coa.account_type_deferred_taxes,1,mut_coa_template
+account_account_2_2_2_5_8_0_0_0_0_0_0_0_0_0_1,2.2.2.5.8.0.0.0.0.0.0.0.0.0.1,EMPRESTIMOS DE TERCEIROS,,l10n_br_coa.data_account_type_non_current_liabilities_loan,1,mut_coa_template
+account_account_2_2_2_5_8_0_0_0_0_0_0_0_0_0_2,2.2.2.5.8.0.0.0.0.0.0.0.0.0.2,FINANCIAMENTO 4795719,,l10n_br_coa.data_account_type_non_current_liabilities_loan,1,mut_coa_template
+account_account_2_2_2_5_8_0_0_0_0_0_0_0_0_0_3,2.2.2.5.8.0.0.0.0.0.0.0.0.0.3,EMPRESTIMO A COOPERADO,,l10n_br_coa.data_account_type_non_current_liabilities_loan,1,mut_coa_template
+account_account_2_2_2_5_8_0_0_0_0_0_0_0_0_0_4,2.2.2.5.8.0.0.0.0.0.0.0.0.0.4,FINANCIAMENTO BRADESCO Nº 005795419,,l10n_br_coa.data_account_type_non_current_liabilities_loan,1,mut_coa_template
+account_account_2_2_2_5_8_0_0_0_0_0_0_0_0_0_5,2.2.2.5.8.0.0.0.0.0.0.0.0.0.5,EMPRESTIMO CAPITAL DE GIRO CONTRATO 14.871.385,,l10n_br_coa.data_account_type_non_current_liabilities_loan,1,mut_coa_template
+account_account_2_2_2_5_8_0_0_0_0_0_0_0_0_0_6,2.2.2.5.8.0.0.0.0.0.0.0.0.0.6,EMPRESTIMO CAPITAL DE GIRO CONTRATO 14.980.929,,l10n_br_coa.data_account_type_non_current_liabilities_loan,1,mut_coa_template
+account_account_2_2_8_4_1_10_0_0_0_0_0_0_0_1,2.2.8.4.1.10.0.0.0.0.0.0.0.1,CONTIGENCIAS JUDICIAIS CIVEIS,,mut_coa.account_type_noncurrent_liabilities_provisions,1,mut_coa_template
+account_account_2_4_1_1_1_1_0_0_0_0_0_0_0_0_1,2.4.1.1.1.1.0.0.0.0.0.0.0.0.1,CAPITAL INTEGRALIZADO,,mut_coa.account_type_share_capital,1,mut_coa_template
+account_account_2_4_1_2_1_1_0_0_0_0_0_0_0_0_1,2.4.1.2.1.1.0.0.0.0.0.0.0.0.1,CAPITAL EM APROVAÇÃO,,mut_coa.account_type_share_capital,1,mut_coa_template
+account_account_2_4_1_5_1_0_0_0_0_0_0_0_0_0_1,2.4.1.5.1.0.0.0.0.0.0.0.0.0.1,RESERVA LEGAL,,l10n_br_coa.data_account_type_net_worth_profit_reserve,1,mut_coa_template
+account_account_2_4_1_5_2_0_0_0_0_0_0_0_0_0_1,2.4.1.5.2.0.0.0.0.0.0.0.0.0.1,RESERVAS ESTATUTÁRIAS - DIVIDENDOS,,l10n_br_coa.data_account_type_net_worth_profit_reserve,1,mut_coa_template
+account_account_2_4_1_5_4_0_0_0_0_0_0_0_0_0_1,2.4.1.5.4.0.0.0.0.0.0.0.0.0.1,RESERVA DE LUCROS A REALIZAR,,l10n_br_coa.data_account_type_net_worth_profit_reserve,1,mut_coa_template
+account_account_2_4_1_6_1_1_0_0_0_0_0_0_0_0_1,2.4.1.6.1.1.0.0.0.0.0.0.0.0.1,GANHOS E PERDAS NÃO REALIZADOS COM TVM,,l10n_br_coa.data_account_type_equity_accumulated_losses,1,mut_coa_template
+account_account_2_4_1_8_1_0_0_0_0_0_0_0_0_0_1,2.4.1.8.1.0.0.0.0.0.0.0.0.0.1,LUCRO DO EXERCÍCIO,,account.data_unaffected_earnings,1,mut_coa_template
+account_account_2_4_1_8_1_0_0_0_0_0_0_0_0_0_2,2.4.1.8.1.0.0.0.0.0.0.0.0.0.2,LUCROS ACUMULADOS,,l10n_br_coa.data_account_type_equity_accumulated_losses,1,mut_coa_template
+account_account_2_4_1_8_2_0_0_0_0_0_0_0_0_0_1,2.4.1.8.2.0.0.0.0.0.0.0.0.0.1,PREJUÍZO DO EXERCÍCIO,,l10n_br_coa.data_account_type_equity_accumulated_losses,1,mut_coa_template
+account_account_2_4_1_8_2_0_0_0_0_0_0_0_0_0_2,2.4.1.8.2.0.0.0.0.0.0.0.0.0.2,PREJUIZOS ACUMULADOS,,l10n_br_coa.data_account_type_equity_accumulated_losses,1,mut_coa_template
+account_account_2_4_1_8_4_0_0_0_0_0_0_0_0_0_1,2.4.1.8.4.0.0.0.0.0.0.0.0.0.1,RESULTADO DO EXERCICIO,,l10n_br_coa.data_account_type_equity_accumulated_losses,1,mut_coa_template
+account_account_2_4_2_1_1_1_1_0_0_0_0_0_0_0_1,2.4.2.1.1.1.1.0.0.0.0.0.0.0.1,FUNDO DE CONSTITUIÇÃO,,mut_coa.account_type_share_capital,1,mut_coa_template
+account_account_2_4_2_3_2_1_1_0_0_0_0_0_0_0_1,2.4.2.3.2.1.1.0.0.0.0.0.0.0.1,FUNDO DE RESERVA LEGAL,,mut_coa.account_type_equity_reserve,1,mut_coa_template
+account_account_2_4_2_3_2_1_1_0_0_0_0_0_0_0_2,2.4.2.3.2.1.1.0.0.0.0.0.0.0.2,FATES,,mut_coa.account_type_equity_reserve,1,mut_coa_template
+account_account_2_4_2_3_2_1_1_0_0_0_0_0_0_0_3,2.4.2.3.2.1.1.0.0.0.0.0.0.0.3,FAM - FUNDO DE AMPARO MUTUO,,mut_coa.account_type_equity_reserve,1,mut_coa_template
+account_account_2_4_2_8_1_1_1_0_0_0_0_0_0_0_1,2.4.2.8.1.1.1.0.0.0.0.0.0.0.1,SUPERAVIT ACUMULADO,,mut_coa.account_type_accumulated_surpluses_deficits,1,mut_coa_template
+account_account_2_4_2_8_3_1_1_0_0_0_0_0_0_0_1,2.4.2.8.3.1.1.0.0.0.0.0.0.0.1,TRANSITORIA DE ENCERRAMENTO DO EXERCICIO,,l10n_br_coa.data_account_type_apuracao,1,mut_coa_template
+account_account_2_9_1_3_1_0_0_0_0_0_0_0_0_0_1,2.9.1.3.1.0.0.0.0.0.0.0.0.0.1,IOF DO EXERCÍCIO - CONTROLE,,l10n_br_coa.data_account_type_compensation_liability,1,mut_coa_template
+account_account_3_1_1_1_1_1_1_0_0_0_0_0_0_0_1,3.1.1.1.1.1.1.0.0.0.0.0.0.0.1,RECEITA DE PREMIOS - RISCOS EMITIDOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_1_1_1_5_0_0_0_0_0_0_0_1,3.1.1.1.1.1.5.0.0.0.0.0.0.0.1,PREMIOS CANCELADOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_1_1_1_6_0_0_0_0_0_0_0_1,3.1.1.1.1.1.6.0.0.0.0.0.0.0.1,PRÊMIOS RESTITUÍDOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_1_1_3_1_0_0_0_0_0_0_0_1,3.1.1.1.1.3.1.0.0.0.0.0.0.0.1,COSSEGUROS CEDIDOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_1_1_3_5_0_0_0_0_0_0_0_1,3.1.1.1.1.3.5.0.0.0.0.0.0.0.1,CANCELAMENTOS DE COSSEGUROS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_1_1_3_6_0_0_0_0_0_0_0_1,3.1.1.1.1.3.6.0.0.0.0.0.0.0.1,RESTITUIÇÕES DE COSSEGUROS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_1_1_5_1_0_0_0_0_0_0_0_1,3.1.1.1.1.5.1.0.0.0.0.0.0.0.1,RECEITAS PRÊMIOS - RVNE,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_1_1_5_5_0_0_0_0_0_0_0_1,3.1.1.1.1.5.5.0.0.0.0.0.0.0.1,PREMIOS CANCELADOS - RVNE,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_1_1_5_6_0_0_0_0_0_0_0_1,3.1.1.1.1.5.6.0.0.0.0.0.0.0.1,PRÊMIOS RESTITUÍDOS - RVNE,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_8_1_1_1_0_0_0_0_0_0_0_1,3.1.1.8.1.1.1.0.0.0.0.0.0.0.1,PPNG,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_8_1_1_5_0_0_0_0_0_0_0_1,3.1.1.8.1.1.5.0.0.0.0.0.0.0.1,RVNE,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_8_8_3_0_0_0_0_0_0_0_0_1,3.1.1.8.8.3.0.0.0.0.0.0.0.0.1,PROVISÃO PARA DESPESAS RELACIONADAS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_8_8_5_0_0_0_0_0_0_0_0_1,3.1.1.8.8.5.0.0.0.0.0.0.0.0.1,PCC,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_8_8_9_0_0_0_0_0_0_0_0_1,3.1.1.8.8.9.0.0.0.0.0.0.0.0.1,PROVISÃO TAP,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_1_1_1_1_0_0_0_0_0_0_1,3.1.1.9.1.1.1.1.0.0.0.0.0.0.1,RECEITA DE PREMIOS - RISCOS EMITIDOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_1_1_1_5_0_0_0_0_0_0_1,3.1.1.9.1.1.1.5.0.0.0.0.0.0.1,PREMIOS CANCELADOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_1_1_1_6_0_0_0_0_0_0_1,3.1.1.9.1.1.1.6.0.0.0.0.0.0.1,PRÊMIOS RESTITUÍDOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_1_1_3_1_0_0_0_0_0_0_1,3.1.1.9.1.1.3.1.0.0.0.0.0.0.1,COSSEGUROS CEDIDOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_1_1_3_5_0_0_0_0_0_0_1,3.1.1.9.1.1.3.5.0.0.0.0.0.0.1,CANCELAMENTOS DE COSSEGUROS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_1_1_3_6_0_0_0_0_0_0_1,3.1.1.9.1.1.3.6.0.0.0.0.0.0.1,RESTITUIÇÕES DE COSSEGUROS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_1_1_5_1_0_0_0_0_0_0_1,3.1.1.9.1.1.5.1.0.0.0.0.0.0.1,RECEITAS PRÊMIOS - RVNE,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_1_1_5_5_0_0_0_0_0_0_1,3.1.1.9.1.1.5.5.0.0.0.0.0.0.1,PREMIOS CANCELADOS - RVNE,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_1_1_5_6_0_0_0_0_0_0_1,3.1.1.9.1.1.5.6.0.0.0.0.0.0.1,PRÊMIOS RESTITUÍDOS - RVNE,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_8_1_1_1_0_0_0_0_0_0_1,3.1.1.9.8.1.1.1.0.0.0.0.0.0.1,PPNG,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_8_1_1_5_0_0_0_0_0_0_1,3.1.1.9.8.1.1.5.0.0.0.0.0.0.1,RVNE,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_8_8_3_0_0_0_0_0_0_0_1,3.1.1.9.8.8.3.0.0.0.0.0.0.0.1,PROVISÃO PARA DESPESAS RELACIONADAS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_8_8_5_0_0_0_0_0_0_0_1,3.1.1.9.8.8.5.0.0.0.0.0.0.0.1,PCC,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_1_9_8_8_9_0_0_0_0_0_0_0_1,3.1.1.9.8.8.9.0.0.0.0.0.0.0.1,PROVISÃO TAP,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_1_1_1_1_0_0_0_0_0_0_0_1,3.1.3.1.1.1.1.0.0.0.0.0.0.0.1,SINISTROS AVISADOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_1_1_2_1_0_0_0_0_0_0_0_1,3.1.3.1.1.2.1.0.0.0.0.0.0.0.1,AVISADO JUDICIAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_1_1_2_2_0_0_0_0_0_0_0_1,3.1.3.1.1.2.2.0.0.0.0.0.0.0.1,SINISTROS AVISADOS COSSEGURO ACEITO,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_1_1_2_2_0_0_0_0_0_0_0_2,3.1.3.1.1.2.2.0.0.0.0.0.0.0.2,SINISTRO OCORRIDOS MAS NÃO AVISADO - COSSEGURO ACEITO,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_1_1_2_2_0_0_0_0_0_0_0_3,3.1.3.1.1.2.2.0.0.0.0.0.0.0.3,SINISTRO OCORRIDOS MAS NÃO SUFICIENTEMENTE AVISADO - COSSEGURO ACEITO,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_1_1_3_1_0_0_0_0_0_0_0_1,3.1.3.1.1.3.1.0.0.0.0.0.0.0.1,VARIAÇÃO IBNER,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_5_1_1_0_0_0_0_0_0_0_0_1,3.1.3.5.1.1.0.0.0.0.0.0.0.0.1,IBNR,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_6_0_0_0_0_0_0_0_0_0_0_1,3.1.3.6.0.0.0.0.0.0.0.0.0.0.1,PROVISÃO DE DESPESAS RELACIONADAS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_7_1_0_0_0_0_0_0_0_0_0_1,3.1.3.7.1.0.0.0.0.0.0.0.0.0.1,ASSISTÊNCIA 24 HORAS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_7_2_0_0_0_0_0_0_0_0_0_1,3.1.3.7.2.0.0.0.0.0.0.0.0.0.1,REGULAÇÃO DE SINISTROS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_9_1_1_1_1_0_0_0_0_0_0_1,3.1.3.9.1.1.1.1.0.0.0.0.0.0.1,SINISTROS AVISADOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_9_1_1_2_1_0_0_0_0_0_0_1,3.1.3.9.1.1.2.1.0.0.0.0.0.0.1,AVISADO JUDICIAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_9_1_1_2_2_0_0_0_0_0_0_1,3.1.3.9.1.1.2.2.0.0.0.0.0.0.1,SINISTROS AVISADOS COSSEGURO ACEITO,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_9_1_1_2_2_0_0_0_0_0_0_0_2,3.1.3.9.1.1.2.2.0.0.0.0.0.0.0.2,SINISTRO OCORRIDOS MAS NÃO AVISADO - COSSEGURO ACEITO,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_9_1_1_2_2_0_0_0_0_0_0_0_3,3.1.3.9.1.1.2.2.0.0.0.0.0.0.0.3,SINISTRO OCORRIDOS MAS NÃO SUFICIENTEMENTE AVISADO - COSSEGURO ACEITO,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_9_1_1_3_1_0_0_0_0_0_0_1,3.1.3.9.1.1.3.1.0.0.0.0.0.0.1,VARIAÇÃO IBNER,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_9_5_1_1_0_0_0_0_0_0_0_1,3.1.3.9.5.1.1.0.0.0.0.0.0.0.1,IBNR,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_9_6_0_0_0_0_0_0_0_0_0_1,3.1.3.9.6.0.0.0.0.0.0.0.0.0.1,PROVISÃO DE DESPESAS RELACIONADAS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_9_7_1_0_0_0_0_0_0_0_0_1,3.1.3.9.7.1.0.0.0.0.0.0.0.0.1,ASSISTÊNCIA 24 HORAS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_3_9_7_2_0_0_0_0_0_0_0_0_1,3.1.3.9.7.2.0.0.0.0.0.0.0.0.1,REGULAÇÃO DE SINISTROS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_4_1_1_1_1_0_0_0_0_0_0_0_1,3.1.4.1.1.1.1.0.0.0.0.0.0.0.1,COMISSÃO SOBRE PREMIOS EMITIDOS - PJ,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_4_1_1_1_1_0_0_0_0_0_0_0_2,3.1.4.1.1.1.1.0.0.0.0.0.0.0.2,COMISSÃO SOBRE PREMIOS EMITIDOS - PF,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_4_1_2_1_1_0_0_0_0_0_0_0_1,3.1.4.1.2.1.1.0.0.0.0.0.0.0.1,COMISSÃO DE ESTIPULANTE,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_4_5_1_1_1_0_0_0_0_0_0_0_1,3.1.4.5.1.1.1.0.0.0.0.0.0.0.1,CONSTITUIÇÃO CAD,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_4_5_1_1_1_0_0_0_0_0_0_0_2,3.1.4.5.1.1.1.0.0.0.0.0.0.0.2,VARIAÇÃO CAD,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_4_9_1_1_1_1_0_0_0_0_0_0_1,3.1.4.9.1.1.1.1.0.0.0.0.0.0.1,COMISSÃO SOBRE PREMIOS EMITIDOS - PJ,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_4_9_1_1_1_1_0_0_0_0_0_0_2,3.1.4.9.1.1.1.1.0.0.0.0.0.0.2,COMISSÃO SOBRE PREMIOS EMITIDOS - PF,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_4_9_1_2_1_1_0_0_0_0_0_0_1,3.1.4.9.1.2.1.1.0.0.0.0.0.0.1,COMISSÃO DE ESTIPULANTE,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_4_9_5_1_1_1_0_0_0_0_0_0_1,3.1.4.9.5.1.1.1.0.0.0.0.0.0.1,CONSTITUIÇÃO CAD,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_4_9_5_1_1_1_0_0_0_0_0_0_2,3.1.4.9.5.1.1.1.0.0.0.0.0.0.2,VARIAÇÃO CAD,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_5_1_8_1_0_0_0_0_0_0_0_0_1,3.1.5.1.8.1.0.0.0.0.0.0.0.0.1,RECEITA DE CAPITALIZAÇÃO,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_5_2_2_1_0_0_0_0_0_0_0_0_1,3.1.5.2.2.1.0.0.0.0.0.0.0.0.1,DESPESAS DE VENDAS E COBRANÇA,,l10n_br_coa.data_account_type_other_operational_expenses,0,mut_coa_template
+account_account_3_1_5_2_8_1_0_0_0_0_0_0_0_0_1,3.1.5.2.8.1.0.0.0.0.0.0.0.0.1,SERVIÇO DE TELEATENDIMENTO,,l10n_br_coa.data_account_type_other_operational_expenses,0,mut_coa_template
+account_account_3_1_5_2_9_1_3_0_0_0_0_0_0_0_1,3.1.5.2.9.1.3.0.0.0.0.0.0.0.1,PROVISÕES CÍVEIS - SEGURADOS,,mut_coa.account_type_expenses_provisions,0,mut_coa_template
+account_account_3_1_5_2_9_8_0_0_0_0_0_0_0_0_1,3.1.5.2.9.8.0.0.0.0.0.0.0.0.1,PROVISÃO PARA REDUÇÃO AO VALOR RECUPERÁVEL,,mut_coa.account_type_expenses_provisions,0,mut_coa_template
+account_account_3_1_5_9_1_8_1_0_0_0_0_0_0_0_1,3.1.5.9.1.8.1.0.0.0.0.0.0.0.1,RECEITA DE CAPITALIZAÇÃO,,l10n_br_coa.data_account_type_other_operational_expenses,0,mut_coa_template
+account_account_3_1_5_9_2_2_1_0_0_0_0_0_0_0_1,3.1.5.9.2.2.1.0.0.0.0.0.0.0.1,DESPESAS DE VENDAS E COBRANÇA,,l10n_br_coa.data_account_type_other_operational_expenses,0,mut_coa_template
+account_account_3_1_5_9_2_8_1_0_0_0_0_0_0_0_1,3.1.5.9.2.8.1.0.0.0.0.0.0.0.1,SERVIÇO DE TELEATENDIMENTO,,l10n_br_coa.data_account_type_other_operational_expenses,0,mut_coa_template
+account_account_3_1_5_9_2_9_1_3_0_0_0_0_0_0_1,3.1.5.9.2.9.1.3.0.0.0.0.0.0.1,PROVISÕES CÍVEIS - SEGURADOS,,l10n_br_coa.data_account_type_other_operational_expenses,0,mut_coa_template
+account_account_3_1_5_9_2_9_8_0_0_0_0_0__00_1,3.1.5.9.2.9.8.0.0.0.0.0..00.1,PROVISÃO PARA REDUÇÃO AO VALOR RECUPERÁVEL,,l10n_br_coa.data_account_type_other_operational_expenses,0,mut_coa_template
+account_account_3_1_9_1_1_1_1_0_0_0_0_0_0_0_1,3.1.9.1.1.1.1.0.0.0.0.0.0.0.1,PREMIO DE RESSEGURO - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_1_1_1_1_0_0_0_0_0_0_0_2,3.1.9.1.1.1.1.0.0.0.0.0.0.0.2,PREMIO DE RESSEGURO - LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_1_2_1_1_0_0_0_0_0_0_0_1,3.1.9.1.2.1.1.0.0.0.0.0.0.0.1,PREMIO DE RESSEGURO - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_1_2_1_1_0_0_0_0_0_0_0_2,3.1.9.1.2.1.1.0.0.0.0.0.0.0.2,PREMIO DE RESSEGURO - LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_1_3_1_1_0_0_0_0_0_0_0_1,3.1.9.1.3.1.1.0.0.0.0.0.0.0.1,IBNR DE RESSEGURO - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_1_1_1_0_0_0_0_0_0_1,3.1.9.3.1.1.1.1.0.0.0.0.0.0.1,PREMIO DE RESSEGURO - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_1_1_1_0_0_0_0_0_0_2,3.1.9.3.1.1.1.1.0.0.0.0.0.0.2,PREMIO DE RESSEGURO - LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_1_1_2_0_0_0_0_0_0_1,3.1.9.3.1.1.1.2.0.0.0.0.0.0.1,COMISSAO RESSEG LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_1_1_2_0_0_0_0_0_0_2,3.1.9.3.1.1.1.2.0.0.0.0.0.0.2,COMISSAO RESSEG LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_2_1_1_0_0_0_0_0_0_1,3.1.9.3.1.2.1.1.0.0.0.0.0.0.1,PR RESSEG COSSEC ACEITO LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_2_1_2_0_0_0_0_0_0_1,3.1.9.3.1.2.1.2.0.0.0.0.0.0.1,DCD-RVE LID AT RESS COSSEG LID LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_4_1_1_0_0_0_0_0_0_1,3.1.9.3.1.4.1.1.0.0.0.0.0.0.1,PREMIOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_4_1_1_0_0_0_0_0_0_2,3.1.9.3.1.4.1.1.0.0.0.0.0.0.2,PREMIOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_4_1_2_0_0_0_0_0_0_1,3.1.9.3.1.4.1.2.0.0.0.0.0.0.1,COM. CANC. RESSEG. COSEEG - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_4_1_2_0_0_0_0_0_0_2,3.1.9.3.1.4.1.2.0.0.0.0.0.0.2,COM. CANC. RESSEG. COSEEG - LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_5_1_0_0_0_0_0_0_0_1,3.1.9.3.1.5.1.0.0.0.0.0.0.0.1,PRÊMIO RESTITUIR DE RESSEGURORA LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_6_0_0_0_0_0_0_0_0_1,3.1.9.3.1.6.0.0.0.0.0.0.0.0.1,PREMIOS - RVNE RESSEG - LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_1_6_0_0_0_0_0_0_0_0_2,3.1.9.3.1.6.0.0.0.0.0.0.0.0.2,PREMIOS - RVNE RESSEG - LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_2_1_0_0_0_0_0_0_0_0_1,3.1.9.3.2.1.0.0.0.0.0.0.0.0.1,PPNG RESSEGURO LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_2_1_0_0_0_0_0_0_0_0_2,3.1.9.3.2.1.0.0.0.0.0.0.0.0.2,PPNG - RVNE RESSG,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_2_1_1_0_0_0_0_0_0_0_1,3.1.9.3.2.1.1.0.0.0.0.0.0.0.1,PPNG-RVE RESSEG. LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_2_1_1_0_0_0_0_0_0_0_2,3.1.9.3.2.1.1.0.0.0.0.0.0.0.2,PPNG-RVE RESSEG. LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_2_1_1_0_0_0_0_0_0_0_3,3.1.9.3.2.1.1.0.0.0.0.0.0.0.3,PPNG-RVNE RESSEG. - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_2_1_1_0_0_0_0_0_0_0_4,3.1.9.3.2.1.1.0.0.0.0.0.0.0.4,PPNG-RVNE RESSEG. - LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_2_1_2_0_0_0_0_0_0_0_1,3.1.9.3.2.1.2.0.0.0.0.0.0.0.1,DCD-RVE RESSEG. LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_3_2_1_2_0_0_0_0_0_0_0_2,3.1.9.3.2.1.2.0.0.0.0.0.0.0.2,DCD-RVE RESSEG. LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_1_1_1_1_0_0_0_0_0_0_1,3.1.9.9.1.1.1.1.0.0.0.0.0.0.1,PREMIO DE RESSEGURO - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_1_1_1_1_0_0_0_0_0_0_2,3.1.9.9.1.1.1.1.0.0.0.0.0.0.2,PREMIO DE RESSEGURO - LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_1_2_1_1_0_0_0_0_0_0_1,3.1.9.9.1.2.1.1.0.0.0.0.0.0.1,PREMIO DE RESSEGURO - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_1_2_1_1_0_0_0_0_0_0_2,3.1.9.9.1.2.1.1.0.0.0.0.0.0.2,PREMIO DE RESSEGURO - LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_1_3_1_1_0_0_0_0_0_0_1,3.1.9.9.1.3.1.1.0.0.0.0.0.0.1,IBNR DE RESSEGURO - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_1_1_1_0_0_0_0_0_1,3.1.9.9.3.1.1.1.1.0.0.0.0.0.1,PREMIO DE RESSEGURO - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_1_1_1_0_0_0_0_0_2,3.1.9.9.3.1.1.1.1.0.0.0.0.0.2,PREMIO DE RESSEGURO - LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_1_1_2_0_0_0_0_0_1,3.1.9.9.3.1.1.1.2.0.0.0.0.0.1,COMISSAO RESSEG LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_1_1_2_0_0_0_0_0_2,3.1.9.9.3.1.1.1.2.0.0.0.0.0.2,COMISSAO RESSEG LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_2_1_1_0_0_0_0_0_1,3.1.9.9.3.1.2.1.1.0.0.0.0.0.1,PR RESSEG COSSEC ACEITO LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_2_1_2_0_0_0_0_0_1,3.1.9.9.3.1.2.1.2.0.0.0.0.0.1,DCD-RVE LID AT RESS COSSEG LID LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_4_1_1_0_0_0_0_0_1,3.1.9.9.3.1.4.1.1.0.0.0.0.0.1,PREMIOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_4_1_1_0_0_0_0_0_2,3.1.9.9.3.1.4.1.1.0.0.0.0.0.2,PREMIOS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_4_1_2_0_0_0_0_0_1,3.1.9.9.3.1.4.1.2.0.0.0.0.0.1,COM. CANC. RESSEG. COSEEG - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_4_1_2_0_0_0_0_0_2,3.1.9.9.3.1.4.1.2.0.0.0.0.0.2,COM. CANC. RESSEG. COSEEG - LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_5_1_0_0_0_0_0_0_1,3.1.9.9.3.1.5.1.0.0.0.0.0.0.1,PRÊMIO RESTITUIR DE RESSEGURORA LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_6_0_0_0_0_0_0_0_1,3.1.9.9.3.1.6.0.0.0.0.0.0.0.1,PREMIOS - RVNE RESSEG - LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_1_6_0_0_0_0_0_0_0_2,3.1.9.9.3.1.6.0.0.0.0.0.0.0.2,PREMIOS - RVNE RESSEG - LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_2_1_0_0_0_0_0_0_0_1,3.1.9.9.3.2.1.0.0.0.0.0.0.0.1,PPNG RESSEGURO LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_2_1_0_0_0_0_0_0_0_2,3.1.9.9.3.2.1.0.0.0.0.0.0.0.2,PPNG - RVNE RESSG,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_2_1_1_0_0_0_0_0_0_1,3.1.9.9.3.2.1.1.0.0.0.0.0.0.1,PPNG-RVE RESSEG. LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_2_1_1_0_0_0_0_0_0_2,3.1.9.9.3.2.1.1.0.0.0.0.0.0.2,PPNG-RVE RESSEG. LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_2_1_1_0_0_0_0_0_0_3,3.1.9.9.3.2.1.1.0.0.0.0.0.0.3,PPNG-RVNE RESSEG. - LOCAL - QS,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_2_1_1_0_0_0_0_0_0_4,3.1.9.9.3.2.1.1.0.0.0.0.0.0.4,PPNG-RVNE RESSEG. - LOCAL - XL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_2_1_2_0_0_0_0_0_0_1,3.1.9.9.3.2.1.2.0.0.0.0.0.0.1,DCD-RVE RESSEG. LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_1_9_9_3_2_1_2_0_0_0_0_0_0_2,3.1.9.9.3.2.1.2.0.0.0.0.0.0.2,DCD-RVE RESSEG. LOCAL,,l10n_br_coa.data_account_type_revenue_deduction,0,mut_coa_template
+account_account_3_5_1_1_1_1_0_0_0_0_0_0_0_0_1,3.5.1.1.1.1.0.0.0.0.0.0.0.0.1,HONORÁRIOS DA DIRETORIA,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_1_1_2_1_0_0_0_0_0_0_0_0_1,3.5.1.1.2.1.0.0.0.0.0.0.0.0.1,ORDENADOS,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_2_2_0_0_0_0_0_0_0_0_1,3.5.1.1.2.2.0.0.0.0.0.0.0.0.1,HORAS-EXTRAS,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_2_3_0_0_0_0_0_0_0_0_1,3.5.1.1.2.3.0.0.0.0.0.0.0.0.1,GRATIFICAÇÃO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_2_4_0_0_0_0_0_0_0_0_1,3.5.1.1.2.4.0.0.0.0.0.0.0.0.1,13º SALÁRIO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_2_4_0_0_0_0_0_0_0_0_2,3.5.1.1.2.4.0.0.0.0.0.0.0.0.2,FÉRIAS,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_2_5_0_0_0_0_0_0_0_0_1,3.5.1.1.2.5.0.0.0.0.0.0.0.0.1,AÇÕES TRABALHISTAS,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_2_7_0_0_0_0_0_0_0_0_1,3.5.1.1.2.7.0.0.0.0.0.0.0.0.1,ABONO PECUNIÁRIO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_2_8_0_0_0_0_0_0_0_0_1,3.5.1.1.2.8.0.0.0.0.0.0.0.0.1,REPRESENTAÇÃO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_2_9_0_0_0_0_0_0_0_0_1,3.5.1.1.2.9.0.0.0.0.0.0.0.0.1,ESTAGIÁRIOS,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_3_1_0_0_0_0_0_0_0_0_1,3.5.1.1.3.1.0.0.0.0.0.0.0.0.1,AVISO PRÉVIO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_3_2_0_0_0_0_0_0_0_0_1,3.5.1.1.3.2.0.0.0.0.0.0.0.0.1,FÉRIAS INDENIZADAS,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_3_3_0_0_0_0_0_0_0_0_1,3.5.1.1.3.3.0.0.0.0.0.0.0.0.1,13º INDENIZADO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_3_3_0_0_0_0_0_0_0_0_2,3.5.1.1.3.3.0.0.0.0.0.0.0.0.2,RESCISÃO DE CONTRATO DE TRABALHO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_4_1_0_0_0_0_0_0_0_0_1,3.5.1.1.4.1.0.0.0.0.0.0.0.0.1,INSS PATRONAL,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_4_2_0_0_0_0_0_0_0_0_1,3.5.1.1.4.2.0.0.0.0.0.0.0.0.1,FGTS,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_5_1_0_0_0_0_0_0_0_0_1,3.5.1.1.5.1.0.0.0.0.0.0.0.0.1,PLANO DE SAÚDE,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_5_1_0_0_0_0_0_0_0_0_2,3.5.1.1.5.1.0.0.0.0.0.0.0.0.2,MEDICINA DO TRABALHO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_5_1_0_0_0_0_0_0_0_0_3,3.5.1.1.5.1.0.0.0.0.0.0.0.0.3,PLANO ODONTOLOGICO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_5_2_0_0_0_0_0_0_0_0_1,3.5.1.1.5.2.0.0.0.0.0.0.0.0.1,CURSOS E SEMINÁRIOS,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_5_2_0_0_0_0_0_0_0_0_2,3.5.1.1.5.2.0.0.0.0.0.0.0.0.2,AUXILIO CRECHE,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_5_3_0_0_0_0_0_0_0_0_1,3.5.1.1.5.3.0.0.0.0.0.0.0.0.1,REFEIÇÃO/ALIMENTAÇÃO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_5_3_0_0_0_0_0_0_0_0_2,3.5.1.1.5.3.0.0.0.0.0.0.0.0.2,COPA,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_5_3_0_0_0_0_0_0_0_0_3,3.5.1.1.5.3.0.0.0.0.0.0.0.0.3,TICKET ALIMENTAÇÃO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_5_3_0_0_0_0_0_0_0_0_4,3.5.1.1.5.3.0.0.0.0.0.0.0.0.4,TICKET REFEIÇÃO,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_5_4_0_0_0_0_0_0_0_0_1,3.5.1.1.5.4.0.0.0.0.0.0.0.0.1,SEGUROS DE FUNCIONÁRIOS,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_5_6_0_0_0_0_0_0_0_0_1,3.5.1.1.5.6.0.0.0.0.0.0.0.0.1,UNIFORMES FUNCIONÁRIOS,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_1_1_6_5_0_0_0_0_0_0_0_0_1,3.5.1.1.6.5.0.0.0.0.0.0.0.0.1,VIAGENS,,l10n_br_coa.data_account_type_sale_expenses,0,mut_coa_template
+account_account_3_5_1_1_8_1_0_0_0_0_0_0_0_0_1,3.5.1.1.8.1.0.0.0.0.0.0.0.0.1,VALE TRANSPORTE,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_3_5_2_1_1_1_2_0_0_0_0_0_0_0_1,3.5.2.1.1.1.2.0.0.0.0.0.0.0.1,ADVOGADOS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_2_1_0_0_0_0_0_0_0_1,3.5.2.1.1.2.1.0.0.0.0.0.0.0.1,AUDITORIA PESSOA FÍSICA,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_2_2_0_0_0_0_0_0_0_1,3.5.2.1.1.2.2.0.0.0.0.0.0.0.1,AUDITORIA PESSOA JURÍDICA,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_3_2_0_0_0_0_0_0_0_1,3.5.2.1.1.3.2.0.0.0.0.0.0.0.1,SISTEMA OPERACIONAL,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_5_2_0_0_0_0_0_0_0_1,3.5.2.1.1.5.2.0.0.0.0.0.0.0.1,CONSULTORIA,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_8_0_0_0_0_0_0_0_0_1,3.5.2.1.1.8.0.0.0.0.0.0.0.0.1,CONSULTORIA EMPRESARIAL,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_8_0_0_0_0_0_0_0_0_2,3.5.2.1.1.8.0.0.0.0.0.0.0.0.2,ASSESSORIA DE COBRANÇA,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_8_0_0_0_0_0_0_0_0_3,3.5.2.1.1.8.0.0.0.0.0.0.0.0.3,ASSESSORIA RH,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_8_0_0_0_0_0_0_0_0_4,3.5.2.1.1.8.0.0.0.0.0.0.0.0.4,SERVIÇOS TÉCNICOS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_8_0_0_0_0_0_0_0_0_5,3.5.2.1.1.8.0.0.0.0.0.0.0.0.5,SERVIÇOS DE CUSTÓDIA,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_8_0_0_0_0_0_0_0_0_6,3.5.2.1.1.8.0.0.0.0.0.0.0.0.6,HONORÁRIOS - PERÍCIAS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_8_0_0_0_0_0_0_0_0_7,3.5.2.1.1.8.0.0.0.0.0.0.0.0.7,MANUTENÇÃO DE INFORMATICA,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_1_8_0_0_0_0_0_0_0_0_8,3.5.2.1.1.8.0.0.0.0.0.0.0.0.8,DESPESAS COM SERVIÇOS DE TERCEIROS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_2_1_2_1_0_0_0_0_0_0_0_0_1,3.5.2.1.2.1.0.0.0.0.0.0.0.0.1,INSS PATRONAL S/ SERVIÇO DE TERCEIROS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_1_1_0_0_0_0_0_0_0_0_1,3.5.3.1.1.1.0.0.0.0.0.0.0.0.1,ALUGUEIS DE IMÓVEIS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_1_3_0_0_0_0_0_0_0_0_1,3.5.3.1.1.3.0.0.0.0.0.0.0.0.1,CONDOMÍNIOS E TAXAS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_1_4_0_0_0_0_0_0_0_0_1,3.5.3.1.1.4.0.0.0.0.0.0.0.0.1,ÁGUA E GÁS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_1_4_0_0_0_0_0_0_0_0_2,3.5.3.1.1.4.0.0.0.0.0.0.0.0.2,ENERGIA,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_1_5_0_0_0_0_0_0_0_0_1,3.5.3.1.1.5.0.0.0.0.0.0.0.0.1,LIMPEZA DO IMÓVEL SEDE,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_1_6_0_0_0_0_0_0_0_0_1,3.5.3.1.1.6.0.0.0.0.0.0.0.0.1,MANUTEÇÃO DO IMÓVEL SEDE,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_1_0_0_0_0_0_0_0_0_1,3.5.3.1.2.1.0.0.0.0.0.0.0.0.1,MATERIAL DE EXPEDIENTE,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_1_0_0_0_0_0_0_0_0_2,3.5.3.1.2.1.0.0.0.0.0.0.0.0.2,MATERIAL DE USO E CONSUMO,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_1_0_0_0_0_0_0_0_0_3,3.5.3.1.2.1.0.0.0.0.0.0.0.0.3,REEMBOLSO DE DESPESAS ADMINISTRATIVAS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_1_0_0_0_0_0_0_0_0_4,3.5.3.1.2.1.0.0.0.0.0.0.0.0.4,BENS DE PEQUENOS VALORES,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_2_0_0_0_0_0_0_0_0_1,3.5.3.1.2.2.0.0.0.0.0.0.0.0.1,FOTOCÓPIAS E OUTRAS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_2_0_0_0_0_0_0_0_0_2,3.5.3.1.2.2.0.0.0.0.0.0.0.0.2,MATERIAIS GRÁFICOS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_4_0_0_0_0_0_0_0_0_1,3.5.3.1.2.4.0.0.0.0.0.0.0.0.1,CARTÓRIO,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_4_0_0_0_0_0_0_0_0_2,3.5.3.1.2.4.0.0.0.0.0.0.0.0.2,ASSOCIAÇÃO DE CLASSE,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_4_0_0_0_0_0_0_0_0_3,3.5.3.1.2.4.0.0.0.0.0.0.0.0.3,REGISTRO,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_5_0_0_0_0_0_0_0_0_1,3.5.3.1.2.5.0.0.0.0.0.0.0.0.1,DESPESAS BANCÁRIAS,,l10n_br_coa.data_account_type_expenses_financial,0,mut_coa_template
+account_account_3_5_3_1_2_8_0_0_0_0_0_0_0_0_1,3.5.3.1.2.8.0.0.0.0.0.0.0.0.1,OUTRAS DESPESAS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_8_0_0_0_0_0_0_0_0_2,3.5.3.1.2.8.0.0.0.0.0.0.0.0.2,MATERIAL DE INFORMÁTICA,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_8_0_0_0_0_0_0_0_0_3,3.5.3.1.2.8.0.0.0.0.0.0.0.0.3,TRANSPORTE/ABASTECIMENTO,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_2_8_0_0_0_0_0_0_0_0_4,3.5.3.1.2.8.0.0.0.0.0.0.0.0.4,TRANSPORTES,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_3_1_0_0_0_0_0_0_0_0_1,3.5.3.1.3.1.0.0.0.0.0.0.0.0.1,CORREIOS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_3_2_0_0_0_0_0_0_0_0_1,3.5.3.1.3.2.0.0.0.0.0.0.0.0.1,TELEFONIA FIXA,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_3_2_0_0_0_0_0_0_0_0_2,3.5.3.1.3.2.0.0.0.0.0.0.0.0.2,TELEFONIA MÓVEL,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_3_8_0_0_0_0_0_0_0_0_1,3.5.3.1.3.8.0.0.0.0.0.0.0.0.1,INTERNET,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_4_1_0_0_0_0_0_0_0_0_1,3.5.3.1.4.1.0.0.0.0.0.0.0.0.1,ALUGUEL DE EQUIPAMENTOS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_4_3_0_0_0_0_0_0_0_0_1,3.5.3.1.4.3.0.0.0.0.0.0.0.0.1,MANUTENÇÃO DE EQUIPAMENTOS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_5_1_0_0_0_0_0_0_0_0_1,3.5.3.1.5.1.0.0.0.0.0.0.0.0.1,ALUGUEL DE VEÍCULOS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_5_3_0_0_0_0_0_0_0_0_1,3.5.3.1.5.3.0.0.0.0.0.0.0.0.1,MANUTENÇÃO DE VEÍCULOS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_5_4_0_0_0_0_0_0_0_0_1,3.5.3.1.5.4.0.0.0.0.0.0.0.0.1,COMBUSTÍVEL,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_6_1_0_0_0_0_0_0_0_0_1,3.5.3.1.6.1.0.0.0.0.0.0.0.0.1,VIAGENS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_6_2_0_0_0_0_0_0_0_0_1,3.5.3.1.6.2.0.0.0.0.0.0.0.0.1,CONDUÇÃO E PASSAGENS URBANAS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_6_2_0_0_0_0_0_0_0_0_2,3.5.3.1.6.2.0.0.0.0.0.0.0.0.2,TAXI E ÔNIBUS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_7_2_0_0_0_0_0_0_0_0_1,3.5.3.1.7.2.0.0.0.0.0.0.0.0.1,SEGURO DE BENS MÓVEIS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_7_3_0_0_0_0_0_0_0_0_1,3.5.3.1.7.3.0.0.0.0.0.0.0.0.1,SEGURO DE VEÍCULOS,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_7_4_0_0_0_0_0_0_0_0_1,3.5.3.1.7.4.0.0.0.0.0.0.0.0.1,SEGURO DE RESPONSABILIDADE CIVIL,,l10n_br_coa.data_account_type_admin_expenses,0,mut_coa_template
+account_account_3_5_3_1_8_2_0_0_0_0_0_0_0_0_1,3.5.3.1.8.2.0.0.0.0.0.0.0.0.1,DEPRECIAÇÃO DE EQUIPAMENTOS,,account.data_account_type_depreciation,0,mut_coa_template
+account_account_3_5_3_1_8_3_0_0_0_0_0_0_0_0_1,3.5.3.1.8.3.0.0.0.0.0.0.0.0.1,DEPRECIAÇÃO DE MÓVEIS MÁQUINAS E UTENSÍLIOS,,account.data_account_type_depreciation,0,mut_coa_template
+account_account_3_5_3_1_8_4_0_0_0_0_0_0_0_0_1,3.5.3.1.8.4.0.0.0.0.0.0.0.0.1,DEPRECIAÇÃO DE VEÍCULOS,,account.data_account_type_depreciation,0,mut_coa_template
+account_account_3_5_3_1_9_4_0_0_0_0_0_0_0_0_1,3.5.3.1.9.4.0.0.0.0.0.0.0.0.1,AMORTIZAÇÃO DE PROGRAMAS DE COMPUTADOR,,account.data_account_type_depreciation,0,mut_coa_template
+account_account_3_5_4_1_1_0_0_0_0_0_0_0_0_0_1,3.5.4.1.1.0.0.0.0.0.0.0.0.0.1,PUBLICIDADE E PROPAGANDA,,l10n_br_coa.data_account_type_sale_expenses,0,mut_coa_template
+account_account_3_5_4_1_2_0_0_0_0_0_0_0_0_0_1,3.5.4.1.2.0.0.0.0.0.0.0.0.0.1,BRINDES,,l10n_br_coa.data_account_type_sale_expenses,0,mut_coa_template
+account_account_3_5_4_1_3_0_0_0_0_0_0_0_0_0_1,3.5.4.1.3.0.0.0.0.0.0.0.0.0.1,PROMOÇÕES,,l10n_br_coa.data_account_type_sale_expenses,0,mut_coa_template
+account_account_3_5_5_1_1_3_0_0_0_0_0_0_0_0_1,3.5.5.1.1.3.0.0.0.0.0.0.0.0.1,IMPOSTOS MUNICIPAIS,,mut_coa.account_type_operating_expenses_taxes,0,mut_coa_template
+account_account_3_5_5_1_2_1_1_0_0_0_0_0_0_0_1,3.5.5.1.2.1.1.0.0.0.0.0.0.0.1,COFINS,,mut_coa.account_type_operating_expenses_taxes,0,mut_coa_template
+account_account_3_5_5_1_2_1_2_0_0_0_0_0_0_0_1,3.5.5.1.2.1.2.0.0.0.0.0.0.0.1,PIS/PASEP,,mut_coa.account_type_operating_expenses_taxes,0,mut_coa_template
+account_account_3_5_5_1_8_1_0_0_0_0_0_0_0_0_1,3.5.5.1.8.1.0.0.0.0.0.0.0.0.1,TAXA DE FISCALIZAÇÃO SUSEP,,mut_coa.account_type_operating_expenses_taxes,0,mut_coa_template
+account_account_3_5_6_1_1_0_0_0_0_0_0_0_0_0_1,3.5.6.1.1.0.0.0.0.0.0.0.0.0.1,PUBLICAÇÕES LEGAIS,,l10n_br_coa.data_account_type_other_general_expenses,0,mut_coa_template
+account_account_3_5_7_1_1_0_0_0_0_0_0_0_0_0_1,3.5.7.1.1.0.0.0.0.0.0.0.0.0.1,CONTRIBUIÇÃO ASSOCIAÇÃO OU SINDICATO,,l10n_br_coa.data_account_type_other_general_expenses,0,mut_coa_template
+account_account_3_5_7_1_2_0_0_0_0_0_0_0_0_0_1,3.5.7.1.2.0.0.0.0.0.0.0.0.0.1,DOAÇÕES,,l10n_br_coa.data_account_type_other_general_expenses,0,mut_coa_template
+account_account_3_5_8_1_1_1_0_0_0_0_0_0_0_0_1,3.5.8.1.1.1.0.0.0.0.0.0.0.0.1,JUDICIAIS,,l10n_br_coa.data_account_type_other_general_expenses,0,mut_coa_template
+account_account_3_5_8_1_1_2_0_0_0_0_0_0_0_0_1,3.5.8.1.1.2.0.0.0.0.0.0.0.0.1,JORNAIS E REVISTAS,,l10n_br_coa.data_account_type_other_general_expenses,0,mut_coa_template
+account_account_3_5_8_1_1_3_0_0_0_0_0_0_0_0_1,3.5.8.1.1.3.0.0.0.0.0.0.0.0.1,JUROS,,l10n_br_coa.data_account_type_expenses_financial,0,mut_coa_template
+account_account_3_5_8_1_1_3_0_0_0_0_0_0_0_0_2,3.5.8.1.1.3.0.0.0.0.0.0.0.0.2,MULTA PECUNIÁRIA,,l10n_br_coa.data_account_type_expenses_financial,0,mut_coa_template
+account_account_3_5_8_1_1_3_0_0_0_0_0_0_0_0_3,3.5.8.1.1.3.0.0.0.0.0.0.0.0.3,MULTA PUNITIVA,,l10n_br_coa.data_account_type_expenses_financial,0,mut_coa_template
+account_account_3_6_1_1_1_1_0_0_0_0_0_0_0_0_1,3.6.1.1.1.1.0.0.0.0.0.0.0.0.1,JUROS,,l10n_br_coa.data_account_type_expenses_financial,0,mut_coa_template
+account_account_3_6_1_1_1_7_0_0_0_0_0_0_0_0_1,3.6.1.1.1.7.0.0.0.0.0.0.0.0.1,AJUSTE AO VALOR DE MERCADO,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_6_1_2_1_1_0_0_0_0_0_0_0_0_1,3.6.1.2.1.1.0.0.0.0.0.0.0.0.1,RENDIMENTOS FINANCEIROS,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_6_1_2_1_5_0_0_0_0_0_0_0_0_1,3.6.1.2.1.5.0.0.0.0.0.0.0.0.1,RENDIMENTOS RF PRIVADOS,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_6_1_3_1_1_0_0_0_0_0_0_0_0_1,3.6.1.3.1.1.0.0.0.0.0.0.0.0.1,JUROS - LTN,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_6_1_3_1_1_0_0_0_0_0_0_0_0_2,3.6.1.3.1.1.0.0.0.0.0.0.0.0.2,JUROS - LFT,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_6_1_3_1_7_0_0_0_0_0_0_0_0_1,3.6.1.3.1.7.0.0.0.0.0.0.0.0.1,AJUSTE AO VALOR DE MERCADO - LTN,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_6_1_3_1_7_0_0_0_0_0_0_0_0_2,3.6.1.3.1.7.0.0.0.0.0.0.0.0.2,AJUSTE AO VALOR DE MERCADO - LFT,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_6_1_9_2_1_0_0_0_0_0_0_0_0_1,3.6.1.9.2.1.0.0.0.0.0.0.0.0.1,JUROS SOBRE CRÉDITOS TRIBUTÁRIOS,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_6_1_9_9_1_0_0_0_0_0_0_0_0_1,3.6.1.9.9.1.0.0.0.0.0.0.0.0.1,JUROS EVENTUAIS RECEBIDOS,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_6_2_1_1_2_0_0_0_0_0_0_0_0_1,3.6.2.1.1.2.0.0.0.0.0.0.0.0.1,PERDA COM APLICAÇÃO,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_6_2_2_7_0_0_0_0_0_0_0_0_0_1,3.6.2.2.7.0.0.0.0.0.0.0.0.0.1,AJUSTE AO VALOR DE MERCADO,,l10n_br_coa.data_account_type_expenses_financial,0,mut_coa_template
+account_account_3_6_2_3_4_1_0_0_0_0_0_0_0_0_1,3.6.2.3.4.1.0.0.0.0.0.0.0.0.1,JUROS SOBRE CONTRATO DE RESSEGURO,,l10n_br_coa.data_account_type_expenses_financial,0,mut_coa_template
+account_account_3_6_2_9_5_1_0_0_0_0_0_0_0_0_1,3.6.2.9.5.1.0.0.0.0.0.0.0.0.1,JUROS,,l10n_br_coa.data_account_type_expenses_financial,0,mut_coa_template
+account_account_3_6_2_9_6_1_0_0_0_0_0_0_0_0_1,3.6.2.9.6.1.0.0.0.0.0.0.0.0.1,JUROS SOBRE O CAPITAL,,l10n_br_coa.data_account_type_expenses_financial,0,mut_coa_template
+account_account_3_6_2_9_7_2_0_0_0_0_0_0_0_0_1,3.6.2.9.7.2.0.0.0.0.0.0.0.0.1,PERDA - ASSISTENCIA FINANCEIRA,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_6_2_9_9_1_0_0_0_0_0_0_0_0_1,3.6.2.9.9.1.0.0.0.0.0.0.0.0.1,JUROS EVENTUAIS PAGOS,,l10n_br_coa.data_account_type_revenue_financial,0,mut_coa_template
+account_account_3_9_1_1_1_1_0_0_0_0_0_0_0_0_1,3.9.1.1.1.1.0.0.0.0.0.0.0.0.1,IRPJ,,l10n_br_coa.data_account_type_expense_irpj,0,mut_coa_template
+account_account_3_9_1_1_1_1_0_0_0_0_0_0_0_0_2,3.9.1.1.1.1.0.0.0.0.0.0.0.0.2,ADICIONAL IR,,l10n_br_coa.data_account_type_expense_irpj,0,mut_coa_template
+account_account_3_9_1_1_1_1_0_0_0_0_0_0_0_0_3,3.9.1.1.1.1.0.0.0.0.0.0.0.0.3,IRPJ DIFERIDO,,l10n_br_coa.data_account_type_expense_irpj,0,mut_coa_template
+account_account_3_9_1_1_1_2_0_0_0_0_0_0_0_0_1,3.9.1.1.1.2.0.0.0.0.0.0.0.0.1,CSLL,,l10n_br_coa.data_account_type_expense_csll,0,mut_coa_template
+account_account_3_9_1_1_1_2_0_0_0_0_0_0_0_0_2,3.9.1.1.1.2.0.0.0.0.0.0.0.0.2,CSLL DIFERIDA,,l10n_br_coa.data_account_type_expense_csll,0,mut_coa_template
+account_account_3_9_2_1_1_2_0_0_0_0_0_0_0_0_1,3.9.2.1.1.2.0.0.0.0.0.0.0.0.1,PLR EMPREGADOS,,mut_coa.account_type_operating_expenses_personnel,0,mut_coa_template
+account_account_4_1_0_1_0_0_1_0_0_0_0_0_0_0_1,4.1.0.1.0.0.1.0.0.0.0.0.0.0.1,ENCERRAMENTO DO EXERCÍCIO,,l10n_br_coa.data_account_type_apuracao,0,mut_coa_template
