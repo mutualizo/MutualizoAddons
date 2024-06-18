@@ -1,0 +1,113 @@
+<odoo>
+    <data>
+
+        <record model="account.account.type" id="account_type_revenue_financial">
+            <field name="name">Aplicações Financeiras</field>
+            <field name="type">other</field>
+            <field name="internal_group">asset</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_other_credits">
+            <field name="name">Outros Creditos</field>
+            <field name="type">other</field>
+            <field name="internal_group">asset</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_acquisition_costs_deferred">
+            <field name="name">CUSTOS DE AQUISIÇÃO DIFERIDOS</field>
+            <field name="type">other</field>
+            <field name="internal_group">asset</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_technical_provisions_asset">
+            <field name="name">Provisões Tecnicas/Ativo</field>
+            <field name="type">other</field>
+            <field name="internal_group">asset</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_technical_provisions_liability">
+            <field name="name">Provisões Tecnicas/Passivo</field>
+            <field name="type">other</field>
+            <field name="internal_group">liability</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_advances_anticipation">
+            <field name="name">Adiantamentos/Antecipação</field>
+            <field name="type">other</field>
+            <field name="internal_group">asset</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_taxes_to_compensate_recover">
+            <field name="name">Tributos a compensar/recuperar</field>
+            <field name="type">other</field>
+            <field name="internal_group">asset</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_operating_expenses_anticipated">
+            <field name="name">Despesas Operacionais Antecipadas</field>
+            <field name="type">other</field>
+            <field name="internal_group">asset</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_noncurrent_assets_payable">
+            <field name="name">Ativo / Não Circulante / A Pagar</field>
+            <field name="type">other</field>
+            <field name="internal_group">asset</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_noncurrent_assets_fixed">
+            <field name="name">Ativo / Não Circulante / Imobilizado</field>
+            <field name="type">other</field>
+            <field name="internal_group">asset</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_noncurrent_liabilities_provisions">
+            <field name="name">Passivo / Não Circulante / Provisões</field>
+            <field name="type">other</field>
+            <field name="internal_group">liability</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_deferred_taxes">
+            <field name="name">Tributos Diferidos</field>
+            <field name="type">other</field>
+            <field name="internal_group">liability</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_equity_reserve">
+            <field name="name">Patrimônio Líquido / Reserva Patrimonial</field>
+            <field name="type">other</field>
+            <field name="internal_group">equity</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_accumulated_surpluses_deficits">
+            <field name="name">Superávits ou Déficits Acumulados</field>
+            <field name="type">other</field>
+            <field name="internal_group">equity</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_share_capital">
+            <field name="name">Capital Social</field>
+            <field name="type">other</field>
+            <field name="internal_group">equity</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_expenses_provisions">
+            <field name="name">(-) Despesas com Provisões</field>
+            <field name="type">other</field>
+            <field name="internal_group">expense</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_operating_expenses_taxes">
+            <field name="name">(-) DESPESAS OPERACIONAIS / Despesas com Tributos</field>
+            <field name="type">other</field>
+            <field name="internal_group">expense</field>
+        </record>
+                
+        <record model="account.account.type" id="account_type_operating_expenses_personnel">
+            <field name="name">(-) DESPESAS OPERACIONAIS / Despesa com Pessoal</field>
+            <field name="type">other</field>
+            <field name="internal_group">expense</field>
+        </record>
+                
+    </data>
+</odoo>
