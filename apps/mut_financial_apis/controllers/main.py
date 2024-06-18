@@ -100,7 +100,7 @@ class FinancialAPIsController(http.Controller):
                 api_errors.PAYMENT_MODE_NOT_FOUND,
             )
 
-        partner_id = self.get_invoice_partner(env, invoice.get("payer"))
+        partner_id = self.get_invoice_partner(env, invoice.get("payer"), company_id)
         self.create_account_move(env, company_id, payment_mode_id, partner_id, invoice)
         return format_callback(installment_uid, "created")
 
@@ -160,7 +160,7 @@ class FinancialAPIsController(http.Controller):
         )
         return company_id
 
-    def get_invoice_partner(self, env, partner_data):
+    def get_invoice_partner(self, env, partner_data, company_id):
         # Search partner by cnpn_cpf
         cnpj_cpf_numbers = re.sub("[^0-9]", "", partner_data.get("cpf_cnpj"))
         formatted_cnpj_cpf = cnpj_cpf.formata(str(partner_data.get("cpf_cnpj")))
@@ -169,6 +169,7 @@ class FinancialAPIsController(http.Controller):
                 "|",
                 ("cnpj_cpf", "=", cnpj_cpf_numbers),
                 ("cnpj_cpf", "=", formatted_cnpj_cpf),
+                ("company_id", "=", company_id.id),
             ],
             limit=1,
         )
@@ -180,6 +181,7 @@ class FinancialAPIsController(http.Controller):
                 or partner_data.get("name"),
                 "cnpj_cpf": formatted_cnpj_cpf,
                 "email": partner_data.get("email"),
+                "company_id": company_id.id,
             }
             partner_data_to_create.update(
                 self.get_partner_adress_data(env, partner_data)
@@ -292,14 +294,23 @@ class FinancialAPIsController(http.Controller):
             partner_id = (
                 env["res.partner"]
                 .with_company(company_id.id)
-                .search([("email", "=", contact.get("email"))])
+                .search(
+                    [
+                        ("email", "=", contact.get("email")),
+                        ("company_id", "=", company_id.id),
+                    ]
+                )
             )
             if not partner_id:
                 partner_id = (
                     env["res.partner"]
                     .with_company(company_id.id)
                     .create(
-                        {"name": contact.get("name"), "email": contact.get("email")}
+                        {
+                            "name": contact.get("name"),
+                            "email": contact.get("email"),
+                            "company_id": company_id.id,
+                        }
                     )
                 )
             partner_contact_list.append(partner_id.id)
