@@ -1,0 +1,12 @@
+<odoo>
+    <record id="mut_journal_importer_view_form" model="ir.ui.view">
+        <field name="name">mut.journal.importer.view.form</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account_move_base_import.journal_importer_view_form" />
+        <field name="arch" type="xml">
+            <field name="create_counterpart" position="after">
+                <field name="counterpart_pending_account" attrs="{'invisible': [('create_counterpart', '=', False)]}" />
+            </field>
+        </field>
+    </record>
+</odoo>

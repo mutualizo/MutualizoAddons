@@ -8,6 +8,7 @@
     "maintainer": "Mutualizo",
     "website": "https://www.mutualizo.com.br",
     "depends": [
+        "account_move_base_import",
         "l10n_br_account_payment_brcobranca",
         "l10n_br_zip",
         "base_accounting_kit",
@@ -16,6 +17,7 @@
         # Security
         "security/security.xml",
         # Views
+        "views/account_journal.xml",
         "views/l10n_br_cnab_return_log.xml",
     ],
 }

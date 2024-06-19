@@ -26,11 +26,11 @@ class AccountMove(models.Model):
     )
     bank_slip_status = fields.Selection(
         [
-            ("bank_slip_not_issued", "Não Emitido"),
-            ("bank_slip_issued", "Emitido"),
-            ("bank_slip_error", "Erro"),
+            ("bank_slip_not_issued", "Não Registrado"),
+            ("bank_slip_issued", "Enviado"),
+            ("bank_slip_error", "Rejeitado"),
             ("bank_slip_registered", "Registrado"),
-            ("bank_slip_paid", "Pago"),
+            ("bank_slip_paid", "Pago com registro"),
             ("bank_slip_canceled", "Cancelado"),
         ],
         string="Status do Boleto",
