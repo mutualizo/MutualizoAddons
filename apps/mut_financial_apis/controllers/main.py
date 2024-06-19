@@ -142,8 +142,15 @@ class FinancialAPIsController(http.Controller):
             check_cnpj_cpf(env, payer.get("cpf_cnpj") or "", env.ref("base.br"))
         except ValidationError:
             return api_errors.INVALID_CNPJ_CPF
+        # Verify if the payer email is valid. If not, we make a verification
+        # in invoice contact list. If at least one email is valid,
+        # we create the invoice, otherwise we return an error.
         if not re.fullmatch(MAIL_REGEX, payer.get("email")):
-            return api_errors.INVALID_EMAIL
+            if not any(
+                re.fullmatch(MAIL_REGEX, contact.get("email"))
+                for contact in invoice.get("contact_list")
+            ):
+                return api_errors.INVALID_EMAIL
         try:
             datetime.fromisoformat(due_date)
         except (ValueError, TypeError):
@@ -297,7 +304,8 @@ class FinancialAPIsController(http.Controller):
                 [
                     ("installment_uid", "=", installment.get("external_id")),
                     ("company_id", "=", company_id.id),
-                ], limit=1
+                ],
+                limit=1,
             )
         )
         if not account_move_id:
