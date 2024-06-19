@@ -88,3 +88,7 @@ class FinanceApiErrorMessages:
         "code": "08",
         "message": "The value provided in 'command' is not valid."
     }
+    INVALID_ZIP_CODE = {
+        "code": "09",
+        "message": "The value provide in 'zip_code' is invalid! Valid formats are '00000-000' and '00000000'"
+    }
