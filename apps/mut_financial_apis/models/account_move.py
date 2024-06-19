@@ -1,3 +1,4 @@
+import re
 import pytz
 
 from odoo import models, fields
@@ -6,6 +7,10 @@ from werkzeug.urls import url_join
 from datetime import timedelta, date, datetime, time
 
 from ..helpers import send_callbacks, format_callback
+
+MAIL_REGEX = re.compile(
+    r"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+"
+)
 
 
 class AccountMove(models.Model):
@@ -123,6 +128,13 @@ class AccountMove(models.Model):
         }
 
         for partner_id in self.message_follower_ids.mapped("partner_id"):
+            # The id=2 is OdooBot and id=3 is the Admin User
+            # The admin user is automatically added as an invoice follower
+            # and we do not want to send all invoices to him by email
+            if partner_id.id in [2, 3] or not re.fullmatch(
+                MAIL_REGEX, partner_id.email
+            ):
+                continue
             mail_template.write(
                 {
                     "email_to": partner_id.email,

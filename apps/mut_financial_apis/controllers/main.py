@@ -107,8 +107,19 @@ class FinancialAPIsController(http.Controller):
     def process_invoice_cancellation(self, env, invoice, url_callback):
         invoice.update({"url_callback": url_callback})
         installment_uid = invoice.get("installment", {}).get("external_id")
+        company_id = self.get_company_by_cnpj(invoice.get("cnpj_singular"))
+        if not company_id:
+            return format_callback(
+                installment_uid,
+                "cancellation_error",
+                api_errors.COMPANY_NOT_FOUND,
+            )
         account_move_id = env["account.move"].search(
-            [("installment_uid", "=", installment_uid)], limit=1
+            [
+                ("installment_uid", "=", installment_uid),
+                ("company_id", "=", company_id.id),
+            ],
+            limit=1,
         )
         if not account_move_id:
             return format_callback(
@@ -142,6 +153,12 @@ class FinancialAPIsController(http.Controller):
                 raise ValueError
         except ValueError:
             return api_errors.INVALID_INSTALLMENT_AMOUNT
+        try:
+            zip_numbers = re.sub("[^0-9]", "", payer.get("zip_code"))
+            if len(zip_numbers != 8):
+                raise ValueError
+        except ValueError:
+            return api_errors.INVALID_ZIP_CODE
 
     def get_company_by_cnpj(self, cnpj):
         # Search singular company by cnpj
@@ -276,7 +293,12 @@ class FinancialAPIsController(http.Controller):
         account_move_id = (
             env["account.move"]
             .with_company(company_id.id)
-            .search([("installment_uid", "=", installment.get("external_id"))])
+            .search(
+                [
+                    ("installment_uid", "=", installment.get("external_id")),
+                    ("company_id", "=", company_id.id),
+                ], limit=1
+            )
         )
         if not account_move_id:
             account_move_id = (
