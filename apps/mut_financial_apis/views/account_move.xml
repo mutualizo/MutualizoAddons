@@ -28,6 +28,10 @@
             <field name="invoice_partner_display_name" position="after">
                 <field name="contract_number"/>
             </field>
+            <!-- Replacing this field because the original one has the 'remaining_days' widget -->
+            <field name="invoice_date_due" position="replace">
+                <field name="invoice_date_due" />
+            </field>
             <field name="payment_state" position="replace">
                 <field name="payment_state" widget="badge"
                 decoration-danger="payment_state == 'not_paid'" decoration-warning="payment_state in ('partial', 'in_payment')"

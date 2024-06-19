@@ -155,7 +155,7 @@ class FinancialAPIsController(http.Controller):
             return api_errors.INVALID_INSTALLMENT_AMOUNT
         try:
             zip_numbers = re.sub("[^0-9]", "", payer.get("zip_code"))
-            if len(zip_numbers != 8):
+            if len(zip_numbers) != 8:
                 raise ValueError
         except ValueError:
             return api_errors.INVALID_ZIP_CODE
