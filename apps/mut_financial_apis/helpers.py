@@ -74,7 +74,7 @@ class FinanceApiErrorMessages:
     }
     INVALID_EMAIL = {
         "code": "05",
-        "message": "The payer's e-mail is invalid!"
+        "message": "The payer's e-mail is invalid and there are no valid emails in the contact list"
     }
     PAYMENT_MODE_NOT_FOUND = {
         "code": "06",
@@ -90,5 +90,5 @@ class FinanceApiErrorMessages:
     }
     INVALID_ZIP_CODE = {
         "code": "09",
-        "message": "The value provide in 'zip_code' is invalid! Valid formats are '00000-000' and '00000000'"
+        "message": "The zip code value is invalid! Valid formats are '00000-000' and '00000000'"
     }
