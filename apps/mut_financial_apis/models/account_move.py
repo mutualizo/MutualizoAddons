@@ -131,9 +131,9 @@ class AccountMove(models.Model):
             # The id=2 is OdooBot and id=3 is the Admin User
             # The admin user is automatically added as an invoice follower
             # and we do not want to send all invoices to him by email
-            if partner_id.id in [2, 3]:
-                continue
-            if not re.fullmatch(MAIL_REGEX, partner_id.email):
+            if partner_id.id in [2, 3] or not re.fullmatch(
+                MAIL_REGEX, partner_id.email
+            ):
                 continue
             mail_template.write(
                 {
