@@ -126,13 +126,36 @@ class AccountMove(models.Model):
             "payer_name": self.partner_id.name,
             "total_installments": self.total_installments,
         }
-
+        api_user = self.env.ref("mut_financial_apis.api_user")
         for partner_id in self.message_follower_ids.mapped("partner_id"):
             # The id=2 is OdooBot and id=3 is the Admin User
             # The admin user is automatically added as an invoice follower
             # and we do not want to send all invoices to him by email
-            if partner_id.id in [2, 3] or not re.fullmatch(
-                MAIL_REGEX, partner_id.email
+            if (
+                partner_id == self.partner_id
+                and self.company_id.user_to_notify_cnab
+                and not re.fullmatch(MAIL_REGEX, partner_id.email or "")
+            ):
+                self.env["mail.activity"].create(
+                    {
+                        "summary": (
+                            f"O e-mail do pagador da fatura {self.name} "
+                            + "é invalido!"
+                        ),
+                        "note": (
+                            f"<p>O email do pagador <a href='#' data-oe-model='res.partner' data-oe-id='{self.partner_id.id}'>{self.partner_id.name}</a> "
+                            + f"da fatura <a href='#' data-oe-model='account.move' data-oe-id='{self.id}'>{self.name}</a> é inválido</p>"
+                        ),
+                        "res_model_id": self.env.ref("account.model_account_move").id,
+                        "res_id": self.id,
+                        "date_deadline": date.today(),
+                        "user_id": self.company_id.user_to_notify_cnab.id,
+                    }
+                )
+                continue
+            elif (
+                partner_id.id in [2, 3, api_user.partner_id.id]
+                or not re.fullmatch(MAIL_REGEX, partner_id.email or "")
             ):
                 continue
             mail_template.write(
