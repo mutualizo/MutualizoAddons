@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <menuitem id="menu_redirect_to_slides" name="Treinamentos" sequence="350"
-        web_icon="mut_ui_improvements,static/src/img/slides_icon.png"
-        action="action_redirect_to_slides"/>
-
         <record id="action_redirect_to_slides" model="ir.actions.act_url">
             <field name="name">Ver Treinamentos</field>
             <field name="type">ir.actions.act_url</field>
             <field name="url">/slides</field>
-            <field name="target">self</field>
+            <field name="target">new</field>
         </record>
+
+        <menuitem
+            id="menu_redirect_to_slides"
+            name="Treinamentos"
+            sequence="100"
+            web_icon="mut_ui_improvements,static/src/img/slides_icon.png"
+            action="action_redirect_to_slides"/>
+
 
         <record id="action_redirect_to_apps" model="ir.actions.client">
             <field name="name">Aplicativos</field>
             <field name="tag">redirect_to_apps</field>
-            <field name="type">ir.actions.client</field>
         </record>
 
     </data>
