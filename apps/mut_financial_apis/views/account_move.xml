@@ -9,10 +9,10 @@
                 <page string="Contract Info" name="tab_contract_info" attrs="{'invisible': [('move_type', '!=', 'out_invoice')]}">
                     <group>
                         <group>
-                            <field name="contract_number"/>
-                            <field name="total_installments"/>
-                            <field name="installment_number"/>
-                            <field name="installment_uid"/>
+                            <field name="contract_number" readonly="1"/>
+                            <field name="total_installments" readonly="1"/>
+                            <field name="installment_number" readonly="1"/>
+                            <field name="installment_uid" readonly="1"/>
                         </group>
                     </group>
                 </page>
