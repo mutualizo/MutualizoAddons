@@ -1,4 +1,7 @@
 import json
+import pytz
+
+from datetime import datetime, date
 
 from odoo import fields, models
 
@@ -52,15 +55,31 @@ class L10nBrCNABReturnLog(models.Model):
                 If there's two status for the same installment, only
                 send the callback for the latest one
             """
-            installment_status = {}
+            installment_data = {}
             for event in event_ids.filtered(
                 lambda x: x.invoice_id.url_callback == url_callback
             ):
                 installment_uid = event.invoice_id.installment_uid
                 status = CALLBACK_STATUS.get(event.occurrences)
-                installment_status[installment_uid] = status
+                installment_data[installment_uid] = {
+                    "event_date": datetime.combine(
+                        event.occurrence_date, datetime.min.time()
+                    ).isoformat(),
+                    "uid": installment_uid,
+                    "status": status,
+                    "credit_date": datetime.combine(
+                        event.real_payment_date, datetime.min.time()
+                    ).isoformat() if event.real_payment_date else False,
+                    "payment_value": event.payment_value,
+                }
             callbacks = [
-                format_callback(uid, status)
-                for uid, status in installment_status.items()
+                format_callback(
+                    installment["event_date"],
+                    installment["uid"],
+                    installment["status"],
+                    {},
+                    installment["credit_date"],
+                    installment["payment_value"]
+                ) for uid, installment in installment_data.items()
             ]
             self.log_and_send_callbacks(url_callback, callbacks)

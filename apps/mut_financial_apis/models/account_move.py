@@ -153,9 +153,8 @@ class AccountMove(models.Model):
                     }
                 )
                 continue
-            elif (
-                partner_id.id in [2, 3, api_user.partner_id.id]
-                or not re.fullmatch(MAIL_REGEX, partner_id.email or "")
+            elif partner_id.id in [2, 3, api_user.partner_id.id] or not re.fullmatch(
+                MAIL_REGEX, partner_id.email or ""
             ):
                 continue
             mail_template.write(
@@ -168,9 +167,17 @@ class AccountMove(models.Model):
     def _get_brcobranca_boleto(self, boletos):
         for boleto in boletos:
             cedente = boleto["cedente"] or ""
-            cedente = cedente if len(cedente) < 70 else cedente[:70].strip() + "[...]"
-            boleto["instrucoes"] = boleto.pop("instrucao1")
+            cedente = cedente if len(cedente) < 68 else cedente[:68].strip() + "[...]"
+            description = self.additional_description_installment or ""
+            boleto["demonstrativo"] = (
+                boleto.get("cedente", "")
+                + "\n"
+                + boleto.get("instrucao1", "")
+                + "\n"
+                + description[:1000]
+            )
             boleto["cedente"] = cedente
+            boleto["instrucoes"] = boleto.pop("instrucao1")
         return super(AccountMove, self)._get_brcobranca_boleto(boletos)
 
     def generate_boleto_pdf(self):
@@ -185,7 +192,9 @@ class AccountMove(models.Model):
         now = datetime.now(pytz.timezone("America/Sao_Paulo"))
         if now.weekday() < 5 and time(8, 0) <= now.time() <= time(17, 0):
             account_move_ids = self.env["account.move"].search(
-                [("notification_status", "=", "in_queue")], limit=500, order="id asc"
+                [("notification_status", "=", "in_queue"), ("state", "=", "posted")],
+                limit=500,
+                order="id asc",
             )
             for account_move in account_move_ids:
                 if not account_move.file_boleto_pdf_id:
@@ -196,8 +205,13 @@ class AccountMove(models.Model):
             env = self.env(user=api_user)
             callbacks = []
             for url_callback in set(account_move_ids.mapped("url_callback")):
+                event_date = datetime.now(pytz.timezone("America/Sao_Paulo")).isoformat(
+                    sep="T"
+                )
                 callbacks = [
-                    format_callback(invoice.installment_uid, "bank_slip_issued")
+                    format_callback(
+                        event_date, invoice.installment_uid, "bank_slip_issued"
+                    )
                     for invoice in account_move_ids.filtered(
                         lambda x: x.url_callback == url_callback
                     )

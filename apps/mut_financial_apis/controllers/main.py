@@ -1,4 +1,5 @@
 import re
+import pytz
 import logging
 
 from werkzeug.exceptions import Forbidden
@@ -58,8 +59,12 @@ class FinancialAPIsController(http.Controller):
                 )
                 callbacks.append(callback)
             else:
+                event_date = datetime.now(pytz.timezone("America/Sao_Paulo")).isoformat(
+                    sep="T", timespec="auto"
+                )
                 callbacks.append(
                     format_callback(
+                        event_date,
                         invoice["installment"]["external_id"],
                         "not_created",
                         api_errors.COMMAND_NOT_FOUND,
@@ -76,12 +81,16 @@ class FinancialAPIsController(http.Controller):
         invoice.update({"url_callback": url_callback})
         installment_uid = invoice.get("installment", {}).get("external_id")
         validation_error = self.validate_invoice_data(env, invoice)
+        event_date = datetime.now(pytz.timezone("America/Sao_Paulo")).isoformat(sep="T")
         if validation_error:
-            return format_callback(installment_uid, "not_created", validation_error)
+            return format_callback(
+                event_date, installment_uid, "not_created", validation_error
+            )
 
         company_id = self.get_company_by_cnpj(invoice.get("cnpj_singular"))
         if not company_id:
             return format_callback(
+                event_date,
                 installment_uid,
                 "not_created",
                 api_errors.COMPANY_NOT_FOUND,
@@ -95,21 +104,29 @@ class FinancialAPIsController(http.Controller):
         )
         if not payment_mode_id:
             return format_callback(
+                event_date,
                 installment_uid,
                 "not_created",
                 api_errors.PAYMENT_MODE_NOT_FOUND,
             )
 
         partner_id = self.get_invoice_partner(env, invoice.get("payer"), company_id)
-        self.create_account_move(env, company_id, payment_mode_id, partner_id, invoice)
-        return format_callback(installment_uid, "created")
+        account_move_id = self.create_account_move(
+            env, company_id, payment_mode_id, partner_id, invoice
+        )
+        event_date = account_move_id.create_date.astimezone(
+            pytz.timezone("America/Sao_Paulo")
+        ).isoformat(sep="T")
+        return format_callback(event_date, installment_uid, "created")
 
     def process_invoice_cancellation(self, env, invoice, url_callback):
         invoice.update({"url_callback": url_callback})
         installment_uid = invoice.get("installment", {}).get("external_id")
         company_id = self.get_company_by_cnpj(invoice.get("cnpj_singular"))
+        event_date = datetime.now(pytz.timezone("America/Sao_Paulo")).isoformat(sep="T")
         if not company_id:
             return format_callback(
+                event_date,
                 installment_uid,
                 "cancellation_error",
                 api_errors.COMPANY_NOT_FOUND,
@@ -123,10 +140,13 @@ class FinancialAPIsController(http.Controller):
         )
         if not account_move_id:
             return format_callback(
-                installment_uid, "cancellation_error", api_errors.EXTERNAL_ID_NOT_FOUND
+                event_date,
+                installment_uid,
+                "cancellation_error",
+                api_errors.EXTERNAL_ID_NOT_FOUND,
             )
         account_move_id.button_cancel()
-        return format_callback(installment_uid, "bank_slip_canceled")
+        return format_callback(event_date, installment_uid, "bank_slip_canceled")
 
     def validate_invoice_data(self, env, invoice):
         """
@@ -368,9 +388,11 @@ class FinancialAPIsController(http.Controller):
             .sudo()
             .search([("installment_uid", "in", external_ids)])
         )
+        event_date = datetime.now(pytz.timezone("America/Sao_Paulo")).isoformat(sep="T")
         for url_callback in set(invoice_ids.mapped("url_callback")):
             callbacks = [
                 format_callback(
+                    event_date,
                     invoice.installment_uid,
                     status_per_external_id.get(invoice.installment_uid),
                 )

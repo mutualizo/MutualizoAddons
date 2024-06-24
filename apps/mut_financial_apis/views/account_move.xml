@@ -8,12 +8,11 @@
             <xpath expr="//page[@name='payment_move_line_tab']" position="after">
                 <page string="Contract Info" name="tab_contract_info" attrs="{'invisible': [('move_type', '!=', 'out_invoice')]}">
                     <group>
-                        <group>
-                            <field name="contract_number"/>
-                            <field name="total_installments"/>
-                            <field name="installment_number"/>
-                            <field name="installment_uid"/>
-                        </group>
+                        <field name="contract_number" readonly="1"/>
+                        <field name="total_installments" readonly="1"/>
+                        <field name="installment_number" readonly="1"/>
+                        <field name="installment_uid" readonly="1"/>
+                        <field name="additional_description_installment" readonly="1"/>
                     </group>
                 </page>
             </xpath>
