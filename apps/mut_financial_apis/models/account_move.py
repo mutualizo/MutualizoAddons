@@ -13,6 +13,20 @@ MAIL_REGEX = re.compile(
 )
 
 
+def time_from_float(value):
+    """Odoo saves time values as float (ex 1:30 as 1.5)
+    this method extracts hours and minutes from the float value"""
+    result = time(0, 0)
+    if isinstance(value, float):
+        try:
+            hour = int(value)
+            minute = int(60 * (value - hour))
+            result = time(hour, minute)
+        except ValueError:
+            result = time(0, 0)
+    return result
+
+
 class AccountMove(models.Model):
     _inherit = "account.move"
 
@@ -45,63 +59,77 @@ class AccountMove(models.Model):
 
     def _cron_confirm_invoices_generate_cnab(self):
         now = datetime.now(pytz.timezone("America/Sao_Paulo"))
-        if now.weekday() < 5 and time(8, 0) <= now.time() <= time(17, 0):
-            company_ids = self.env["res.company"].search(
+        if now.weekday() >= 5:
+            return
+        company_ids = self.env["res.company"].search(
+            [
+                ("user_ids", "in", self.env.user.id),
+                ("days_until_bank_slips_due", "!=", False),
+            ]
+        )
+        for company_id in company_ids:
+            start_time = time_from_float(company_id.cnab_start_time)
+            end_time = time_from_float(company_id.cnab_end_time)
+
+            if (
+                not self.env.context.get("skip_time_verification")
+                and now.time() < start_time
+                or now.time() > end_time
+            ):
+                continue
+
+            invoices_to_confirm = self.env["account.move"].search(
                 [
-                    ("user_ids", "in", self.env.user.id),
-                    ("days_until_bank_slips_due", "!=", False),
+                    ("company_id", "=", company_id.id),
+                    ("move_type", "=", "out_invoice"),
+                    ("state", "=", "draft"),
+                    (
+                        "payment_mode_id.fixed_journal_id.bank_id",
+                        "=",
+                        self.env.ref("l10n_br_base.res_bank_237").id,
+                    ),
+                    ("contract_number", "!=", False),
+                    ("invoice_line_ids", "!=", False),
+                    (
+                        "invoice_date_due",
+                        "<=",
+                        date.today()
+                        + timedelta(days=company_id.days_until_bank_slips_due),
+                    ),
+                ],
+                limit=2000,
+                order="id asc",
+            )
+            for invoice in invoices_to_confirm:
+                invoice.action_post()
+                invoice.generate_boleto_pdf()
+            if invoices_to_confirm:
+                invoices_to_confirm.create_account_payment_line()
+            payment_orders = self.env["account.payment.order"].search(
+                [
+                    ("state", "=", "draft"),
+                    ("payment_type", "=", "inbound"),
+                    ("company_id", "=", company_id.id),
                 ]
             )
-            for company_id in company_ids:
-                invoices_to_confirm = self.env["account.move"].search(
-                    [
-                        ("company_id", "=", company_id.id),
-                        ("move_type", "=", "out_invoice"),
-                        ("state", "=", "draft"),
-                        (
-                            "payment_mode_id.fixed_journal_id.bank_id",
-                            "=",
-                            self.env.ref("l10n_br_base.res_bank_237").id,
-                        ),
-                        ("contract_number", "!=", False),
-                        ("invoice_line_ids", "!=", False),
-                        (
-                            "invoice_date_due",
-                            "<=",
-                            date.today()
-                            + timedelta(days=company_id.days_until_bank_slips_due),
-                        ),
-                    ],
-                    limit=2000,
-                    order="id asc",
-                )
-                for invoice in invoices_to_confirm:
-                    invoice.action_post()
-                if invoices_to_confirm:
-                    action_payment_order = (
-                        invoices_to_confirm.create_account_payment_line()
+            for payment_order_id in payment_orders:
+                payment_order_id.draft2open()
+                payment_order_id.open2generated()
+                if company_id.user_to_notify_cnab:
+                    self.env["mail.activity"].create(
+                        {
+                            "summary": (
+                                "Novo Arquivo de Remessa Criado: "
+                                + f"{payment_order_id.name}"
+                            ),
+                            "res_model_id": self.env.ref(
+                                "account_payment_order.model_account_payment_order"
+                            ).id,
+                            "res_id": payment_order_id.id,
+                            "date_deadline": date.today(),
+                            "user_id": company_id.user_to_notify_cnab.id,
+                        }
                     )
-                    payment_order_id = self.env["account.payment.order"].browse(
-                        action_payment_order.get("res_id")
-                    )
-                    payment_order_id.draft2open()
-                    payment_order_id.open2generated()
-                    if company_id.user_to_notify_cnab:
-                        self.env["mail.activity"].create(
-                            {
-                                "summary": (
-                                    "Novo Arquivo de Remessa Criado: "
-                                    + f"{payment_order_id.name}"
-                                ),
-                                "res_model_id": self.env.ref(
-                                    "account_payment_order.model_account_payment_order"
-                                ).id,
-                                "res_id": payment_order_id.id,
-                                "date_deadline": date.today(),
-                                "user_id": company_id.user_to_notify_cnab.id,
-                            }
-                        )
-        return
 
     def get_bank_slip_url(self):
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
@@ -190,7 +218,7 @@ class AccountMove(models.Model):
 
     def _cron_send_bank_slip_to_invoice_followers(self):
         now = datetime.now(pytz.timezone("America/Sao_Paulo"))
-        if now.weekday() < 5 and time(8, 0) <= now.time() <= time(17, 0):
+        if now.weekday() < 5:
             account_move_ids = self.env["account.move"].search(
                 [("notification_status", "=", "in_queue"), ("state", "=", "posted")],
                 limit=500,
