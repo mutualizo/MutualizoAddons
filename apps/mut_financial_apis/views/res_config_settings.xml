@@ -41,6 +41,28 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mt16 o_settings_container" name="main_currency_setting_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Horários para geração de Remessa</span>
+                            <span class="fa fa-lg fa-building-o" title="Os valores informados dependem da empresa atual." aria-label="Os valores informados dependem da empresa atual." groups="base.group_multi_company" role="img"/>
+                            <div class="text-muted">
+                                Informe o periodo em que é permitida a geração da Remessa do CNAB.
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="cnab_start_time" class="col-lg-3 o_light_label"/>
+                                    <field name="cnab_start_time" widget="float_time" />
+                                </div>
+                                <div class="row mt16">
+                                    <label for="cnab_end_time" class="col-lg-3 o_light_label"/>
+                                    <field name="cnab_end_time" widget="float_time" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>

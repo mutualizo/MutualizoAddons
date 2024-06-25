@@ -52,20 +52,15 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_account_invoice_filter"/>
         <field name="arch" type="xml">
+
             <field name="name" position="after">
-                <field name="contract_number"/>
+                <field name="contract_number" invisible="context.get('default_move_type') != 'out_invoice'"/>
+                <field name="installment_uid" string="Identificador da Parcela" invisible="context.get('default_move_type') != 'out_invoice'"/>
             </field>
             <xpath expr="//filter[@name='salesperson']" position="before">
-                <filter name="contractnumber" string="Contract Number" context="{'group_by': 'contract_number'}"/>
+                <filter name="contractnumber" string="Contract Number" context="{'group_by': 'contract_number'}" invisible="context.get('default_move_type') != 'out_invoice'"/>
             </xpath>
-        </field>
-    </record>
 
-    <record id="view_account_invoice_filter_inherit" model="ir.ui.view">
-        <field name="name">account.invoice.select.inherit</field>
-        <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
-        <field name="arch" type="xml">
             <filter name="myinvoices" position="after">
                 <separator/>
                 <filter name="bank_slip_not_issued" string="Não Registrado" domain="[('bank_slip_status', '=', 'bank_slip_not_issued')]" invisible="context.get('default_move_type') != 'out_invoice'"/>
