@@ -62,8 +62,8 @@ class BinaryInherit(Binary):
         )
         if payment_order_id.state != "generated":
             return res
-        payment_order_id.payment_line_ids.mapped("move_id").write(
-            {"notification_status": "in_queue"}
-        )
+        payment_order_id.payment_line_ids.filtered(
+            lambda x: x.mov_instruction_code_id.code == "01"
+        ).mapped("move_id").write({"notification_status": "in_queue"})
         payment_order_id.generated2uploaded()
         return res
