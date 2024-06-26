@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <template id="assets_backend" inherit_id="web.assets_backend" name="CNAB Backend Assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/mut_financial_apis/static/src/js/cnab_button.js"></script>
+        </xpath>
+    </template>
+
     <record model="ir.ui.view" id="account_move_form_inherit">
         <field name="name">account.move.form.inherit</field>
         <field name="model">account.move</field>
@@ -24,6 +31,9 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_invoice_tree" />
         <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="js_class">cnab_account_tree</attribute>
+            </xpath>
             <field name="invoice_partner_display_name" position="after">
                 <field name="contract_number"/>
             </field>
