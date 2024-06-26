@@ -1,7 +1,7 @@
 import re
 import pytz
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 from werkzeug.urls import url_join
 from datetime import timedelta, date, datetime, time
@@ -57,7 +57,52 @@ class AccountMove(models.Model):
         tracking=True,
     )
 
-    def _cron_confirm_invoices_generate_cnab(self):
+    def get_company_draft_invoices(self, company_id):
+        return self.env["account.move"].search(
+            [
+                ("company_id", "=", company_id.id),
+                ("move_type", "=", "out_invoice"),
+                ("state", "=", "draft"),
+                (
+                    "payment_mode_id.fixed_journal_id.bank_id",
+                    "=",
+                    self.env.ref("l10n_br_base.res_bank_237").id,
+                ),
+                ("contract_number", "!=", False),
+                ("invoice_line_ids", "!=", False),
+                (
+                    "invoice_date_due",
+                    "<=",
+                    date.today() + timedelta(days=company_id.days_until_bank_slips_due),
+                ),
+            ],
+            limit=2000,
+            order="id asc",
+        )
+
+    def create_pay_order_file(self, payment_order_ids):
+        for payment_order_id in payment_order_ids:
+            company_id = payment_order_id.company_id
+            payment_order_id.draft2open()
+            payment_order_id.open2generated()
+            if company_id.user_to_notify_cnab:
+                self.env["mail.activity"].create(
+                    {
+                        "summary": (
+                            "Novo Arquivo de Remessa Criado: "
+                            + f"{payment_order_id.name}"
+                        ),
+                        "res_model_id": self.env.ref(
+                            "account_payment_order.model_account_payment_order"
+                        ).id,
+                        "res_id": payment_order_id.id,
+                        "date_deadline": date.today(),
+                        "user_id": company_id.user_to_notify_cnab.id,
+                    }
+                )
+
+    @api.model
+    def confirm_invoices_generate_cnab(self):
         now = datetime.now(pytz.timezone("America/Sao_Paulo"))
         if now.weekday() >= 5:
             return
@@ -67,6 +112,7 @@ class AccountMove(models.Model):
                 ("days_until_bank_slips_due", "!=", False),
             ]
         )
+        confirmed_pay_orders = self.env["account.payment.order"]
         for company_id in company_ids:
             start_time = time_from_float(company_id.cnab_start_time)
             end_time = time_from_float(company_id.cnab_end_time)
@@ -78,28 +124,8 @@ class AccountMove(models.Model):
             ):
                 continue
 
-            invoices_to_confirm = self.env["account.move"].search(
-                [
-                    ("company_id", "=", company_id.id),
-                    ("move_type", "=", "out_invoice"),
-                    ("state", "=", "draft"),
-                    (
-                        "payment_mode_id.fixed_journal_id.bank_id",
-                        "=",
-                        self.env.ref("l10n_br_base.res_bank_237").id,
-                    ),
-                    ("contract_number", "!=", False),
-                    ("invoice_line_ids", "!=", False),
-                    (
-                        "invoice_date_due",
-                        "<=",
-                        date.today()
-                        + timedelta(days=company_id.days_until_bank_slips_due),
-                    ),
-                ],
-                limit=2000,
-                order="id asc",
-            )
+            invoices_to_confirm = self.get_company_draft_invoices(company_id)
+
             for invoice in invoices_to_confirm:
                 invoice.action_post()
                 invoice.generate_boleto_pdf()
@@ -112,24 +138,27 @@ class AccountMove(models.Model):
                     ("company_id", "=", company_id.id),
                 ]
             )
-            for payment_order_id in payment_orders:
-                payment_order_id.draft2open()
-                payment_order_id.open2generated()
-                if company_id.user_to_notify_cnab:
-                    self.env["mail.activity"].create(
-                        {
-                            "summary": (
-                                "Novo Arquivo de Remessa Criado: "
-                                + f"{payment_order_id.name}"
-                            ),
-                            "res_model_id": self.env.ref(
-                                "account_payment_order.model_account_payment_order"
-                            ).id,
-                            "res_id": payment_order_id.id,
-                            "date_deadline": date.today(),
-                            "user_id": company_id.user_to_notify_cnab.id,
-                        }
-                    )
+            confirmed_pay_orders += payment_orders
+            self.create_pay_order_file(payment_orders)
+
+        # Check if there's any new payment orders for the user's current company
+        company_pay_orders = confirmed_pay_orders.filtered(
+            lambda x: x.company_id == self.env.user.company_id
+        )
+        if company_pay_orders:
+            return {
+                "name": "Remessas CNAB",
+                "type": "ir.actions.act_window",
+                "res_model": "account.payment.order",
+                "view_mode": "tree,form",
+                "views": [[False, "list"], [False, "form"]],
+                "target": "current",
+            }
+        else:
+            return {}
+
+    def _cron_confirm_invoices_generate_cnab(self):
+        self.confirm_invoices_generate_cnab()
 
     def get_bank_slip_url(self):
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
